@@ -1,0 +1,19 @@
+{
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 2.435178518295288,
+          "win_rate": 0.3076412081718445,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 2.1416566371917725,
+          "win_rate": 0.6923587918281555,
+          "relative_mae_reduction": 0.1205340325832367,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      }
+    }
+  }
+}
