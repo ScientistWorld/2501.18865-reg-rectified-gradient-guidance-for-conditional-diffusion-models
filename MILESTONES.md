@@ -27,4 +27,4 @@
 - `python validate.py --compare` passed inside the job.
 
 ## Stop Justification
-- Stopping at `core_claim`: the reusable environment implements and evaluates the paper's actual REG computation on the paper's 1D Gaussian-mixture setup. Larger ImageNet and COCO reproductions remain future work because they require substantially more diffusion-model generation and evaluation.
+- Completed at milestone `core_claim`.

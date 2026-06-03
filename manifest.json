@@ -1,0 +1,127 @@
+{
+  "paper": {
+    "arxiv_id": "2501.18865",
+    "title": "REG: Rectified Gradient Guidance for Conditional Diffusion Models",
+    "date": "",
+    "topics": [
+      "paper-type-metric-method",
+      "domain-cv",
+      "area-diffusion-models",
+      "category-generation",
+      "method-guidance",
+      "secondary-domain-ai-ml",
+      "secondary-area-generative-models",
+      "secondary-category-theory",
+      "secondary-method-score-matching",
+      "selection-category-visual-generation"
+    ]
+  },
+  "reproduction": {
+    "milestone": "core_claim",
+    "status": "done",
+    "error": null,
+    "scaffold": "codex",
+    "model": "gpt-5.5",
+    "profile": "gpt-5.5-medium",
+    "effort": "medium",
+    "gpu_hours_used": 0.0,
+    "current_iteration_gpu_budget": 30,
+    "current_iteration_gpu_hours_used": 0.0,
+    "total_gpu_hours_used": 0.0,
+    "current_iteration_cpu_hours_used": 0.015,
+    "total_cpu_hours_used": 0.015,
+    "gpu_budget": 30,
+    "duration_sec": 674.9,
+    "cost_usd": null,
+    "input_tokens": 2609489,
+    "output_tokens": 24483,
+    "cached_input_tokens": 2386816,
+    "cache_creation_tokens": null,
+    "reasoning_tokens": 0,
+    "total_input_tokens": 2609489,
+    "num_turns": 60,
+    "duration_api_ms": null,
+    "num_runs": 1,
+    "iteration_count": 0,
+    "workflow": "standard",
+    "workflow_step": 0,
+    "total_gpu_jobs": 1,
+    "time_breakdown": {
+      "working": 417.48017406463623,
+      "building": 0.08511519432067871,
+      "installing": 2.6794509887695312,
+      "waiting": 59.210009813308716
+    }
+  },
+  "agents": [
+    {
+      "scaffold": "codex",
+      "model": "gpt-5.5",
+      "profile": "gpt-5.5-medium",
+      "effort": "medium",
+      "role": "reproducer",
+      "is_iteration": false,
+      "iteration": 1,
+      "workflow": "standard",
+      "workflow_step": 0,
+      "started_at": 1780477509.1641867,
+      "finished_at": 1780478184.01717,
+      "duration_sec": 674.9,
+      "blocked_sec": 0.0,
+      "status": "done",
+      "error": null,
+      "milestone": "core_claim",
+      "gpu_budget": 30,
+      "gpu_hours_used": 0.0,
+      "total_gpu_hours_used": 0.0,
+      "cpu_hours_used": 0.015,
+      "time_breakdown": {
+        "working": 417.48017406463623,
+        "building": 0.08511519432067871,
+        "installing": 2.6794509887695312,
+        "waiting": 59.210009813308716
+      },
+      "cost_usd": null,
+      "input_tokens": 2609489,
+      "output_tokens": 24483,
+      "cached_input_tokens": 2386816,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 0,
+      "total_input_tokens": 2609489,
+      "num_turns": 60,
+      "duration_api_ms": null,
+      "tool_uses": {
+        "shell": 51,
+        "file_edit": 9
+      },
+      "gpu_jobs": [
+        {
+          "run_id": "026b8819-b0f",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu",
+          "hive_job_id": "f94bb7e8",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 55.4,
+          "submitted_at": 1780477937.9013174,
+          "started_at": 1780477939.4767272,
+          "completed_at": 1780477994.9119432
+        }
+      ],
+      "progress_log": "### [2026-06-03 09:08] - none\n- Read the paper and identified REG's core computation: a Jacobian-based correction to existing guidance.\n- Implemented the 1D synthetic DDPM reproduction and evaluation pipeline.\n- Prepared the first compute job to test whether the method runs and supports the low-dimensional core claim.\n\n### [2026-06-03 09:14] - core_claim\n- CPU job `026b8819-b0f` trained the conditional and unconditional 1D DDPM denoisers, ran vanilla CFG and REG guidance, and wrote `scoring/scores.json`.\n- REG achieved lower optimal-guidance approximation error than vanilla CFG: MAE 2.142 vs 2.435.\n- REG won 69.24% of evaluated guidance comparisons vs 30.76% for vanilla CFG, supporting the paper's central claim on the low-dimensional setting.\n- `python validate.py --compare` passed inside the job."
+    }
+  ],
+  "components": {
+    "has_container": true,
+    "has_method_code": true,
+    "has_evaluation": true,
+    "has_download_script": true,
+    "has_reproduce_script": true,
+    "has_method_script": true,
+    "has_baseline": true,
+    "has_reference": true,
+    "has_data": true
+  }
+}
