@@ -22,4 +22,4 @@
 - `python validate.py --compare` passed after the run.
 
 ## Stop Justification
-- Stopping at `core_claim`: the low-dimensional core claim is reproduced with the actual REG computation and a reusable evaluation pipeline. Larger ImageNet/COCO claims remain out of scope for the current budget.
+- Completed at milestone `core_claim`.
