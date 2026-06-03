@@ -15,7 +15,7 @@ Earlier CPU job `026b8819-b0f` completed successfully and wrote `scoring/scores.
 
 REG reduced guidance MAE by 12.05% relative to vanilla CFG and won 69.24% of comparisons against the deterministic optimal guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
 
-The method code has since been updated to use the full deterministic foresight chain for the target. A new job is being submitted to refresh these numbers before claiming `core_claim`.
+The method code has since been updated to use the full deterministic foresight chain for the target. During continuation audit, I also changed the default training length to the paper's 200 epochs. A new job is being submitted to refresh these numbers before claiming `core_claim`.
 
 ## Remaining
 

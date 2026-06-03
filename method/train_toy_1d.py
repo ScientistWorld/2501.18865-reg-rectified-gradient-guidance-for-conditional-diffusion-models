@@ -32,7 +32,7 @@ class TrainConfig:
     embed_dim: int = 128
     hidden_dim: int = 128
     hidden_layers: int = 3
-    epochs: int = 120
+    epochs: int = 200
     batch_size: int = 512
     lr: float = 1e-3
     guidance_scale: float = 1.5

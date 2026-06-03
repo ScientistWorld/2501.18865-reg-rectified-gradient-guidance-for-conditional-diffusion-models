@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: true
 milestone: method_runs
-notes: "Rerun corrected 1D REG reproduction with deterministic full-chain guidance target and validate scores."
+notes: "Rerun corrected 1D REG reproduction with full-chain guidance target, paper-matched 200 epochs, and validate scores."
