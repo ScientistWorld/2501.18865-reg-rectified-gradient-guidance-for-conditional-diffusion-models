@@ -27,8 +27,8 @@
 #   milestone: core_claim
 #   notes: "Reproduced the core claim. Environment packaged."
 
-action: submit
+action: done
 gpus: 0
 test: false
-milestone: none
-notes: "Train the 1D synthetic DDPM reproduction and evaluate REG vs vanilla CFG against the optimal guidance target."
+milestone: core_claim
+notes: "Reproduced the core low-dimensional REG claim: REG win_rate 0.692 vs vanilla CFG 0.308 with 12.1% MAE reduction; validation passed."

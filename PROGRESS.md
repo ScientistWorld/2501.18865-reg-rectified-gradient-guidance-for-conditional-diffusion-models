@@ -6,15 +6,22 @@ Implemented a self-contained 1D synthetic reproduction of REG for classifier-fre
 
 ## Results
 
-Pending compute job. `scripts/run.sh` trains the 1D models, evaluates guidance approximation, writes `scoring/scores.json`, and runs `python validate.py --compare`.
+CPU job `026b8819-b0f` completed successfully and wrote `scoring/scores.json`.
+
+| Method | Guidance MAE | Win Rate | Additional VJP / guided step |
+|---|---:|---:|---:|
+| Vanilla CFG | 2.4352 | 0.3076 | 0.0 |
+| REG CFG | 2.1417 | 0.6924 | 1.0 |
+
+REG reduced guidance MAE by 12.05% relative to vanilla CFG and won 69.24% of comparisons against the deterministic optimal guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
 
 ## Remaining
 
-Run the submitted job and inspect whether REG achieves lower guidance MAE and a win rate above 50%. If successful, update milestone to `core_claim`; if not, adjust training duration/hyperparameters and resubmit.
+The reusable environment has reached `core_claim`. Future extensions would add image-generation experiments from the paper, more CFG weights, or additional low-dimensional settings to move beyond the minimum.
 
 ## Issues
 
-The full ImageNet and COCO experiments require large pretrained diffusion models and many generated images. The first reproduction targets the paper's low-dimensional synthetic claim because it implements the same REG computation and is feasible within the initial job.
+The full ImageNet and COCO experiments require large pretrained diffusion models and many generated images. This reproduction targets the paper's low-dimensional synthetic claim because it implements the same REG computation and is feasible within the available budget.
 
 ## Deviations from Paper
 
