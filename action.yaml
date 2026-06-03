@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
 test: false
-milestone: method_runs
-notes: "Regenerate the 1D REG reproduction with the paper-style stochastic expected-reward target (100 denoising completions per grid point), then run evaluate.sh and validate.py --compare."
+milestone: core_claim
+notes: "Core claim restored after job d504d843-623: stochastic 1D REG target completed, REG MAE 0.3720 vs CFG 0.7692 with one additional VJP per guided step, and validate.py --compare passed."
