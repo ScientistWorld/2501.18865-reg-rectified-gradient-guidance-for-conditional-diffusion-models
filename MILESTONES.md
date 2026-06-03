@@ -1,6 +1,6 @@
 # Reproduction Milestones
 
-**Current: method_runs**
+**Current: core_claim**
 
 ## Progress Log
 
@@ -16,5 +16,10 @@
 - Audited the workspace as a continuation agent: method code implements CFG plus the REG Jacobian correction, and eval remains separated from `method/`.
 - Found that stored scores were from the older one-step target and that the default 1D training length was below the paper's 200 epochs; changed the default to 200 epochs and will submit a fresh run.
 
+### [2026-06-03 10:20] - core_claim
+- Completed corrected CPU job `df24a0a7-242` with the paper's 200-epoch 1D synthetic setup and full deterministic denoising-chain target.
+- REG CFG reduced guidance MAE from 1.2693 to 0.9484 and won 61.40% of grid/time comparisons against vanilla CFG while adding one VJP per guided step.
+- `python validate.py --compare` passed after the run.
+
 ## Stop Justification
-- Not stopped. Next job should determine whether the corrected reproduction reaches `core_claim`.
+- Stopping at `core_claim`: the low-dimensional core claim is reproduced with the actual REG computation and a reusable evaluation pipeline. Larger ImageNet/COCO claims remain out of scope for the current budget.

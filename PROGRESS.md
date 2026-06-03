@@ -6,20 +6,18 @@ Implemented a self-contained 1D synthetic reproduction of REG for classifier-fre
 
 ## Results
 
-Earlier CPU job `026b8819-b0f` completed successfully and wrote `scoring/scores.json` using a one-step deterministic target.
+Corrected CPU job `df24a0a7-242` completed successfully and wrote `scoring/scores.json` using the full deterministic denoising-chain target.
 
 | Method | Guidance MAE | Win Rate | Additional VJP / guided step |
 |---|---:|---:|---:|
-| Vanilla CFG | 2.4352 | 0.3076 | 0.0 |
-| REG CFG | 2.1417 | 0.6924 | 1.0 |
+| Vanilla CFG | 1.2693 | 0.3860 | 0.0 |
+| REG CFG | 0.9484 | 0.6140 | 1.0 |
 
-REG reduced guidance MAE by 12.05% relative to vanilla CFG and won 69.24% of comparisons against the deterministic optimal guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
-
-The method code has since been updated to use the full deterministic foresight chain for the target. During continuation audit, I also changed the default training length to the paper's 200 epochs. A new job is being submitted to refresh these numbers before claiming `core_claim`.
+REG reduced guidance MAE by 25.28% relative to vanilla CFG and won 61.40% of comparisons against the deterministic joint-scaling guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
 
 ## Remaining
 
-The next step is to run the corrected method and evaluator in the compute container. If REG remains closer to the joint-scaling target than vanilla CFG, the reusable environment reaches `core_claim`. Future extensions would add 2D synthetic experiments, image-generation experiments from the paper, more CFG weights, or additional low-dimensional settings.
+The reusable environment has reached `core_claim`. Future extensions would add 2D synthetic experiments, image-generation experiments from the paper, more CFG weights, or additional low-dimensional settings.
 
 ## Issues
 
