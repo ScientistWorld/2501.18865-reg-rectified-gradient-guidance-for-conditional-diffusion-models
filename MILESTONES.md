@@ -1,8 +1,12 @@
 # Reproduction Milestones
 
-**Current: core_claim**
+**Current: method_runs**
 
 ## Progress Log
+
+### [2026-06-03 00:00] - method_runs
+- Continuation audit confirmed the existing code implements the paper's REG computation rather than a surrogate.
+- Added a paper-style stochastic expected-reward target for the 1D optimal guidance estimate and submitted a regeneration job before restoring `core_claim`.
 
 ### [2026-06-03 00:00] - method_runs
 - Implemented the paper's epsilon-prediction REG update for classifier-free guidance on the 1D synthetic DDPM setting.
@@ -14,4 +18,4 @@
 - `python validate.py --compare` passed schema, score, separation, and output-contract checks.
 
 ## Stop Justification
-- Completed at milestone `core_claim` with a reusable low-dimensional benchmark for the paper's central REG approximation claim.
+- Not stopped; stochastic target regeneration is pending before restoring `core_claim`.
