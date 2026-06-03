@@ -98,7 +98,7 @@ Run the method to train conditional and unconditional 1D denoisers on the fixed 
 
 # Reproduction Milestones
 
-**Current: core_claim**
+**Current: method_runs**
 
 ## Stop Justification
-- Completed at milestone `core_claim`.
+- Completed at milestone `method_runs`.
