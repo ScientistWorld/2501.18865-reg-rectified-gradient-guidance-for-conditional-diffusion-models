@@ -38,6 +38,8 @@ class TrainConfig:
     guidance_scale: float = 1.5
     eval_grid_points: int = 301
     eval_steps: tuple[int, ...] = (4, 8, 12, 16, 20)
+    optimal_target: str = "stochastic"
+    foresight_samples: int = 100
 
 
 class FourierFeatures(nn.Module):
@@ -106,6 +108,30 @@ class DDPM1D:
             x = self.deterministic_previous(x, t, eps)
         return x
 
+    def stochastic_denoise_to_zero(
+        self,
+        model: nn.Module,
+        x_t: torch.Tensor,
+        start_step: int,
+        samples_per_x: int,
+    ) -> torch.Tensor:
+        """Reparameterized Monte Carlo estimate of p_theta(x_0 | x_t, y).
+
+        Appendix E.1 estimates the optimal 1D target by evaluating expected
+        rewards over denoising-chain completions. Keeping the sampled Gaussian
+        noises independent of x_t preserves a pathwise gradient for log E_t.
+        """
+        batch = x_t.shape[0]
+        x = x_t[:, None, :].expand(batch, samples_per_x, x_t.shape[1]).reshape(batch * samples_per_x, x_t.shape[1])
+        for step in range(start_step, 0, -1):
+            t = torch.full((x.shape[0],), step, device=x.device, dtype=torch.long)
+            eps = model(x, t)
+            mean = self.deterministic_previous(x, t, eps)
+            sigma = self.betas[step - 1].sqrt()
+            noise = torch.randn(x.shape, device=x.device, dtype=x.dtype)
+            x = mean + sigma * noise
+        return x.reshape(batch, samples_per_x, x_t.shape[1])
+
 
 def make_loader(dist, cfg: TrainConfig, generator: torch.Generator) -> DataLoader:
     x0 = dist.sample(cfg.train_samples, generator=generator)
@@ -152,9 +178,23 @@ def evaluate_guidance(cond_model: nn.Module, uncond_model: nn.Module, diffusion:
         reg = reg_adjustment(x_req, eps_c, eps_u, torch.sqrt(1.0 - ab), cfg.guidance_scale).detach()
 
         x_req2 = x.detach().clone().requires_grad_(True)
-        x0_deterministic = diffusion.denoise_to_zero(cond_model, x_req2, step)
-        reward = log_reward_ratio(x0_deterministic).sum()
-        reward_grad = torch.autograd.grad(reward, x_req2, create_graph=False)[0]
+        if cfg.optimal_target == "deterministic":
+            x0_deterministic = diffusion.denoise_to_zero(cond_model, x_req2, step)
+            log_expected_reward = log_reward_ratio(x0_deterministic)
+        elif cfg.optimal_target == "stochastic":
+            torch.manual_seed(cfg.seed + 1000 + step)
+            x0_samples = diffusion.stochastic_denoise_to_zero(
+                cond_model,
+                x_req2,
+                step,
+                cfg.foresight_samples,
+            )
+            log_rewards = log_reward_ratio(x0_samples.reshape(-1, 1)).reshape(x.shape[0], cfg.foresight_samples)
+            log_expected_reward = torch.logsumexp(log_rewards, dim=1) - math.log(cfg.foresight_samples)
+        else:
+            raise ValueError(f"Unknown optimal target mode: {cfg.optimal_target}")
+
+        reward_grad = torch.autograd.grad(log_expected_reward.sum(), x_req2, create_graph=False)[0]
         optimal = (-torch.sqrt(1.0 - ab) * reward_grad).detach()
 
         cfg_abs = (vanilla - optimal).abs()
@@ -163,6 +203,7 @@ def evaluate_guidance(cond_model: nn.Module, uncond_model: nn.Module, diffusion:
         records.append(
             {
                 "time_step": step,
+                "optimal_target": cfg.optimal_target,
                 "cfg_mae": float(cfg_abs.mean().cpu()),
                 "reg_mae": float(reg_abs.mean().cpu()),
                 "reg_win_rate": float(win.mean().cpu()),
@@ -193,16 +234,23 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--outdir", default="outputs/toy_1d")
     parser.add_argument("--epochs", type=int, default=None)
+    parser.add_argument("--optimal-target", choices=("stochastic", "deterministic"), default=None)
+    parser.add_argument("--foresight-samples", type=int, default=None)
     parser.add_argument("--quick", action="store_true")
     args = parser.parse_args()
 
     cfg = TrainConfig()
     if args.epochs is not None:
         cfg.epochs = args.epochs
+    if args.optimal_target is not None:
+        cfg.optimal_target = args.optimal_target
+    if args.foresight_samples is not None:
+        cfg.foresight_samples = args.foresight_samples
     if args.quick:
         cfg.epochs = min(cfg.epochs, 3)
         cfg.train_samples = 1024
         cfg.eval_grid_points = 51
+        cfg.foresight_samples = min(cfg.foresight_samples, 8)
 
     torch.manual_seed(cfg.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
