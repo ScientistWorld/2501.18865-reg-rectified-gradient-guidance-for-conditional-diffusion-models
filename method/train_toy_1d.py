@@ -53,8 +53,9 @@ class FourierFeatures(nn.Module):
 
 
 class EpsilonMLP(nn.Module):
-    def __init__(self, embed_dim: int, hidden_dim: int, hidden_layers: int):
+    def __init__(self, embed_dim: int, hidden_dim: int, hidden_layers: int, diffusion_steps: int):
         super().__init__()
+        self.diffusion_steps = diffusion_steps
         self.x_embed = FourierFeatures(embed_dim)
         self.t_embed = FourierFeatures(embed_dim)
         layers: list[nn.Module] = []
@@ -66,7 +67,7 @@ class EpsilonMLP(nn.Module):
         self.net = nn.Sequential(*layers)
 
     def forward(self, x_t: torch.Tensor, t_index: torch.Tensor) -> torch.Tensor:
-        t_scaled = t_index.float().reshape(-1, 1) / 20.0
+        t_scaled = t_index.float().reshape(-1, 1) / float(self.diffusion_steps)
         return self.net(torch.cat([self.x_embed(x_t), self.t_embed(t_scaled)], dim=-1))
 
 
@@ -76,6 +77,8 @@ class DDPM1D:
         self.device = device
         betas = torch.linspace(cfg.beta_start, cfg.beta_end, cfg.diffusion_steps, device=device)
         alphas = 1.0 - betas
+        self.betas = betas
+        self.alphas = alphas
         self.alpha_bars = torch.cumprod(alphas, dim=0)
 
     def q_sample(self, x0: torch.Tensor, t_index: torch.Tensor, noise: torch.Tensor) -> torch.Tensor:
@@ -85,6 +88,23 @@ class DDPM1D:
     def x0_hat(self, x_t: torch.Tensor, t_index: torch.Tensor, eps_cond: torch.Tensor) -> torch.Tensor:
         ab = self.alpha_bars[t_index - 1].reshape(-1, 1)
         return (x_t - (1.0 - ab).sqrt() * eps_cond) / ab.sqrt()
+
+    def deterministic_previous(self, x_t: torch.Tensor, t_index: torch.Tensor, eps: torch.Tensor) -> torch.Tensor:
+        """DDPM mean transition from x_t to x_{t-1}, preserving gradients."""
+        beta_t = self.betas[t_index - 1].reshape(-1, 1)
+        alpha_t = self.alphas[t_index - 1].reshape(-1, 1)
+        alpha_bar_t = self.alpha_bars[t_index - 1].reshape(-1, 1)
+        return (x_t - beta_t / (1.0 - alpha_bar_t).sqrt() * eps) / alpha_t.sqrt()
+
+    def denoise_to_zero(self, model: nn.Module, x_t: torch.Tensor, start_step: int) -> torch.Tensor:
+        """Deterministic foresight chain used to evaluate the joint-scaling target."""
+        x = x_t
+        batch = x.shape[0]
+        for step in range(start_step, 0, -1):
+            t = torch.full((batch,), step, device=x.device, dtype=torch.long)
+            eps = model(x, t)
+            x = self.deterministic_previous(x, t, eps)
+        return x
 
 
 def make_loader(dist, cfg: TrainConfig, generator: torch.Generator) -> DataLoader:
@@ -132,9 +152,8 @@ def evaluate_guidance(cond_model: nn.Module, uncond_model: nn.Module, diffusion:
         reg = reg_adjustment(x_req, eps_c, eps_u, torch.sqrt(1.0 - ab), cfg.guidance_scale).detach()
 
         x_req2 = x.detach().clone().requires_grad_(True)
-        eps_c2 = cond_model(x_req2, t)
-        x0_hat = diffusion.x0_hat(x_req2, t, eps_c2)
-        reward = log_reward_ratio(x0_hat).sum()
+        x0_deterministic = diffusion.denoise_to_zero(cond_model, x_req2, step)
+        reward = log_reward_ratio(x0_deterministic).sum()
         reward_grad = torch.autograd.grad(reward, x_req2, create_graph=False)[0]
         optimal = (-torch.sqrt(1.0 - ab) * reward_grad).detach()
 
@@ -189,8 +208,8 @@ def main() -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     generator = torch.Generator(device="cpu").manual_seed(cfg.seed)
     diffusion = DDPM1D(cfg, device)
-    cond_model = EpsilonMLP(cfg.embed_dim, cfg.hidden_dim, cfg.hidden_layers).to(device)
-    uncond_model = EpsilonMLP(cfg.embed_dim, cfg.hidden_dim, cfg.hidden_layers).to(device)
+    cond_model = EpsilonMLP(cfg.embed_dim, cfg.hidden_dim, cfg.hidden_layers, cfg.diffusion_steps).to(device)
+    uncond_model = EpsilonMLP(cfg.embed_dim, cfg.hidden_dim, cfg.hidden_layers, cfg.diffusion_steps).to(device)
 
     cond_losses = train_one(cond_model, make_loader(CONDITIONAL_DIST, cfg, generator), diffusion, cfg, device)
     uncond_losses = train_one(uncond_model, make_loader(UNCONDITIONAL_DIST, cfg, generator), diffusion, cfg, device)
