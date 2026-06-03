@@ -1,0 +1,39 @@
+{
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "description": "Synthetic guidance approximation: REG should more often be closer than vanilla CFG to the optimal joint-scaling guidance target. Paper reports this claim qualitatively for 1D and quantitatively as win-rate pairs for 2D in Table 1; the 1D reproduction uses the same reported synthetic distribution and metric family.",
+      "weight": 1.0,
+      "primary_metric": "win_rate",
+      "metrics": {
+        "guidance_mae": {
+          "higher_is_better": false,
+          "coefficient": -1.0
+        },
+        "win_rate": {
+          "higher_is_better": true,
+          "coefficient": 1.0
+        },
+        "relative_mae_reduction": {
+          "higher_is_better": true,
+          "coefficient": 0.5
+        },
+        "additional_vjp_per_guided_step": {
+          "higher_is_better": false,
+          "coefficient": -0.1
+        }
+      },
+      "results": {
+        "vanilla_cfg": {
+          "type": "baseline",
+          "win_rate": 0.344,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "type": "proposed",
+          "win_rate": 0.656,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      }
+    }
+  }
+}

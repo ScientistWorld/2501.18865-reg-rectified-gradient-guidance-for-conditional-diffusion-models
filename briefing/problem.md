@@ -1,17 +1,13 @@
 # Problem Definition
 
-What problem does this paper address? Write this so that someone with no knowledge of the paper can understand what needs to be solved and how success is measured.
-
-Do NOT describe the paper's method or solution here — only the problem itself. Think about if a future scientist agent try to solve this problem from scratch without knowing what approach the paper took. If you leak the solution, you compromise the benchmark.
-
 ## Research Question
 
-<!-- What problem or challenge does this paper tackle? What gap in existing work does it address? -->
+Conditional diffusion samplers often improve sample fidelity by modifying the denoising prediction at inference time using a conditioning signal. The research question is whether an inference-time guidance rule can better match the ideal conditional denoising direction while preserving diversity and keeping computational overhead bounded.
 
 ## Why It Matters
 
-<!-- Why is this problem important? What would a good solution enable? Make it short -->
+Better guidance improves conditional generation without retraining the base diffusion model. A reliable evaluation should distinguish guidance rules that genuinely approximate the desired denoising direction from rules that only look good on one metric by increasing compute or collapsing diversity.
 
 ## Success Criteria
 
-<!-- What would a successful solution look like? What properties should it have? This is about the goal, not the paper's specific approach. Make it short -->
+A successful solution produces guidance directions closer to an optimal target on low-dimensional benchmarks and improves downstream conditional generation metrics when applied to pretrained image generators. It should also report the extra per-step computation needed to achieve the improvement.

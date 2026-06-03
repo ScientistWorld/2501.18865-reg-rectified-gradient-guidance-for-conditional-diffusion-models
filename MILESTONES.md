@@ -15,7 +15,10 @@
 
 ## Progress Log
 
-<!-- Write your progress here -->
+### [2026-06-03 09:30] - none
+- Read the paper and identified REG's core computation: a Jacobian-based correction to existing guidance.
+- Implemented the 1D synthetic DDPM reproduction and evaluation pipeline.
+- Prepared the first compute job to test whether the method runs and supports the low-dimensional core claim.
 
 ## Stop Justification
-- Completed at milestone `none`.
+- Not stopped; first reproduction job is ready to submit.

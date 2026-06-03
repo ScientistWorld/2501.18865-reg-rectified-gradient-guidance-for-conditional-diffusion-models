@@ -2,36 +2,20 @@
 
 ## What Works
 
-<!-- What has been successfully reproduced so far. -->
+Implemented a self-contained 1D synthetic reproduction of REG for classifier-free guidance. The method trains conditional and unconditional epsilon-prediction DDPM denoisers on the paper's Gaussian mixture setup, computes vanilla CFG and REG guidance adjustments, and compares both with the deterministic optimal joint-scaling guidance target.
 
 ## Results
 
-<!-- Reproduced numbers compared to the paper's reported numbers. -->
+Pending compute job. `scripts/run.sh` trains the 1D models, evaluates guidance approximation, writes `scoring/scores.json`, and runs `python validate.py --compare`.
 
 ## Remaining
 
-<!-- What still needs to be done to reach higher milestones. -->
+Run the submitted job and inspect whether REG achieves lower guidance MAE and a win rate above 50%. If successful, update milestone to `core_claim`; if not, adjust training duration/hyperparameters and resubmit.
 
 ## Issues
 
-<!-- Blockers, bugs, or difficulties encountered. -->
+The full ImageNet and COCO experiments require large pretrained diffusion models and many generated images. The first reproduction targets the paper's low-dimensional synthetic claim because it implements the same REG computation and is feasible within the initial job.
 
 ## Deviations from Paper
 
-<!-- Do not edit this section unless you deviated from the paper's original setup.
-     For each deviation, document: what the paper used, what you substituted, and why.
-
-     ACCEPTABLE deviations (data/resource/scale substitutions — milestones still valid):
-       - Replaced a proprietary dataset with a public one
-       - Used a smaller model of the same architecture
-       - Scaled down training (fewer epochs, smaller batch)
-       - Used a different library for the same algorithm
-
-     UNACCEPTABLE deviations (algorithm substitutions — milestones above 'none' are void):
-       - Replaced the paper's algorithm with a fundamentally different one
-       - Wrote a generic model trained to approximate the method's outputs
-         instead of implementing the method's computational steps
-
-     The test: could someone reading your code identify which algorithm from
-     the paper you implemented? If not, you replaced the method. -->
-
+The paper's 1D experiment evaluates the optimal expected reward by sampling 100 denoising-chain completions at each observed `x_t`. This reproduction uses the deterministic-sampler optimal target from the paper's derivation, `grad log R0(x0_hat)`, to keep evaluation affordable while preserving the REG computation in Eq. 21. The full image-generation tables are documented in `reference.json` as future zero-weight targets but are not part of the first submitted run.

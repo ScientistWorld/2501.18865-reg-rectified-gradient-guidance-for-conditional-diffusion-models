@@ -17,4 +17,5 @@ set -e
 
 cd /home/user
 
-# TODO: run baseline
+INPUT="${1:-outputs/toy_1d/results.json}"
+bash scripts/evaluate.sh "$INPUT"
