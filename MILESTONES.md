@@ -24,4 +24,4 @@
 - `python validate.py --compare` passed schema, score, separation, and output-contract checks.
 
 ## Stop Justification
-- Stopped at `core_claim`: the paper's REG computation runs end-to-end, is evaluated against a stochastic expected-reward guidance target in the 1D Gaussian-mixture setting, and the reusable environment validates successfully.
+- Completed at milestone `core_claim`.
