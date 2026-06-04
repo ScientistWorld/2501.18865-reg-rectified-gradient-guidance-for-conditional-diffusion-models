@@ -4,9 +4,9 @@
 
 Use only the fixed 1D Gaussian mixture distributions encoded in `data/toy_1d.py` for the primary benchmark. Do not alter mixture means, variances, weights, evaluation grid, or evaluated time steps when reporting `toy_1d_guidance_approximation`.
 
-## Model Scale
+## Benchmark Scope
 
-Use the same 1D epsilon-prediction DDPM setting for benchmark comparison: 20 diffusion steps, the released 1D-code beta schedule from `0.0001` to `0.02`, MLP denoisers with three 128-unit hidden layers, and the same training sample count unless explicitly reporting a separate scaled experiment. Larger denoisers can improve approximation by capacity alone and are not comparable for the primary score.
+Report the primary score only on the fixed low-dimensional benchmark encoded by the provided data and output contract. Do not change the number of denoising steps, evaluated states, training sample budget used to produce the artifact, or the output schema when comparing against `scores.json`; report any scaled variant as a separate experiment. Improvements should come from a better guidance rule rather than from changing the benchmark problem or increasing generator capacity.
 
 ## Evaluation
 
@@ -15,6 +15,6 @@ Use the same 1D epsilon-prediction DDPM setting for benchmark comparison: 20 dif
 ## Compliance Checklist
 
 - [ ] Primary benchmark uses the unchanged distributions in `data/toy_1d.py`
-- [ ] Primary benchmark uses the unchanged 20-step 1D DDPM schedule and MLP scale
+- [ ] Primary benchmark uses the unchanged low-dimensional benchmark schedule and output schema
 - [ ] Evaluation artifact is `outputs/toy_1d/results.json`
 - [ ] `additional_vjp_per_guided_step` reflects actual extra derivative work

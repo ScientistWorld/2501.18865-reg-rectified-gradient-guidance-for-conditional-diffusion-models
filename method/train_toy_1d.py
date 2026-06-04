@@ -27,8 +27,8 @@ class TrainConfig:
     seed: int = 0
     train_samples: int = 8000
     diffusion_steps: int = 20
-    beta_start: float = 0.0001
-    beta_end: float = 0.02
+    beta_start: float = 0.001
+    beta_end: float = 0.2
     embed_dim: int = 128
     hidden_dim: int = 128
     hidden_layers: int = 3
@@ -98,20 +98,6 @@ class DDPM1D:
         alpha_bar_t = self.alpha_bars[t_index - 1].reshape(-1, 1)
         return (x_t - beta_t / (1.0 - alpha_bar_t).sqrt() * eps) / alpha_t.sqrt()
 
-    def reverse_transition_sigma(self, step: int) -> torch.Tensor:
-        """DDPM posterior std for the transition x_step -> x_{step-1}.
-
-        This matches the released 1D implementation's q-posterior variance.
-        The final transition to x_0 is deterministic because alpha_bar_prev=1.
-        """
-        if step <= 1:
-            return torch.zeros((), device=self.device)
-        idx = step - 1
-        alpha_bar_t = self.alpha_bars[idx]
-        alpha_bar_prev = self.alpha_bars[idx - 1]
-        var = self.betas[idx] * (1.0 - alpha_bar_prev) / (1.0 - alpha_bar_t)
-        return var.clamp_min(1e-20).sqrt()
-
     def denoise_to_zero(self, model: nn.Module, x_t: torch.Tensor, start_step: int) -> torch.Tensor:
         """Deterministic foresight chain used to evaluate the joint-scaling target."""
         x = x_t
@@ -141,7 +127,7 @@ class DDPM1D:
             t = torch.full((x.shape[0],), step, device=x.device, dtype=torch.long)
             eps = model(x, t)
             mean = self.deterministic_previous(x, t, eps)
-            sigma = self.reverse_transition_sigma(step)
+            sigma = self.betas[step - 1].sqrt()
             noise = torch.randn(x.shape, device=x.device, dtype=x.dtype)
             x = mean + sigma * noise
         return x.reshape(batch, samples_per_x, x_t.shape[1])
