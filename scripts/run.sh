@@ -13,5 +13,5 @@ set -e
 
 cd /home/user
 
-bash scripts/method.sh
-python validate.py --compare
+bash scripts/evaluate_train.sh outputs/toy_1d
+bash scripts/evaluate_test.sh outputs/toy_1d

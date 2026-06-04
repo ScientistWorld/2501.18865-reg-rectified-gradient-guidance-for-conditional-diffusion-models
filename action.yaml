@@ -1,9 +1,7 @@
-# This iteration writes files only — do NOT submit compute jobs.
-# Once you set action to 'done', STOP immediately.
-# Do NOT sleep, poll, or wait. The system reads this file
-# only after your turn ends.
-action: done
+# Submit the train/test evaluator job. Stop after writing this file; the
+# scheduler will run scripts/run.sh and reactivate the agent when it finishes.
+action: submit
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Improvements: added low/high noise edge metrics, completed metric descriptions, verified train/test script targets and no score stubs. Notes: small split size remains the main runtime concern."
+notes: "Run evaluate_train.sh and evaluate_test.sh against outputs/toy_1d to populate split scores."
