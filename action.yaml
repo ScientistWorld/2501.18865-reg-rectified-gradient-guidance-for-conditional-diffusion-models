@@ -1,6 +1,6 @@
-# Train/test scoring completed; end the design phase.
-action: done
+# Regenerate the ignored method artifact, score all metric views, and validate.
+action: submit
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Packaging audit passed: synthetic-data reproduction needs no external downloads, paths are local, and no shared references were found."
+notes: "CPU job regenerates the 1D REG artifact from scratch via scripts/method.sh, writes canonical/train/test scores, and runs validate.py --compare after evaluator contract repair."

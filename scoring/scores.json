@@ -3,14 +3,23 @@
     "toy_1d_guidance_approximation": {
       "results": {
         "vanilla_cfg": {
-          "guidance_mae": 0.769230842590332,
-          "win_rate": 0.1534883677959442,
+          "guidance_mae": 0.7692308306694031,
+          "win_rate": 0.15348837077617644,
+          "early_step_guidance_mae": 1.0504100918769836,
+          "late_step_guidance_mae": 0.49848905205726624,
+          "early_step_win_rate": 0.15282391756772995,
+          "late_step_win_rate": 0.14950165897607803,
+          "relative_mae_reduction": 0.0,
           "additional_vjp_per_guided_step": 0.0
         },
         "reg_cfg": {
-          "guidance_mae": 0.37200796604156494,
-          "win_rate": 0.8465116024017334,
-          "relative_mae_reduction": 0.5163896679878235,
+          "guidance_mae": 0.3720079898834229,
+          "win_rate": 0.8465116381645202,
+          "early_step_guidance_mae": 0.5225634872913361,
+          "late_step_guidance_mae": 0.24640654027462006,
+          "early_step_win_rate": 0.8471761047840118,
+          "late_step_win_rate": 0.8504983484745026,
+          "relative_mae_reduction": 0.5163896517776171,
           "additional_vjp_per_guided_step": 1.0
         }
       }

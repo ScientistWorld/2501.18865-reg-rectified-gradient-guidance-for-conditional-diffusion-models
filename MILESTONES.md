@@ -4,6 +4,11 @@
 
 ## Progress Log
 
+### [2026-06-04 19:42] - core_claim
+- Repaired the canonical evaluator so `scoring/scores.json` now includes the same full metric family declared in `scoring/reference.json`: overall, early-step, late-step, relative improvement, and derivative-overhead metrics.
+- Updated `scripts/run.sh` to regenerate the `outputs/toy_1d` artifact with `scripts/method.sh` before evaluating, so a fresh clone/job does not depend on ignored local outputs.
+- Local lightweight validation on the existing artifact passed with `python validate.py --compare`; a CPU regeneration job is being submitted to verify the clean end-to-end path.
+
 ### [2026-06-03 00:00] - method_runs
 - Continuation audit confirmed the existing code implements the paper's REG computation rather than a surrogate.
 - Added a paper-style stochastic expected-reward target for the 1D optimal guidance estimate and submitted a regeneration job before restoring `core_claim`.
