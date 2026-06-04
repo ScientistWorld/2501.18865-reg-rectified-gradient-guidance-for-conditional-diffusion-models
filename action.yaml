@@ -1,6 +1,5 @@
-# Final verification complete.
-action: done
-gpus: 0
+action: submit
+gpus: 1
 test: false
 milestone: core_claim
-notes: "Verified core_claim gym readiness; fixed method-agnostic wording and canonical evaluator prefix discovery; validate.py --compare passes."
+notes: "Regenerate the 1D REG reproduction after aligning the toy beta schedule with the released code and using DDPM posterior variance in stochastic expected-reward estimation."

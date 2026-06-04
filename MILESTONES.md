@@ -14,6 +14,10 @@
 - The canonical evaluator now discovers candidate metric prefixes from `guidance.records`, matching the reusable train/test scoring interface.
 - `python validate.py --compare` passed after the verification edits.
 
+### [2026-06-04 19:48] - core_claim
+- Tightened the 1D reproduction to follow the released upstream toy-code beta schedule (`0.0001` to `0.02`) and DDPM posterior reverse-transition variance for stochastic expected-reward estimation.
+- Local smoke execution was deferred because the login-node Python does not have `torch`; a fresh compute job is being submitted to regenerate scores in the container.
+
 ### [2026-06-03 00:00] - method_runs
 - Continuation audit confirmed the existing code implements the paper's REG computation rather than a surrogate.
 - Added a paper-style stochastic expected-reward target for the 1D optimal guidance estimate and submitted a regeneration job before restoring `core_claim`.
