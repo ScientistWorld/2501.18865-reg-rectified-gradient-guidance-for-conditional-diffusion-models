@@ -1,7 +1,6 @@
-# Submit the train/test evaluator job. Stop after writing this file; the
-# scheduler will run scripts/run.sh and reactivate the agent when it finishes.
-action: submit
+# Train/test scoring completed; end the design phase.
+action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Run evaluate_train.sh and evaluate_test.sh against outputs/toy_1d to populate split scores."
+notes: "Interleaved time-step split; 15 train metric values, 15 test metric values; REG win 0.844961 train vs 0.848837 test and relative MAE reduction 0.492609 vs 0.547741; caveat: split is small because artifact has five evaluated time steps."

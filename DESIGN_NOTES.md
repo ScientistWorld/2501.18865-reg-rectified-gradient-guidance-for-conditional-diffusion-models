@@ -26,3 +26,10 @@
 - The evaluator discovers candidate methods from metric prefixes ending in `_mae` plus matching `_win_rate`. A future method must emit both fields per time-step record to be scored.
 - `additional_vjp_per_guided_step` falls back to `1.0` for non-CFG methods if a method-specific overhead summary is absent. The runner should confirm future method artifacts report this explicitly when overhead differs.
 - Full `git status`/`git diff --stat` is currently affected by unrelated root `README.md` and `manifest.json` character-device entries. Path-limited git commands were used to avoid touching those unrelated files.
+
+## Post-Run Assessment
+
+- Job `bb65fe94-e5a` ran `scripts/evaluate_train.sh outputs/toy_1d` and `scripts/evaluate_test.sh outputs/toy_1d` successfully on CPU.
+- Both split score files contain real scheduled-run values for `vanilla_cfg` and `reg_cfg`; there are no null metrics.
+- Train/test are close but not byte-identical. REG primary win rate is 0.844961 on train and 0.848837 on test; REG relative MAE reduction is 0.492609 on train and 0.547741 on test.
+- The split preserves the intended signal: REG beats vanilla CFG on benefit metrics in both slices while carrying the one-additional-VJP constraint cost, and the held-out slice scores different time steps.
