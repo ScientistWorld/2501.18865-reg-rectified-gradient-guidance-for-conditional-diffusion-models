@@ -57,6 +57,12 @@ def mean(values: list[float]) -> float:
     return float(sum(values) / len(values))
 
 
+def edge_slices(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    ordered = sorted(records, key=lambda r: int(r.get("time_step", 0)))
+    edge_count = max(1, len(ordered) // 2)
+    return ordered[:edge_count], ordered[-edge_count:]
+
+
 def available_method_prefixes(records: list[dict[str, Any]]) -> list[str]:
     prefixes: set[str] = set()
     for record in records:
@@ -92,6 +98,7 @@ def metric_from_summary(summary: dict[str, Any], *keys: str) -> float | None:
 def score_artifact(path: Path, multi_artifact: bool) -> dict[str, dict[str, float]]:
     result = load_json(path)
     records = selected_records(result)
+    early_records, late_records = edge_slices(records)
     summary = result.get("guidance", {}).get("summary", {})
     if not isinstance(summary, dict):
         summary = {}
@@ -117,6 +124,34 @@ def score_artifact(path: Path, multi_artifact: bool) -> dict[str, dict[str, floa
         metrics = {
             "guidance_mae": guidance_mae,
             "win_rate": win_rate,
+            "early_step_guidance_mae": mean(
+                [
+                    float(record[f"{prefix}_mae"])
+                    for record in early_records
+                    if isinstance(record.get(f"{prefix}_mae"), (int, float))
+                ]
+            ),
+            "late_step_guidance_mae": mean(
+                [
+                    float(record[f"{prefix}_mae"])
+                    for record in late_records
+                    if isinstance(record.get(f"{prefix}_mae"), (int, float))
+                ]
+            ),
+            "early_step_win_rate": mean(
+                [
+                    float(record[f"{prefix}_win_rate"])
+                    for record in early_records
+                    if isinstance(record.get(f"{prefix}_win_rate"), (int, float))
+                ]
+            ),
+            "late_step_win_rate": mean(
+                [
+                    float(record[f"{prefix}_win_rate"])
+                    for record in late_records
+                    if isinstance(record.get(f"{prefix}_win_rate"), (int, float))
+                ]
+            ),
         }
         if prefix != "cfg":
             metrics["relative_mae_reduction"] = float((cfg_mae - guidance_mae) / cfg_mae) if cfg_mae else 0.0

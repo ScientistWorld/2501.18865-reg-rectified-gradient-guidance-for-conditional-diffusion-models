@@ -7,19 +7,43 @@
       "metrics": {
         "guidance_mae": {
           "higher_is_better": false,
-          "coefficient": -1.0
+          "coefficient": -1.0,
+          "description": "Mean absolute error between a candidate guidance direction and the optimal joint-scaling guidance target."
         },
         "win_rate": {
           "higher_is_better": true,
-          "coefficient": 1.0
+          "coefficient": 1.0,
+          "description": "Fraction of evaluated grid/time-step cases where the candidate guidance direction is closer to the optimal target than the reference direction."
+        },
+        "early_step_guidance_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.35,
+          "description": "Guidance-direction absolute error restricted to the lower-noise edge of each evaluation slice, catching methods that only work at high noise."
+        },
+        "late_step_guidance_mae": {
+          "higher_is_better": false,
+          "coefficient": -0.35,
+          "description": "Guidance-direction absolute error restricted to the higher-noise edge of each evaluation slice, catching methods that only work near the denoising endpoint."
+        },
+        "early_step_win_rate": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Win rate against the reference guidance direction on the lower-noise edge of each evaluation slice."
+        },
+        "late_step_win_rate": {
+          "higher_is_better": true,
+          "coefficient": 0.25,
+          "description": "Win rate against the reference guidance direction on the higher-noise edge of each evaluation slice."
         },
         "relative_mae_reduction": {
           "higher_is_better": true,
-          "coefficient": 0.5
+          "coefficient": 0.5,
+          "description": "Relative reduction in guidance MAE compared with vanilla classifier-free guidance on the same slice."
         },
         "additional_vjp_per_guided_step": {
           "higher_is_better": false,
-          "coefficient": -0.1
+          "coefficient": -0.1,
+          "description": "Machine-independent derivative-work overhead added per guided denoising step."
         }
       },
       "results": {
