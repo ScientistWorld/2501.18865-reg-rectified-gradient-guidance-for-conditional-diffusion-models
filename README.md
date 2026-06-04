@@ -62,11 +62,11 @@ Secondary claims: REG is method-agnostic across vanilla, cosine, linear, interva
 
 ## Baselines and Targets
 
-The primary baseline is standard classifier-free guidance on the same trained 1D diffusion model. The paper's low-dimensional experiments report that the proposed enhanced guidance wins more often than standard guidance when compared to an optimal target; Table 1 reports win rates above 50% across all 2D time-step/class settings. The reproduction target is to show the same effect on the paper's 1D synthetic mixture setting.
+The primary comparison is against the reference guidance direction on the same fixed 1D benchmark. The paper's low-dimensional experiments report that an improved guidance rule wins more often than the reference direction when compared to an optimal target; Table 1 reports win rates above 50% across all 2D time-step/class settings. The reproduction target is to show the same effect on the paper's 1D synthetic mixture setting.
 
 ## Evaluation Protocol
 
-Run the method to train conditional and unconditional 1D denoisers on the fixed synthetic Gaussian mixtures, then evaluate guidance directions on the fixed grid `[-1, 2]` at time steps 4, 8, 12, 16, and 20. Evaluation reads `outputs/toy_1d/results.json` and writes `scoring/scores.json`. Future methods must use the same output contract so `scripts/evaluate.sh` can score them without importing their code.
+Produce an artifact at `outputs/toy_1d/results.json` containing per-time-step guidance-error records for the fixed synthetic Gaussian mixtures, grid `[-1, 2]`, and time steps 4, 8, 12, 16, and 20. Evaluation reads that artifact and writes `scoring/scores.json`. Future methods must use the same output contract so `scripts/evaluate.sh` can score them without importing their code.
 
 ---
 
@@ -243,6 +243,45 @@ Run the method to train conditional and unconditional 1D denoisers on the fixed 
 
 <details>
 <summary>Progress Log</summary>
+
+### [2026-06-03 00:00] - method_runs
+- Continuation audit confirmed the existing code implements the paper's REG computation rather than a surrogate.
+- Added a paper-style stochastic expected-reward target for the 1D optimal guidance estimate and submitted a regeneration job before restoring `core_claim`.
+
+### [2026-06-03 00:00] - core_claim
+- Job `d504d843-623` regenerated the 1D reproduction using 100 stochastic denoising completions per grid point for the expected-reward target.
+- REG achieved guidance MAE 0.3720 versus vanilla CFG 0.7692, a 51.64% relative MAE reduction, with REG winning 84.65% of grid/time-step comparisons.
+- The evaluation records the paper's added computation constraint: REG uses one additional VJP per guided step while vanilla CFG uses zero.
+- `python validate.py --compare` passed schema, score, separation, and output-contract checks.
+
+### [2026-06-03 00:00] - method_runs
+- Implemented the paper's epsilon-prediction REG update for classifier-free guidance on the 1D synthetic DDPM setting.
+- Trained conditional and unconditional denoisers and produced method artifacts under `outputs/toy_1d/`.
+
+### [2026-06-03 00:00] - core_claim
+- Evaluated vanilla CFG and REG against the joint-scaling guidance target by differentiating through the remaining deterministic denoising chain.
+- REG achieved lower guidance MAE than vanilla CFG and won 61.40% of grid/time-step comparisons while recording the added one VJP per guided step constraint.
+- `python validate.py --compare` passed schema, score, separation, and output-contract checks.
+
+</details>
+
+### Iteration 8: gpt-5.5 (verifier)
+- **Milestone**: `core_claim` | **Status**: done
+- **Working time**: 6m | **GPU**: 0.0h
+- **Jobs**: 4 total (4 completed, 0 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-06-04 19:42] - core_claim
+- Repaired the canonical evaluator so `scoring/scores.json` now includes the same full metric family declared in `scoring/reference.json`: overall, early-step, late-step, relative improvement, and derivative-overhead metrics.
+- Updated `scripts/run.sh` to regenerate the `outputs/toy_1d` artifact with `scripts/method.sh` before evaluating, so a fresh clone/job does not depend on ignored local outputs.
+- Local lightweight validation on the existing artifact passed with `python validate.py --compare`.
+
+### [2026-06-04 19:44] - core_claim
+- Final verification removed method-specific instructions from the method-agnostic evaluation brief.
+- The canonical evaluator now discovers candidate metric prefixes from `guidance.records`, matching the reusable train/test scoring interface.
+- `python validate.py --compare` passed after the verification edits.
 
 ### [2026-06-03 00:00] - method_runs
 - Continuation audit confirmed the existing code implements the paper's REG computation rather than a surrogate.
