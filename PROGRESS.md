@@ -17,7 +17,7 @@ CPU job `d504d843-623` completed successfully and wrote `scoring/scores.json` us
 
 REG reduced guidance MAE by 51.64% relative to vanilla CFG and won 84.65% of comparisons against the stochastic expected-reward guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
 
-On 2026-06-04, the canonical `scores.json` evaluator was repaired and locally re-run on the existing artifact. The repaired canonical scores include early/late step metrics and pass `python validate.py --compare`; a clean CPU regeneration job is pending to verify the updated `scripts/run.sh`.
+On 2026-06-04, the canonical `scores.json` evaluator was repaired and locally re-run on the existing artifact. The repaired canonical scores include early/late step metrics and pass `python validate.py --compare`. Final verification also made `scripts/evaluate.sh` discover candidate metric prefixes instead of hardcoding only the reproduced method names.
 
 ## Remaining
 

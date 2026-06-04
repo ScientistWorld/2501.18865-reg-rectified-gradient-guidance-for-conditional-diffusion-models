@@ -25,6 +25,35 @@ def edge_slices(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], li
     return ordered[:edge_count], ordered[-edge_count:]
 
 
+def available_method_prefixes(records: list[dict[str, Any]]) -> list[str]:
+    prefixes: set[str] = set()
+    for record in records:
+        for key, value in record.items():
+            if not isinstance(value, (int, float)) or not key.endswith("_mae"):
+                continue
+            prefix = key[: -len("_mae")]
+            if f"{prefix}_win_rate" in record:
+                prefixes.add(prefix)
+    ordered = [prefix for prefix in ("cfg", "reg") if prefix in prefixes]
+    ordered.extend(sorted(prefixes - set(ordered)))
+    return ordered
+
+
+def method_name_for_prefix(prefix: str) -> str:
+    return {"cfg": "vanilla_cfg", "reg": "reg_cfg"}.get(prefix, prefix)
+
+
+def overhead_for_prefix(prefix: str, summary: dict[str, Any]) -> float:
+    specific_key = f"{prefix}_additional_vjp_per_guided_step"
+    if isinstance(summary.get(specific_key), (int, float)):
+        return float(summary[specific_key])
+    if prefix == "cfg":
+        return 0.0
+    if prefix == "reg" and isinstance(summary.get("additional_vjp_per_guided_step"), (int, float)):
+        return float(summary["additional_vjp_per_guided_step"])
+    return 1.0
+
+
 def score_prefix(prefix: str, records: list[dict[str, Any]], cfg_mae: float, additional_vjp: float) -> dict[str, float]:
     early_records, late_records = edge_slices(records)
     guidance_mae = mean(
@@ -90,13 +119,20 @@ def main() -> None:
     cfg_mae = mean(
         [float(record["cfg_mae"]) for record in records if isinstance(record.get("cfg_mae"), (int, float))]
     )
-    reg_overhead = float(summary.get("additional_vjp_per_guided_step", 1.0))
+    prefixes = available_method_prefixes(records)
+    if not prefixes:
+        raise ValueError("No method metric prefixes found in guidance.records")
     scores = {
         "experiments": {
             "toy_1d_guidance_approximation": {
                 "results": {
-                    "vanilla_cfg": score_prefix("cfg", records, cfg_mae, 0.0),
-                    "reg_cfg": score_prefix("reg", records, cfg_mae, reg_overhead),
+                    method_name_for_prefix(prefix): score_prefix(
+                        prefix,
+                        records,
+                        cfg_mae,
+                        overhead_for_prefix(prefix, summary),
+                    )
+                    for prefix in prefixes
                 }
             }
         }

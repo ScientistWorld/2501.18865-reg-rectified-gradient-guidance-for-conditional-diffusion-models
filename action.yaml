@@ -1,6 +1,6 @@
-# Regenerate the ignored method artifact, score all metric views, and validate.
-action: submit
+# Final verification complete.
+action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "CPU job regenerates the 1D REG artifact from scratch via scripts/method.sh, writes canonical/train/test scores, and runs validate.py --compare after evaluator contract repair."
+notes: "Verified core_claim gym readiness; fixed method-agnostic wording and canonical evaluator prefix discovery; validate.py --compare passes."

@@ -9,8 +9,8 @@
 
 ## Baselines and Targets
 
-The primary baseline is standard classifier-free guidance on the same trained 1D diffusion model. The paper's low-dimensional experiments report that the proposed enhanced guidance wins more often than standard guidance when compared to an optimal target; Table 1 reports win rates above 50% across all 2D time-step/class settings. The reproduction target is to show the same effect on the paper's 1D synthetic mixture setting.
+The primary comparison is against the reference guidance direction on the same fixed 1D benchmark. The paper's low-dimensional experiments report that an improved guidance rule wins more often than the reference direction when compared to an optimal target; Table 1 reports win rates above 50% across all 2D time-step/class settings. The reproduction target is to show the same effect on the paper's 1D synthetic mixture setting.
 
 ## Evaluation Protocol
 
-Run the method to train conditional and unconditional 1D denoisers on the fixed synthetic Gaussian mixtures, then evaluate guidance directions on the fixed grid `[-1, 2]` at time steps 4, 8, 12, 16, and 20. Evaluation reads `outputs/toy_1d/results.json` and writes `scoring/scores.json`. Future methods must use the same output contract so `scripts/evaluate.sh` can score them without importing their code.
+Produce an artifact at `outputs/toy_1d/results.json` containing per-time-step guidance-error records for the fixed synthetic Gaussian mixtures, grid `[-1, 2]`, and time steps 4, 8, 12, 16, and 20. Evaluation reads that artifact and writes `scoring/scores.json`. Future methods must use the same output contract so `scripts/evaluate.sh` can score them without importing their code.
