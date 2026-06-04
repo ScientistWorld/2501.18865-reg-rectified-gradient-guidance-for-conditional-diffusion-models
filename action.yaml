@@ -3,4 +3,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Interleaved time-step split; 15 train metric values, 15 test metric values; REG win 0.844961 train vs 0.848837 test and relative MAE reduction 0.492609 vs 0.547741; caveat: split is small because artifact has five evaluated time steps."
+notes: "Interleaved time-step split; 15 train metric values, 15 test metric values; REG win 0.844961 train vs 0.848837 test and relative MAE reduction 0.492609 vs 0.547741; corrected reference to avoid comparing 1D baseline scores to 2D Table 1 baseline fraction; caveat: split is small because artifact has five evaluated time steps."

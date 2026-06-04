@@ -33,3 +33,4 @@
 - Both split score files contain real scheduled-run values for `vanilla_cfg` and `reg_cfg`; there are no null metrics.
 - Train/test are close but not byte-identical. REG primary win rate is 0.844961 on train and 0.848837 on test; REG relative MAE reduction is 0.492609 on train and 0.547741 on test.
 - The split preserves the intended signal: REG beats vanilla CFG on benefit metrics in both slices while carrying the one-additional-VJP constraint cost, and the held-out slice scores different time steps.
+- Plain post-design validation initially failed because `reference.json` carried a 2D Table 1 without-REG win fraction as if it were the paper's 1D baseline target. The paper reports 1D qualitatively and Table 1 quantitatively for 2D, so the baseline primary reference was removed and the REG Table 1 aggregate was corrected to 0.6708.
