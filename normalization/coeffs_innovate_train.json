@@ -1,0 +1,189 @@
+{
+  "paper_id": "2501.18865",
+  "phase": "train",
+  "cohort": [
+    "claude-opus-4-8-xhigh",
+    "claude-opus-xhigh",
+    "gpt-5.6-sol-xhigh",
+    "gpt-5.6-terra-xhigh",
+    "gpt-5.6-luna-xhigh",
+    "gpt-5.5-xhigh",
+    "glm-5-xhigh",
+    "minimax-xhigh",
+    "grok-4.3-xhigh",
+    "gemini-3-pro-preview",
+    "gemini-3.1-flash-lite-preview",
+    "kimi-k2.6-thinking",
+    "mimo-pro-xhigh",
+    "deepseek-v4-pro-xhigh"
+  ],
+  "models_present": [
+    "gpt-5.5-xhigh",
+    "gpt-5.6-luna-xhigh",
+    "gpt-5.6-sol-xhigh",
+    "gpt-5.6-terra-xhigh"
+  ],
+  "n_models": 4,
+  "n_cells": 8,
+  "last_updated": "2026-08-11T19:21:35.334545+00:00",
+  "excluded": false,
+  "typical_spread": 0.30418892230697914,
+  "paper_baseline": 0.9674013927909534,
+  "cohort_raw": {
+    "gpt-5.5-xhigh": 1.2419750828419944,
+    "gpt-5.6-luna-xhigh": -0.8774643191474931,
+    "gpt-5.6-sol-xhigh": 0.757924157029526,
+    "gpt-5.6-terra-xhigh": 0.9922420121448001
+  },
+  "cells": [
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "guidance_mae",
+      "source": 0.3699139555295308,
+      "higher_is_better": false,
+      "coefficient": 0.8416834404797869,
+      "prior_weight": 1.0,
+      "spread": 0.3473371569788477,
+      "normalizer": 0.3473371569788477,
+      "effective_weight": 0.28281779784664807,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.2633861004217323,
+        "gpt-5.6-terra-xhigh": 0.29445113947353047,
+        "gpt-5.6-luna-xhigh": -0.3840178421239458,
+        "gpt-5.5-xhigh": 0.3600588671010008
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "win_rate",
+      "source": 0.8449612458546957,
+      "higher_is_better": true,
+      "coefficient": 1.289350035640275,
+      "prior_weight": 1.0,
+      "spread": 0.1956418675776412,
+      "normalizer": 0.1956418675776412,
+      "effective_weight": 0.24402782259141487,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.10442270352925365,
+        "gpt-5.6-terra-xhigh": 0.15503875414530432,
+        "gpt-5.6-luna-xhigh": -0.2506279125213623,
+        "gpt-5.5-xhigh": 0.15393133443323337
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "early_step_guidance_mae",
+      "source": 0.5540726780891418,
+      "higher_is_better": false,
+      "coefficient": 0.6206667976761195,
+      "prior_weight": 0.35,
+      "spread": 0.12671154070151303,
+      "normalizer": 0.12671154070151303,
+      "effective_weight": 0.07608190766677633,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.3455548425906921,
+        "gpt-5.6-terra-xhigh": 0.38431745091587394,
+        "gpt-5.6-luna-xhigh": 0.24871995784852513,
+        "gpt-5.5-xhigh": 0.5525070536679477
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "late_step_guidance_mae",
+      "source": 0.23356929421424866,
+      "higher_is_better": false,
+      "coefficient": 0.22811597229000669,
+      "prior_weight": 0.35,
+      "spread": 0.48361794588518364,
+      "normalizer": 0.48361794588518364,
+      "effective_weight": 0.10672466771562923,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.2267432695714669,
+        "gpt-5.6-terra-xhigh": 0.2309623599283545,
+        "gpt-5.6-luna-xhigh": -0.7409773863142408,
+        "gpt-5.5-xhigh": 0.22096573027016914
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "early_step_win_rate",
+      "source": 0.8671096563339233,
+      "higher_is_better": true,
+      "coefficient": 0.477856736351078,
+      "prior_weight": 0.25,
+      "spread": 0.11451203741884804,
+      "normalizer": 0.11451203741884804,
+      "effective_weight": 0.05293654132764097,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": -0.014961804186071181,
+        "gpt-5.6-terra-xhigh": 0.13289034366607666,
+        "gpt-5.6-luna-xhigh": -0.09810965633392332,
+        "gpt-5.5-xhigh": 0.13289034366607666
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "late_step_win_rate",
+      "source": 0.8305647969245911,
+      "higher_is_better": true,
+      "coefficient": 0.2504313304827916,
+      "prior_weight": 0.25,
+      "spread": 0.27549999999999997,
+      "normalizer": 0.27549999999999997,
+      "effective_weight": 0.06674472873352841,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.16943520307540894,
+        "gpt-5.6-terra-xhigh": 0.16943520307540894,
+        "gpt-5.6-luna-xhigh": -0.38156479692459105,
+        "gpt-5.5-xhigh": 0.16943520307540894
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "relative_mae_reduction",
+      "source": 0.4926088999841529,
+      "higher_is_better": true,
+      "coefficient": 0.4346178090851023,
+      "prior_weight": 0.5,
+      "spread": 0.33287784461395825,
+      "normalizer": 0.33287784461395825,
+      "effective_weight": 0.13995844777229643,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.2891238928903882,
+        "gpt-5.6-terra-xhigh": 0.41597487869247785,
+        "gpt-5.6-luna-xhigh": -0.23829912934891068,
+        "gpt-5.5-xhigh": 0.5051572137168745
+      }
+    },
+    {
+      "experiment": "toy_1d_guidance_approximation",
+      "method": "reg_cfg",
+      "metric": "additional_vjp_per_guided_step",
+      "source": 1.0,
+      "higher_is_better": false,
+      "coefficient": 0.06348571869939715,
+      "prior_weight": 0.1,
+      "spread": 0.5,
+      "normalizer": 0.5,
+      "effective_weight": 0.030708086346065738,
+      "cohort_imp": {
+        "gpt-5.6-sol-xhigh": 0.0,
+        "gpt-5.6-terra-xhigh": 0.0,
+        "gpt-5.6-luna-xhigh": 0.0,
+        "gpt-5.5-xhigh": 1.0
+      }
+    }
+  ],
+  "mode": "innovate",
+  "pruned_cells": [],
+  "locked": true,
+  "locked_at": "2026-08-11T19:26:40.766043+00:00",
+  "locked_n_models": 4
+}
