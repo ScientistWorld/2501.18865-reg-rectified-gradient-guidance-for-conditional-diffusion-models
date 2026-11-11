@@ -1,12 +1,20 @@
 {
   "_metadata": {
     "slice": "test",
-    "split": "interleaved_time_steps_odd_indices",
-    "input": "outputs/toy_1d",
-    "train_scores": "scoring/scores_train.json",
-    "artifacts": [
-      "outputs/toy_1d/results.json"
-    ]
+    "problems": [
+      "hidden_00",
+      "hidden_01",
+      "hidden_02",
+      "hidden_03",
+      "hidden_04",
+      "hidden_05",
+      "hidden_06",
+      "hidden_07"
+    ],
+    "num_states": 25600,
+    "oracle_budget_units_per_state": 8,
+    "error_clip": 4.0,
+    "failures": {}
   },
   "experiments": {
     "toy_1d_guidance_approximation": {
@@ -14,24 +22,26 @@
         "slice": "test"
       },
       "results": {
-        "vanilla_cfg": {
-          "guidance_mae": 0.829500675201416,
-          "win_rate": 0.151162788271904,
-          "early_step_guidance_mae": 1.0761454105377197,
-          "late_step_guidance_mae": 0.5828559398651123,
-          "early_step_win_rate": 0.17275747656822205,
-          "late_step_win_rate": 0.12956809997558594,
-          "additional_vjp_per_guided_step": 0.0
+        "no_guidance": {
+          "guidance_mae": 0.4302876517755183,
+          "win_rate": 0.366328125,
+          "worst_timestep_win_rate": 0.1515625,
+          "worst_problem_mae": 0.6096886474061466,
+          "oracle_cost_per_state": 0.0
         },
         "reg_cfg": {
-          "guidance_mae": 0.37514904141426086,
-          "win_rate": 0.8488372266292572,
-          "early_step_guidance_mae": 0.4910542964935303,
-          "late_step_guidance_mae": 0.25924378633499146,
-          "early_step_win_rate": 0.8272425532341003,
-          "late_step_win_rate": 0.8704319000244141,
-          "relative_mae_reduction": 0.5477411259211228,
-          "additional_vjp_per_guided_step": 1.0
+          "guidance_mae": 0.2872788476866857,
+          "win_rate": 0.610625,
+          "worst_timestep_win_rate": 0.515625,
+          "worst_problem_mae": 0.5596706532430713,
+          "oracle_cost_per_state": 3.0
+        },
+        "vanilla_cfg": {
+          "guidance_mae": 0.4527756122109271,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.8208651819499253,
+          "oracle_cost_per_state": 2.0
         }
       }
     }

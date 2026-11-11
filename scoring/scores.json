@@ -1,26 +1,41 @@
 {
+  "_metadata": {
+    "slice": "paper",
+    "problems": [
+      "paper_mixture",
+      "paper_checkpoint"
+    ],
+    "num_states": 6400,
+    "oracle_budget_units_per_state": 8,
+    "error_clip": 4.0,
+    "failures": {}
+  },
   "experiments": {
     "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "paper"
+      },
       "results": {
-        "vanilla_cfg": {
-          "guidance_mae": 0.7692308306694031,
-          "win_rate": 0.15348837077617644,
-          "early_step_guidance_mae": 1.0504100918769836,
-          "late_step_guidance_mae": 0.49848905205726624,
-          "early_step_win_rate": 0.15282391756772995,
-          "late_step_win_rate": 0.14950165897607803,
-          "relative_mae_reduction": 0.0,
-          "additional_vjp_per_guided_step": 0.0
+        "no_guidance": {
+          "guidance_mae": 0.33945165149787554,
+          "win_rate": 0.60875,
+          "worst_timestep_win_rate": 0.265625,
+          "worst_problem_mae": 0.35637611998792296,
+          "oracle_cost_per_state": 0.0
         },
         "reg_cfg": {
-          "guidance_mae": 0.3720079898834229,
-          "win_rate": 0.8465116381645202,
-          "early_step_guidance_mae": 0.5225634872913361,
-          "late_step_guidance_mae": 0.24640654027462006,
-          "early_step_win_rate": 0.8471761047840118,
-          "late_step_win_rate": 0.8504983484745026,
-          "relative_mae_reduction": 0.5163896517776171,
-          "additional_vjp_per_guided_step": 1.0
+          "guidance_mae": 0.3137538750550253,
+          "win_rate": 0.7859375,
+          "worst_timestep_win_rate": 0.584375,
+          "worst_problem_mae": 0.4214212013547965,
+          "oracle_cost_per_state": 3.0
+        },
+        "vanilla_cfg": {
+          "guidance_mae": 0.6060742380703815,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.7229504977756511,
+          "oracle_cost_per_state": 2.0
         }
       }
     }

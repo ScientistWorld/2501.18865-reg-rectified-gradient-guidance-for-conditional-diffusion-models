@@ -1,0 +1,787 @@
+{
+  "rank_cohort": [
+    "reg_cfg",
+    "vanilla_cfg",
+    "no_guidance",
+    "reg_calibrated",
+    "reg_exact_jacobian",
+    "reg_lookahead1",
+    "reg_lookahead2",
+    "reg_flipped_correction"
+  ],
+  "rank_sigma_test": {
+    "guidance_mae": 0.12679937501116043,
+    "win_rate": 0.12043055689643589,
+    "worst_timestep_win_rate": 0.17738394260781545,
+    "worst_problem_mae": 0.2048015739760956,
+    "oracle_cost_per_state": 1.920286436967152
+  },
+  "test": {
+    "_sc_underscore_name": {
+      "guidance_mae": 0.4527756122109271,
+      "win_rate": 0.5,
+      "worst_timestep_win_rate": 0.5,
+      "worst_problem_mae": 0.8208651819499253,
+      "oracle_cost_per_state": 2.0
+    },
+    "no_guidance": {
+      "guidance_mae": 0.4302876517755183,
+      "win_rate": 0.366328125,
+      "worst_timestep_win_rate": 0.1515625,
+      "worst_problem_mae": 0.6096886474061466,
+      "oracle_cost_per_state": 0.0
+    },
+    "reg_calibrated": {
+      "guidance_mae": 0.272238286198215,
+      "win_rate": 0.4777734375,
+      "worst_timestep_win_rate": 0.35,
+      "worst_problem_mae": 0.3863287728541857,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_cfg": {
+      "guidance_mae": 0.2872788476866857,
+      "win_rate": 0.610625,
+      "worst_timestep_win_rate": 0.515625,
+      "worst_problem_mae": 0.5596706532430713,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_exact_jacobian": {
+      "guidance_mae": 0.2928839039397799,
+      "win_rate": 0.623359375,
+      "worst_timestep_win_rate": 0.5453125,
+      "worst_problem_mae": 0.5679300948413989,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_flipped_correction": {
+      "guidance_mae": 0.66110945337021,
+      "win_rate": 0.2659765625,
+      "worst_timestep_win_rate": 0.1890625,
+      "worst_problem_mae": 1.0835875550207317,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_lookahead1": {
+      "guidance_mae": 0.28733719386900136,
+      "win_rate": 0.5921875,
+      "worst_timestep_win_rate": 0.1234375,
+      "worst_problem_mae": 0.5234332825604057,
+      "oracle_cost_per_state": 5.0
+    },
+    "reg_lookahead2": {
+      "guidance_mae": 0.3043263386990625,
+      "win_rate": 0.5836328125,
+      "worst_timestep_win_rate": 0.10546875,
+      "worst_problem_mae": 0.5137484266710152,
+      "oracle_cost_per_state": 7.0
+    },
+    "sc_batch_pooling": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_bruteforce_oracle": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_cost_claim": {
+      "guidance_mae": 0.2872788476866857,
+      "win_rate": 0.610625,
+      "worst_timestep_win_rate": 0.515625,
+      "worst_problem_mae": 0.5596706532430713,
+      "oracle_cost_per_state": 3.0
+    },
+    "sc_empty_dir": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_fake_score_files": {
+      "guidance_mae": 0.4302876517755183,
+      "win_rate": 0.366328125,
+      "worst_timestep_win_rate": 0.1515625,
+      "worst_problem_mae": 0.6096886474061466,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_huge_output": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_nan_output": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_paper_reward_hardcode": {
+      "guidance_mae": 0.6052810447775765,
+      "win_rate": 0.2976171875,
+      "worst_timestep_win_rate": 0.1546875,
+      "worst_problem_mae": 0.7978079337927635,
+      "oracle_cost_per_state": 2.0
+    },
+    "sc_private_bruteforce": {
+      "guidance_mae": 0.3032444008689294,
+      "win_rate": 0.42828125,
+      "worst_timestep_win_rate": 0.20703125,
+      "worst_problem_mae": 0.4693384087749206,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_query_endpoint": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_wrong_shape": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "vanilla_cfg": {
+      "guidance_mae": 0.4527756122109271,
+      "win_rate": 0.5,
+      "worst_timestep_win_rate": 0.5,
+      "worst_problem_mae": 0.8208651819499253,
+      "oracle_cost_per_state": 2.0
+    }
+  },
+  "train": {
+    "_sc_underscore_name": {
+      "guidance_mae": 0.6073806523295627,
+      "win_rate": 0.5,
+      "worst_timestep_win_rate": 0.5,
+      "worst_problem_mae": 0.9660754293545714,
+      "oracle_cost_per_state": 2.0
+    },
+    "no_guidance": {
+      "guidance_mae": 0.3946305781042529,
+      "win_rate": 0.5463125,
+      "worst_timestep_win_rate": 0.16,
+      "worst_problem_mae": 0.7163951954109348,
+      "oracle_cost_per_state": 0.0
+    },
+    "reg_calibrated": {
+      "guidance_mae": 0.23987613805218969,
+      "win_rate": 0.66875,
+      "worst_timestep_win_rate": 0.3575,
+      "worst_problem_mae": 0.4738068397894007,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_cfg": {
+      "guidance_mae": 0.37029103037451805,
+      "win_rate": 0.7328125,
+      "worst_timestep_win_rate": 0.54375,
+      "worst_problem_mae": 0.788069129395161,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_exact_jacobian": {
+      "guidance_mae": 0.38597654773691614,
+      "win_rate": 0.7293125,
+      "worst_timestep_win_rate": 0.545,
+      "worst_problem_mae": 0.8085029317140315,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_flipped_correction": {
+      "guidance_mae": 0.8728836573042624,
+      "win_rate": 0.193625,
+      "worst_timestep_win_rate": 0.105,
+      "worst_problem_mae": 1.1703131587471571,
+      "oracle_cost_per_state": 3.0
+    },
+    "reg_lookahead1": {
+      "guidance_mae": 0.4087446981630486,
+      "win_rate": 0.676875,
+      "worst_timestep_win_rate": 0.095,
+      "worst_problem_mae": 0.834402660455774,
+      "oracle_cost_per_state": 5.0
+    },
+    "reg_lookahead2": {
+      "guidance_mae": 0.4651783289008028,
+      "win_rate": 0.6425625,
+      "worst_timestep_win_rate": 0.08375,
+      "worst_problem_mae": 0.8850726764928223,
+      "oracle_cost_per_state": 7.0
+    },
+    "sc_batch_pooling": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_bruteforce_oracle": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_cost_claim": {
+      "guidance_mae": 0.37029103037451805,
+      "win_rate": 0.7328125,
+      "worst_timestep_win_rate": 0.54375,
+      "worst_problem_mae": 0.788069129395161,
+      "oracle_cost_per_state": 3.0
+    },
+    "sc_empty_dir": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_fake_score_files": {
+      "guidance_mae": 0.3946305781042529,
+      "win_rate": 0.5463125,
+      "worst_timestep_win_rate": 0.16,
+      "worst_problem_mae": 0.7163951954109348,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_huge_output": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_nan_output": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_paper_reward_hardcode": {
+      "guidance_mae": 0.49882059519417477,
+      "win_rate": 0.5623125,
+      "worst_timestep_win_rate": 0.43,
+      "worst_problem_mae": 0.7595163001734561,
+      "oracle_cost_per_state": 2.0
+    },
+    "sc_private_bruteforce": {
+      "guidance_mae": 0.2067786340630131,
+      "win_rate": 0.7036875,
+      "worst_timestep_win_rate": 0.52125,
+      "worst_problem_mae": 0.5468182990145443,
+      "oracle_cost_per_state": 0.0
+    },
+    "sc_query_endpoint": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "sc_wrong_shape": {
+      "guidance_mae": 4.0,
+      "win_rate": 0.0,
+      "worst_timestep_win_rate": 0.0,
+      "worst_problem_mae": 4.0,
+      "oracle_cost_per_state": 8.0
+    },
+    "vanilla_cfg": {
+      "guidance_mae": 0.6073806523295627,
+      "win_rate": 0.5,
+      "worst_timestep_win_rate": 0.5,
+      "worst_problem_mae": 0.9660754293545714,
+      "oracle_cost_per_state": 2.0
+    }
+  },
+  "test_rank": {
+    "_sc_underscore_name": -2.4083984005366417,
+    "no_guidance": -3.261840371235913,
+    "reg_calibrated": -1.0063512463666813,
+    "reg_cfg": 0.0,
+    "reg_exact_jacobian": 0.09329475523964309,
+    "reg_flipped_correction": -6.909797866009109,
+    "reg_lookahead1": -0.9745134926509424,
+    "reg_lookahead2": -1.5054879390789377,
+    "sc_batch_pooling": -40.05805849831692,
+    "sc_bruteforce_oracle": -40.05805849831692,
+    "sc_cost_claim": 0.0,
+    "sc_empty_dir": -40.05805849831692,
+    "sc_fake_score_files": -3.261840371235913,
+    "sc_huge_output": -38.808244952901006,
+    "sc_nan_output": -40.05805849831692,
+    "sc_paper_reward_hardcode": -5.750150433507073,
+    "sc_private_bruteforce": -1.4959859979400871,
+    "sc_query_endpoint": -40.05805849831692,
+    "sc_wrong_shape": -40.05805849831692,
+    "vanilla_cfg": -2.4083984005366417
+  },
+  "train_rank": {
+    "_sc_underscore_name": -2.8446492457338826,
+    "no_guidance": -1.1745639010460334,
+    "reg_calibrated": 0.5227406115287212,
+    "reg_cfg": 0.0,
+    "reg_exact_jacobian": -0.13360589687164015,
+    "reg_flipped_correction": -7.08126475554375,
+    "reg_lookahead1": -1.492998087929388,
+    "reg_lookahead2": -2.405601601334152,
+    "sc_batch_pooling": -30.267285537274763,
+    "sc_bruteforce_oracle": -30.267285537274763,
+    "sc_cost_claim": 0.0,
+    "sc_empty_dir": -30.267285537274763,
+    "sc_fake_score_files": -1.1745639010460334,
+    "sc_huge_output": -29.017471991858855,
+    "sc_nan_output": -30.267285537274763,
+    "sc_paper_reward_hardcode": -1.6828724461042663,
+    "sc_private_bruteforce": 1.4944918903953361,
+    "sc_query_endpoint": -30.267285537274763,
+    "sc_wrong_shape": -30.267285537274763,
+    "vanilla_cfg": -2.8446492457338826
+  },
+  "test_failures": {
+    "sc_batch_pooling": "output depends on batch composition (max diff 0.114); rules must be per-state",
+    "sc_bruteforce_oracle": "oracle budget exceeded (9 > 8 units per state)",
+    "sc_empty_dir": "missing guidance.py",
+    "sc_nan_output": "guidance output contains non-finite values",
+    "sc_query_endpoint": "query t outside 1..T",
+    "sc_wrong_shape": "guidance output has shape (128,), expected (256,)"
+  },
+  "train_failures": {
+    "sc_batch_pooling": "output depends on batch composition (max diff 0.215); rules must be per-state",
+    "sc_bruteforce_oracle": "oracle budget exceeded (9 > 8 units per state)",
+    "sc_empty_dir": "missing guidance.py",
+    "sc_nan_output": "guidance output contains non-finite values",
+    "sc_query_endpoint": "query t outside 1..T",
+    "sc_wrong_shape": "guidance output has shape (128,), expected (256,)"
+  },
+  "paired_vs_reference_test": {
+    "_sc_underscore_name": {
+      "delta_mae": 0.1654967645242414,
+      "delta_mae_ci95": [
+        0.11001532795502938,
+        0.22726175160321752
+      ],
+      "delta_win": -0.11062499999999997,
+      "delta_win_ci95": [
+        -0.17000585937500004,
+        -0.04058300781249997
+      ],
+      "per_problem_delta_mae": [
+        0.03351752681391984,
+        0.1887585599517685,
+        0.12794969078294965,
+        0.3135874356076443,
+        0.11118858941102175,
+        0.11894702802595236,
+        0.16883075689382085,
+        0.261194528706854
+      ],
+      "problems_improved": 0,
+      "states_closer_than_reference": 0.389375
+    },
+    "no_guidance": {
+      "delta_mae": 0.1430088040888326,
+      "delta_mae_ci95": [
+        0.05805965381024405,
+        0.22908355075106893
+      ],
+      "delta_win": -0.24429687499999997,
+      "delta_win_ci95": [
+        -0.28997851562500004,
+        -0.19589746093749996
+      ],
+      "per_problem_delta_mae": [
+        0.3737952425551895,
+        0.18777626117291907,
+        0.2674877547677844,
+        0.020651861276903216,
+        0.08331610634296327,
+        0.15421654938161605,
+        0.09270316563347011,
+        -0.03587650842018464
+      ],
+      "problems_improved": 1,
+      "states_closer_than_reference": 0.278359375
+    },
+    "reg_calibrated": {
+      "delta_mae": -0.015040561488470716,
+      "delta_mae_ci95": [
+        -0.08679661410762027,
+        0.04964307587695656
+      ],
+      "delta_win": -0.13285156249999996,
+      "delta_win_ci95": [
+        -0.1778564453125,
+        -0.08929589843749995
+      ],
+      "per_problem_delta_mae": [
+        0.13448168936204974,
+        0.03271347940795377,
+        0.08111440384022167,
+        -0.13795621615496517,
+        -0.025606638436328544,
+        -0.009810400047668144,
+        -0.007878496760031689,
+        -0.1873823131189971
+      ],
+      "problems_improved": 5,
+      "states_closer_than_reference": 0.3879296875
+    },
+    "reg_exact_jacobian": {
+      "delta_mae": 0.005605056253094209,
+      "delta_mae_ci95": [
+        0.001972736227299801,
+        0.00948365627024427
+      ],
+      "delta_win": 0.012734375000000075,
+      "delta_win_ci95": [
+        0.0030078125000000374,
+        0.024180664062500096
+      ],
+      "per_problem_delta_mae": [
+        -0.0038362516540999536,
+        0.0050061925423643405,
+        0.0004004500099743513,
+        0.015189664183312468,
+        0.0046487583656308895,
+        0.0098582212043212,
+        0.0053139737749229865,
+        0.008259441598327588
+      ],
+      "problems_improved": 1,
+      "states_closer_than_reference": 0.480859375
+    },
+    "reg_flipped_correction": {
+      "delta_mae": 0.3738306056835243,
+      "delta_mae_ci95": [
+        0.28317277445585926,
+        0.48066632933491477
+      ],
+      "delta_win": -0.34464843749999996,
+      "delta_win_ci95": [
+        -0.42858496093750004,
+        -0.24349804687500012
+      ],
+      "per_problem_delta_mae": [
+        0.1996846518789595,
+        0.40485131272341085,
+        0.31432156568815917,
+        0.6506077386567428,
+        0.24360794134758265,
+        0.26929982088031373,
+        0.38435491251536513,
+        0.5239169017776604
+      ],
+      "problems_improved": 0,
+      "states_closer_than_reference": 0.313984375
+    },
+    "reg_lookahead1": {
+      "delta_mae": 5.8346182315649475e-05,
+      "delta_mae_ci95": [
+        -0.014933780042038916,
+        0.013229543093881885
+      ],
+      "delta_win": -0.018437499999999996,
+      "delta_win_ci95": [
+        -0.03890820312500003,
+        0.003750976562500025
+      ],
+      "per_problem_delta_mae": [
+        -0.0002770568787476557,
+        0.009127565173074503,
+        0.004604553409532641,
+        -0.024525421995549745,
+        0.01693155178519065,
+        0.024537455697029337,
+        0.006305492950661268,
+        -0.03623737068266564
+      ],
+      "problems_improved": 3,
+      "states_closer_than_reference": 0.5771875
+    },
+    "reg_lookahead2": {
+      "delta_mae": 0.017047491012376792,
+      "delta_mae_ci95": [
+        -0.005600612856297682,
+        0.03720135686167061
+      ],
+      "delta_win": -0.026992187499999987,
+      "delta_win_ci95": [
+        -0.052152343749999976,
+        -0.0007001953125000425
+      ],
+      "per_problem_delta_mae": [
+        0.016717798652399696,
+        0.028545529898037325,
+        0.018050203407133092,
+        -0.00788514399227147,
+        0.038481245441883694,
+        0.0624184539882211,
+        0.025974067275667118,
+        -0.045922226572056135
+      ],
+      "problems_improved": 2,
+      "states_closer_than_reference": 0.554375
+    },
+    "sc_cost_claim": {
+      "delta_mae": 0.0,
+      "delta_mae_ci95": [
+        0.0,
+        0.0
+      ],
+      "delta_win": 0.0,
+      "delta_win_ci95": [
+        0.0,
+        0.0
+      ],
+      "per_problem_delta_mae": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "problems_improved": 0,
+      "states_closer_than_reference": 0.0
+    },
+    "sc_fake_score_files": {
+      "delta_mae": 0.1430088040888326,
+      "delta_mae_ci95": [
+        0.05805965381024405,
+        0.22908355075106893
+      ],
+      "delta_win": -0.24429687499999997,
+      "delta_win_ci95": [
+        -0.28997851562500004,
+        -0.19589746093749996
+      ],
+      "per_problem_delta_mae": [
+        0.3737952425551895,
+        0.18777626117291907,
+        0.2674877547677844,
+        0.020651861276903216,
+        0.08331610634296327,
+        0.15421654938161605,
+        0.09270316563347011,
+        -0.03587650842018464
+      ],
+      "problems_improved": 1,
+      "states_closer_than_reference": 0.278359375
+    },
+    "sc_huge_output": {
+      "delta_mae": 3.712721152313314,
+      "delta_mae_ci95": [
+        3.6166882169340537,
+        3.793101401687864
+      ],
+      "delta_win": -0.610625,
+      "delta_win_ci95": [
+        -0.670005859375,
+        -0.5405830078125
+      ],
+      "per_problem_delta_mae": [
+        3.764106595149043,
+        3.7022591046128843,
+        3.694785630986036,
+        3.6047223582981696,
+        3.8471766916599153,
+        3.8129519043863627,
+        3.835437586657175,
+        3.4403293467569287
+      ],
+      "problems_improved": 0,
+      "states_closer_than_reference": 0.0
+    },
+    "sc_paper_reward_hardcode": {
+      "delta_mae": 0.3180021970908908,
+      "delta_mae_ci95": [
+        0.15528565158694113,
+        0.4648867487563216
+      ],
+      "delta_win": -0.3130078125,
+      "delta_win_ci95": [
+        -0.43336718750000003,
+        -0.20573339843750005
+      ],
+      "per_problem_delta_mae": [
+        0.46401605641081667,
+        0.37724979165214106,
+        0.31913651725731285,
+        0.01680162219806841,
+        0.6449846254526788,
+        0.429539834958845,
+        0.3877203679958404,
+        -0.09543123919857721
+      ],
+      "problems_improved": 1,
+      "states_closer_than_reference": 0.2288671875
+    },
+    "sc_private_bruteforce": {
+      "delta_mae": 0.015965553182243686,
+      "delta_mae_ci95": [
+        -0.09217977742228227,
+        0.1147807646788569
+      ],
+      "delta_win": -0.18234374999999997,
+      "delta_win_ci95": [
+        -0.26109375,
+        -0.12046289062499999
+      ],
+      "per_problem_delta_mae": [
+        0.2334450039239635,
+        0.07152375239606634,
+        0.08449429449088908,
+        -0.2258877988329537,
+        0.1266921470837454,
+        0.029251074036857644,
+        0.03976231540730257,
+        -0.2315563630479216
+      ],
+      "problems_improved": 2,
+      "states_closer_than_reference": 0.3758203125
+    },
+    "vanilla_cfg": {
+      "delta_mae": 0.1654967645242414,
+      "delta_mae_ci95": [
+        0.11001532795502938,
+        0.22726175160321752
+      ],
+      "delta_win": -0.11062499999999997,
+      "delta_win_ci95": [
+        -0.17000585937500004,
+        -0.04058300781249997
+      ],
+      "per_problem_delta_mae": [
+        0.03351752681391984,
+        0.1887585599517685,
+        0.12794969078294965,
+        0.3135874356076443,
+        0.11118858941102175,
+        0.11894702802595236,
+        0.16883075689382085,
+        0.261194528706854
+      ],
+      "problems_improved": 0,
+      "states_closer_than_reference": 0.389375
+    }
+  },
+  "reference_detail_test": {
+    "mean_abs_target": 0.4302876517755183,
+    "frac_states_clipped_reference": 0.0037109375,
+    "per_problem_mae_reg": [
+      0.2358934048509571,
+      0.2977408953871156,
+      0.30521436901396404,
+      0.3952776417018304,
+      0.15282330834008476,
+      0.1870480956136375,
+      0.16456241334282493,
+      0.5596706532430713
+    ],
+    "per_problem_mae_cfg": [
+      0.26941093166487695,
+      0.4864994553388841,
+      0.4331640597969137,
+      0.7088650773094747,
+      0.2640118977511065,
+      0.30599512363958986,
+      0.3333931702366458,
+      0.8208651819499253
+    ],
+    "per_problem_mae_zero": [
+      0.6096886474061466,
+      0.4855171565600347,
+      0.5727021237817485,
+      0.4159295029787336,
+      0.23613941468304803,
+      0.34126464499525355,
+      0.25726557897629504,
+      0.5237941448228867
+    ],
+    "per_problem_win_reg_vs_cfg": [
+      0.403125,
+      0.6828125,
+      0.6084375,
+      0.6509375,
+      0.7421875,
+      0.6271875,
+      0.639375,
+      0.5309375
+    ],
+    "per_timestep_win_reg_vs_cfg": {
+      "1": 0.6625,
+      "2": 0.6296875,
+      "3": 0.6015625,
+      "4": 0.62265625,
+      "5": 0.6125,
+      "6": 0.66171875,
+      "7": 0.6625,
+      "8": 0.66875,
+      "9": 0.67890625,
+      "10": 0.665625,
+      "11": 0.6609375,
+      "12": 0.62890625,
+      "13": 0.63828125,
+      "14": 0.6,
+      "15": 0.5640625,
+      "16": 0.54765625,
+      "17": 0.53359375,
+      "18": 0.53125,
+      "19": 0.52578125,
+      "20": 0.515625
+    },
+    "per_timestep_mae_reg": {
+      "1": 0.25927651943678837,
+      "2": 0.16046394592544325,
+      "3": 0.13343977149173894,
+      "4": 0.13298812187320957,
+      "5": 0.13697009937181395,
+      "6": 0.16724557570249657,
+      "7": 0.1887336870013628,
+      "8": 0.2231126149408671,
+      "9": 0.2593560894851783,
+      "10": 0.2571399302445088,
+      "11": 0.29494276704494976,
+      "12": 0.32540840787912517,
+      "13": 0.3439832030203719,
+      "14": 0.3651873917415486,
+      "15": 0.4159330899103839,
+      "16": 0.37551487543749457,
+      "17": 0.4097396646705362,
+      "18": 0.43321771692799993,
+      "19": 0.4234652683253216,
+      "20": 0.43945821330257484
+    },
+    "per_timestep_mae_cfg": {
+      "1": 0.2629501860904756,
+      "2": 0.17471910776604294,
+      "3": 0.15905879774690676,
+      "4": 0.17929634898652635,
+      "5": 0.2005751034105388,
+      "6": 0.261096906530981,
+      "7": 0.3111369970172569,
+      "8": 0.371639392672891,
+      "9": 0.4565054991620097,
+      "10": 0.46137630878275565,
+      "11": 0.5211137866666693,
+      "12": 0.5724838728056124,
+      "13": 0.5725880347736811,
+      "14": 0.6210605576870075,
+      "15": 0.6810530805977023,
+      "16": 0.6217816334349872,
+      "17": 0.6451550171820761,
+      "18": 0.6454593021603829,
+      "19": 0.6480643689493472,
+      "20": 0.6883979417946919
+    }
+  }
+}

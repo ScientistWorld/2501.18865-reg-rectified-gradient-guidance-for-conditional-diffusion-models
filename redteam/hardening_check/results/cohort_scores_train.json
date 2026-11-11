@@ -1,0 +1,172 @@
+{
+  "_metadata": {
+    "slice": "train",
+    "problems": [
+      "paper_mixture",
+      "paper_checkpoint",
+      "family_1",
+      "family_2",
+      "family_3"
+    ],
+    "num_states": 16000,
+    "oracle_budget_units_per_state": 8,
+    "error_clip": 4.0,
+    "failures": {
+      "sc_batch_pooling": "output depends on batch composition (max diff 0.215); rules must be per-state",
+      "sc_bruteforce_oracle": "oracle budget exceeded (9 > 8 units per state)",
+      "sc_empty_dir": "missing guidance.py",
+      "sc_nan_output": "guidance output contains non-finite values",
+      "sc_query_endpoint": "query t outside 1..T",
+      "sc_wrong_shape": "guidance output has shape (128,), expected (256,)"
+    }
+  },
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "train"
+      },
+      "results": {
+        "_sc_underscore_name": {
+          "guidance_mae": 0.6073806523295627,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.9660754293545714,
+          "oracle_cost_per_state": 2.0
+        },
+        "no_guidance": {
+          "guidance_mae": 0.3946305781042529,
+          "win_rate": 0.5463125,
+          "worst_timestep_win_rate": 0.16,
+          "worst_problem_mae": 0.7163951954109348,
+          "oracle_cost_per_state": 0.0
+        },
+        "reg_calibrated": {
+          "guidance_mae": 0.23987613805218969,
+          "win_rate": 0.66875,
+          "worst_timestep_win_rate": 0.3575,
+          "worst_problem_mae": 0.4738068397894007,
+          "oracle_cost_per_state": 3.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37029103037451805,
+          "win_rate": 0.7328125,
+          "worst_timestep_win_rate": 0.54375,
+          "worst_problem_mae": 0.788069129395161,
+          "oracle_cost_per_state": 3.0
+        },
+        "reg_exact_jacobian": {
+          "guidance_mae": 0.38597654773691614,
+          "win_rate": 0.7293125,
+          "worst_timestep_win_rate": 0.545,
+          "worst_problem_mae": 0.8085029317140315,
+          "oracle_cost_per_state": 3.0
+        },
+        "reg_flipped_correction": {
+          "guidance_mae": 0.8728836573042624,
+          "win_rate": 0.193625,
+          "worst_timestep_win_rate": 0.105,
+          "worst_problem_mae": 1.1703131587471571,
+          "oracle_cost_per_state": 3.0
+        },
+        "reg_lookahead1": {
+          "guidance_mae": 0.4087446981630486,
+          "win_rate": 0.676875,
+          "worst_timestep_win_rate": 0.095,
+          "worst_problem_mae": 0.834402660455774,
+          "oracle_cost_per_state": 5.0
+        },
+        "reg_lookahead2": {
+          "guidance_mae": 0.4651783289008028,
+          "win_rate": 0.6425625,
+          "worst_timestep_win_rate": 0.08375,
+          "worst_problem_mae": 0.8850726764928223,
+          "oracle_cost_per_state": 7.0
+        },
+        "sc_batch_pooling": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "sc_bruteforce_oracle": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "sc_cost_claim": {
+          "guidance_mae": 0.37029103037451805,
+          "win_rate": 0.7328125,
+          "worst_timestep_win_rate": 0.54375,
+          "worst_problem_mae": 0.788069129395161,
+          "oracle_cost_per_state": 3.0
+        },
+        "sc_empty_dir": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "sc_fake_score_files": {
+          "guidance_mae": 0.3946305781042529,
+          "win_rate": 0.5463125,
+          "worst_timestep_win_rate": 0.16,
+          "worst_problem_mae": 0.7163951954109348,
+          "oracle_cost_per_state": 0.0
+        },
+        "sc_huge_output": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 0.0
+        },
+        "sc_nan_output": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "sc_paper_reward_hardcode": {
+          "guidance_mae": 0.49882059519417477,
+          "win_rate": 0.5623125,
+          "worst_timestep_win_rate": 0.43,
+          "worst_problem_mae": 0.7595163001734561,
+          "oracle_cost_per_state": 2.0
+        },
+        "sc_private_bruteforce": {
+          "guidance_mae": 0.2067786340630131,
+          "win_rate": 0.7036875,
+          "worst_timestep_win_rate": 0.52125,
+          "worst_problem_mae": 0.5468182990145443,
+          "oracle_cost_per_state": 0.0
+        },
+        "sc_query_endpoint": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "sc_wrong_shape": {
+          "guidance_mae": 4.0,
+          "win_rate": 0.0,
+          "worst_timestep_win_rate": 0.0,
+          "worst_problem_mae": 4.0,
+          "oracle_cost_per_state": 8.0
+        },
+        "vanilla_cfg": {
+          "guidance_mae": 0.6073806523295627,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.9660754293545714,
+          "oracle_cost_per_state": 2.0
+        }
+      }
+    }
+  }
+}

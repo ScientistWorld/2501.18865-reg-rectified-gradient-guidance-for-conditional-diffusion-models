@@ -1,0 +1,49 @@
+{
+  "_metadata": {
+    "slice": "test",
+    "problems": [
+      "hidden_00",
+      "hidden_01",
+      "hidden_02",
+      "hidden_03",
+      "hidden_04",
+      "hidden_05",
+      "hidden_06",
+      "hidden_07"
+    ],
+    "num_states": 25600,
+    "oracle_budget_units_per_state": 8,
+    "error_clip": 4.0,
+    "failures": {}
+  },
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "test"
+      },
+      "results": {
+        "no_guidance": {
+          "guidance_mae": 0.4302876517755183,
+          "win_rate": 0.366328125,
+          "worst_timestep_win_rate": 0.1515625,
+          "worst_problem_mae": 0.6096886474061466,
+          "oracle_cost_per_state": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.2872788476866857,
+          "win_rate": 0.610625,
+          "worst_timestep_win_rate": 0.515625,
+          "worst_problem_mae": 0.5596706532430713,
+          "oracle_cost_per_state": 3.0
+        },
+        "vanilla_cfg": {
+          "guidance_mae": 0.4527756122109271,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.8208651819499253,
+          "oracle_cost_per_state": 2.0
+        }
+      }
+    }
+  }
+}
