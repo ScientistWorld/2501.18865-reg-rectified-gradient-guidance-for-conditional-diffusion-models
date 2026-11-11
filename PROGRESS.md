@@ -2,33 +2,38 @@
 
 ## What Works
 
-Implemented a self-contained 1D synthetic reproduction of REG for classifier-free guidance. The method trains conditional and unconditional epsilon-prediction DDPM denoisers on the paper's Gaussian mixture setup, computes vanilla CFG and REG guidance adjustments, and compares both with a stochastic expected-reward guidance target obtained by differentiating through 100 sampled denoising-chain completions at each observed state.
+A hardened 1D reproduction of REG (Rectified Gradient Guidance), following the paper's Section 5.1 / Appendix E.1 as released by the authors (`1d-toy/`):
+- 20-step DDPM, betas from 1e-4 to 2e-2;
+- separate conditional and unconditional epsilon MLPs;
+- q(x|y) = ½N(0.5,0.25²) + ½N(1.5,0.25²) and q(x) = ½N(-2,0.5²) + ½N(0,0.5²);
+- reward q(x|y)/q(x);
+- the optimal foresight guidance estimated from stochastic denoising completions.
 
-The canonical evaluator now scores the complete metric family declared in `scoring/reference.json`, and `scripts/run.sh` regenerates the ignored method artifact before scoring it. This keeps the handoff path usable from a fresh clone.
+The pieces:
+- **Problems:** `data/toy_1d.py` (public machinery), `data/toy_1d_train/` (public problems, including the authors' released checkpoint), `eval/test/` (12 hidden problems, builder and assets).
+- **Method:** `method/reg_guidance.py`, a guidance rule installed by `scripts/method.sh`.
+- **Baselines:** `baseline/vanilla_cfg.py` and `baseline/no_guidance.py`.
+- **Evaluators:** `eval/train/`, `eval/test/`. Rules run in a subprocess against a counted denoiser oracle; every metric is recomputed against evaluator-held targets.
 
-## Results
+## Results (reference REG, w = 1)
 
-CPU job `d504d843-623` completed successfully and wrote `scoring/scores.json` using the stochastic expected-reward target.
+| Slice | REG MAE | REG win vs CFG | CFG MAE | no-guidance MAE |
+|---|---:|---:|---:|---:|
+| Paper problems (`scores.json`) | 0.264 | 0.791 | 0.519 | 0.664 |
+| Visible train (`scores_train.json`) | 0.339 | 0.709 | 0.530 | 0.676 |
+| Hidden test (`scores_test.json`) | 0.413 | 0.586 | 0.511 | 0.804 |
 
-| Method | Guidance MAE | Win Rate | Additional VJP / guided step |
-|---|---:|---:|---:|
-| Vanilla CFG | 0.7692 | 0.1535 | 0.0 |
-| REG CFG | 0.3720 | 0.8465 | 1.0 |
-
-REG reduced guidance MAE by 51.64% relative to vanilla CFG and won 84.65% of comparisons against the stochastic expected-reward guidance target. The job also ran `python validate.py --compare`, which passed all schema, separation, and comparison checks.
-
-On 2026-06-04, the canonical `scores.json` evaluator was repaired and locally re-run on the existing artifact. The repaired canonical scores include early/late step metrics and pass `python validate.py --compare`. Final verification also made `scripts/evaluate.sh` discover candidate metric prefixes instead of hardcoding only the reproduced method names.
+REG costs 3 oracle units per state (CFG: 2). On the hidden test, a REG variant that evaluates the CFG direction at the Tweedie estimate improves MAE by 0.068 (95% CI −0.103 to −0.037). See `HARDENING.md`.
 
 ## Remaining
 
-The reusable environment has reached `core_claim`. Future extensions would add 2D synthetic experiments, image-generation experiments from the paper, more CFG weights, or additional low-dimensional settings.
+The 2D example (Table 1) and the ImageNet/text-to-image experiments are not reproduced.
 
-## Issues
+## Deviations from Paper (text)
 
-The full ImageNet and COCO experiments require large pretrained diffusion models and many generated images. This reproduction targets the paper's low-dimensional synthetic claim because it implements the same REG computation and is feasible within the available budget.
+These follow the authors' released 1D code rather than the paper text:
+- unconditional means (-2, 0);
+- betas from 1e-4 to 2e-2;
+- guidance scale 1, batch 64, residual-GELU MLP.
 
-A packaging audit found that the prior `scripts/run.sh` assumed `outputs/toy_1d` already existed even though `outputs/` is gitignored, and that the canonical evaluator omitted some declared metrics. Both issues have been patched.
-
-## Deviations from Paper
-
-The minimum reproduction focuses on the paper's 1D Gaussian-mixture setting rather than the full ImageNet and COCO tables. The implemented evaluation now follows the paper's low-dimensional expected-reward protocol by sampling 100 denoising-chain completions per grid point. The larger image-generation experiments are omitted because they require large pretrained generators and many generated images beyond the current budget.
+An independent recomputation reproduces the paper's Figure 5 target only with this version. The target uses 1,000 completions per state instead of 100, to reduce estimator noise.

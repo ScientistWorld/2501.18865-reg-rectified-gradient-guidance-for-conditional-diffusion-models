@@ -2,19 +2,24 @@
 
 ## Research Problem
 
-This benchmark is about improving inference-time guidance for conditional diffusion models. The central question is whether a guidance rule can better approximate the ideal conditional denoising direction without retraining or replacing the base generator.
+Improving inference-time guidance for conditional diffusion models: approximating the ideal (foresight) conditional guidance direction from local denoiser information, without retraining or replacing the generator.
 
 ## Core Contribution
 
-Work should focus on denoising-time guidance corrections: how the conditional and unconditional denoiser predictions are transformed into the final guided update. Improvements should target closer approximation to the optimal guidance direction and should report their derivative or compute overhead.
+Work should focus on how conditional and unconditional denoiser predictions, and their input derivatives, are turned into the guidance added at each denoising step. Improvements should bring the guidance closer to the optimal direction, consistently across noise levels and across unseen problems, at a small number of extra denoiser evaluations.
 
 ## Approach Scope
 
-Scientists may redesign the guidance correction, use different local derivative approximations, change how the correction is scheduled over time, or modify the guidance scale policy. The base problem remains conditional diffusion guidance on the provided denoiser outputs.
+Scientists may:
+- redesign the guidance correction;
+- use different local derivative or Jacobian approximations;
+- evaluate the denoisers at other points or noise levels, such as cheap lookahead or predicted clean samples, with every evaluation counted;
+- schedule the correction over time;
+- calibrate scale policies on the public training problems.
 
 ## Out of Bounds
 
-- Replacing diffusion guidance with a non-diffusion generator or a direct sampler from the known mixture.
-- Training a separate predictor to imitate the evaluation target instead of defining an inference-time guidance rule.
-- Changing the benchmark distributions or evaluation grid for the primary score.
-- Improving the score only by increasing denoiser capacity or training data.
+- Brute-force foresight (running many denoising completions per state); the budget forbids it.
+- Training a predictor on many synthetic problems to imitate the evaluation target, or hand-coding the data-generating mixtures, instead of defining a guidance rule from denoiser outputs.
+- Reading hidden test assets, modifying the fixed denoisers, problem files or evaluators.
+- Pooling information across evaluation states or across calls.

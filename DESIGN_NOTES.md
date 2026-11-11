@@ -1,3 +1,5 @@
+> Superseded (iteration 11): these notes describe the pre-hardening design that scored method-written records. The current design is described in HARDENING.md and briefing/evaluation.md.
+
 # Train/Test Evaluation Design Notes
 
 ## Checked

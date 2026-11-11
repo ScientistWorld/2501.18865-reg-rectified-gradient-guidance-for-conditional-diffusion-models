@@ -1,20 +1,13 @@
 #!/bin/bash
-# Example run.sh — update this file before each job submission.
-#
-# This runs inside the compute container with:
-#   - Your workspace mounted at /home/user
-#   - GPU(s) available
-#   - No internet access
-#
-# Make sure all data, code, and dependencies are already in the
-# workspace or baked into the container before submitting.
+# Example job script submitted via the end-of-turn YAML block.
+# Runs inside the compute container (workspace at /home/user, no internet).
 
 set -e
 
 cd /home/user
 
-# Example: train a model
-python method/train.py --epochs 10 --lr 0.001
-
-# Example: evaluate
-./evaluate.sh checkpoints/best.pt
+bash scripts/method.sh          # installs outputs/guidance_rules/reg_cfg and scores the paper problems
+bash scripts/baseline.sh        # installs vanilla_cfg and no_guidance
+bash scripts/evaluate_train.sh  # visible slice -> scoring/scores_train.json
+bash scripts/evaluate_test.sh   # hidden slice  -> scoring/scores_test.json
+python validate.py --compare

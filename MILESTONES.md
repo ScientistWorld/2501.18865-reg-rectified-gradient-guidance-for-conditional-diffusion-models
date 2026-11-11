@@ -4,6 +4,12 @@
 
 ## Progress Log
 
+### [2026-11-11] - core_claim (hardening, iteration 11)
+- The evaluator now runs submitted guidance rules against frozen denoisers through a counted oracle (budget 8 units/state, per-state consistency check) and recomputes every metric against evaluator-held foresight targets; failures get worst values; every rule directory is scored.
+- Restored the authors' released 1D setting (uncond mixture (-2,0), betas 1e-4..2e-2, w = 1, upstream MLP); an independent recomputation reproduces the paper's Figure 5 target only with it.
+- 12 hidden test problems live only in eval/test/. Reference REG: paper problems MAE 0.264 / win 0.791 (CFG 0.519, no guidance 0.664); hidden MAE 0.413 / win 0.586 (CFG 0.511, no guidance 0.804).
+- Hardening check (job 7b9ab485-dbb): a better variant ranks above the reference beyond paired noise, weaker variants and all shortcuts below. Details in HARDENING.md.
+
 ### [2026-06-04 19:42] - core_claim
 - Repaired the canonical evaluator so `scoring/scores.json` now includes the same full metric family declared in `scoring/reference.json`: overall, early-step, late-step, relative improvement, and derivative-overhead metrics.
 - Updated `scripts/run.sh` to regenerate the `outputs/toy_1d` artifact with `scripts/method.sh` before evaluating, so a fresh clone/job does not depend on ignored local outputs.

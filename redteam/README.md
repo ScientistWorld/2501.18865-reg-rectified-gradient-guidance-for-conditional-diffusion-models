@@ -1,3 +1,5 @@
+> Iteration 11: the payloads in this folder (driver.py and the case directories) target the retired `outputs/toy_1d/results.json` contract and no longer run; their findings are addressed in HARDENING.md, and the replacement checks are in `redteam/hardening_check/` (`bash redteam/hardening_check/run_all.sh`).
+
 # Scoring audit
 
 Run `bash redteam/run_all.sh` in the supplied compute container. This trains

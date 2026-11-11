@@ -1,13 +1,12 @@
 #!/bin/bash
-# Job script: build the fixed problems (resumable), then run the hardening
-# check, which ends by regenerating the canonical reference/baseline scores.
+# Reproduce the reference end to end inside the compute container:
+# build (or reuse) the fixed problems, install the reference REG rule and the
+# baselines, and score them on the paper problems, the visible slice and the
+# hidden slice.  The hardening check is `bash redteam/hardening_check/run_all.sh`.
 
 set -euo pipefail
 
 cd /home/user
 
-nvidia-smi -L || true
-python -c "import torch, os; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'cpus', os.cpu_count())"
-bash scripts/build_problems.sh
-bash redteam/hardening_check/run_all.sh
-python validate.py || true
+bash scripts/reproduce.sh
+python validate.py

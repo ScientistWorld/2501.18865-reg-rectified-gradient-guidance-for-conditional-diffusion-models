@@ -1,3 +1,5 @@
+> Superseded (iteration 11): this report predates the hardening; see HARDENING.md for the current verification.
+
 # Verification Report
 
 ## Initial Assessment
