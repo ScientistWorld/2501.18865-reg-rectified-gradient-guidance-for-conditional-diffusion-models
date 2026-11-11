@@ -1,2 +1,8 @@
-action: done
-notes: "Audit complete: 25 cases and 3 reference seeds; genuine improvements score higher, but zero guidance, fabricated metrics, and other shortcuts also beat the reference. Evidence in REDTEAM.md and redteam/. Gym files restored."
+# Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends.
+action: pending
+gpus: 0
+test: false
+milestone: core_claim
+notes: ""
