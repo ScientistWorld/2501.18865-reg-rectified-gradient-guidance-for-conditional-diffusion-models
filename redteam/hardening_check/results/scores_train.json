@@ -1,0 +1,46 @@
+{
+  "_metadata": {
+    "slice": "train",
+    "problems": [
+      "paper_mixture",
+      "paper_checkpoint",
+      "family_1",
+      "family_2",
+      "family_3"
+    ],
+    "num_states": 16000,
+    "oracle_budget_units_per_state": 8,
+    "error_clip": 4.0,
+    "failures": {}
+  },
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "train"
+      },
+      "results": {
+        "no_guidance": {
+          "guidance_mae": 0.675827901874166,
+          "win_rate": 0.3635625,
+          "worst_timestep_win_rate": 0.09375,
+          "worst_problem_mae": 0.9611159828925157,
+          "oracle_cost_per_state": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.33862930764495464,
+          "win_rate": 0.70878125,
+          "worst_timestep_win_rate": 0.56375,
+          "worst_problem_mae": 0.6582111237841433,
+          "oracle_cost_per_state": 3.0
+        },
+        "vanilla_cfg": {
+          "guidance_mae": 0.5298540617316488,
+          "win_rate": 0.5,
+          "worst_timestep_win_rate": 0.5,
+          "worst_problem_mae": 0.7933072173159368,
+          "oracle_cost_per_state": 2.0
+        }
+      }
+    }
+  }
+}

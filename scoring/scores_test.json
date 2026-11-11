@@ -9,9 +9,13 @@
       "hidden_04",
       "hidden_05",
       "hidden_06",
-      "hidden_07"
+      "hidden_07",
+      "hidden_08",
+      "hidden_09",
+      "hidden_10",
+      "hidden_11"
     ],
-    "num_states": 25600,
+    "num_states": 38400,
     "oracle_budget_units_per_state": 8,
     "error_clip": 4.0,
     "failures": {}
@@ -23,24 +27,24 @@
       },
       "results": {
         "no_guidance": {
-          "guidance_mae": 0.4302876517755183,
-          "win_rate": 0.366328125,
-          "worst_timestep_win_rate": 0.1515625,
-          "worst_problem_mae": 0.6096886474061466,
+          "guidance_mae": 0.803627872861126,
+          "win_rate": 0.26428385416666667,
+          "worst_timestep_win_rate": 0.0796875,
+          "worst_problem_mae": 1.3196561656869017,
           "oracle_cost_per_state": 0.0
         },
         "reg_cfg": {
-          "guidance_mae": 0.2872788476866857,
-          "win_rate": 0.610625,
-          "worst_timestep_win_rate": 0.515625,
-          "worst_problem_mae": 0.5596706532430713,
+          "guidance_mae": 0.4126928463955277,
+          "win_rate": 0.5858984375,
+          "worst_timestep_win_rate": 0.38333333333333336,
+          "worst_problem_mae": 0.8008923524597629,
           "oracle_cost_per_state": 3.0
         },
         "vanilla_cfg": {
-          "guidance_mae": 0.4527756122109271,
+          "guidance_mae": 0.5104800101628743,
           "win_rate": 0.5,
           "worst_timestep_win_rate": 0.5,
-          "worst_problem_mae": 0.8208651819499253,
+          "worst_problem_mae": 0.7269014667126292,
           "oracle_cost_per_state": 2.0
         }
       }

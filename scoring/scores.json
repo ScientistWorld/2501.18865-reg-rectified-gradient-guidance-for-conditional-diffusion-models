@@ -17,24 +17,24 @@
       },
       "results": {
         "no_guidance": {
-          "guidance_mae": 0.33945165149787554,
-          "win_rate": 0.60875,
-          "worst_timestep_win_rate": 0.265625,
-          "worst_problem_mae": 0.35637611998792296,
+          "guidance_mae": 0.6642181428370464,
+          "win_rate": 0.38078125,
+          "worst_timestep_win_rate": 0.0375,
+          "worst_problem_mae": 0.6646146756887629,
           "oracle_cost_per_state": 0.0
         },
         "reg_cfg": {
-          "guidance_mae": 0.3137538750550253,
-          "win_rate": 0.7859375,
-          "worst_timestep_win_rate": 0.584375,
-          "worst_problem_mae": 0.4214212013547965,
+          "guidance_mae": 0.2641180384673656,
+          "win_rate": 0.79078125,
+          "worst_timestep_win_rate": 0.596875,
+          "worst_problem_mae": 0.2919057720197405,
           "oracle_cost_per_state": 3.0
         },
         "vanilla_cfg": {
-          "guidance_mae": 0.6060742380703815,
+          "guidance_mae": 0.5193516504277595,
           "win_rate": 0.5,
           "worst_timestep_win_rate": 0.5,
-          "worst_problem_mae": 0.7229504977756511,
+          "worst_problem_mae": 0.5429461275017028,
           "oracle_cost_per_state": 2.0
         }
       }

@@ -5,4 +5,4 @@ action: submit
 gpus: 1
 test: false
 milestone: core_claim
-notes: "Hardening job: build public train problems + hidden test problems (24 small denoisers, 1000-completion foresight targets), then run reference/baselines/variants/shortcuts through evaluate_train.sh and evaluate_test.sh, then regenerate canonical scores."
+notes: "Hardening job 2: rebuild public + 12 hidden problems with the paper's released uncond mixture (-2,0), then reference/baselines/variants/shortcuts through evaluate_train.sh and evaluate_test.sh, then canonical scores."
