@@ -1,30 +1,16 @@
 #!/bin/bash
-# Evaluation script — the standard way to evaluate work in this environment.
+# Score every guidance rule under outputs/guidance_rules/ on the paper's own
+# 1D problems (paper mixtures; our denoisers and the authors' released
+# denoisers) and write scoring/scores.json.
 #
-# This script must be SELF-CONTAINED using only code in eval/.
-# Do NOT import from method/ — evaluate.sh must work even when the
-# paper's method code is hidden from a scientist agent.
+# Uses eval/ only (never method/).  The evaluator runs each rule against the
+# frozen denoisers through a counted oracle and recomputes every metric.
 #
-# Design it so that anyone following the same output format can run
-# this script to evaluate their results.
-#
-# OUTPUT CONTRACT: This script MUST write scoring/scores.json containing
-# a JSON dict nested by experiment, e.g.:
-#   {"imagenet_classification": {"top1_accuracy": 82.1, "top5_accuracy": 94.8}}
-# Experiment and metric names must match the keys in scoring/reference.json.
-# This file is read by the system for automated comparison.
-#
-# Example usage:
-#   ./evaluate.sh <method_and_run_name>                             # evaluate with defaults
-#   ./evaluate.sh <method_and_run_name> checkpoints/epoch_10.pt     # evaluate a specific checkpoint
-#
-# Called from run.sh after training, or independently.
+# Usage: bash scripts/evaluate.sh
 
-set -e
+set -euo pipefail
 
 cd /home/user
 
 mkdir -p scoring
-
-INPUT="${1:-outputs/toy_1d/results.json}"
-python eval/evaluate_toy_1d.py --input "$INPUT" --scores scoring/scores.json
+python eval/train/evaluate.py --problems paper_mixture paper_checkpoint --slice-name paper --scores scoring/scores.json

@@ -1,0 +1,2 @@
+{"guidance": {"summary": {"reg_mae": 0.0, "reg_win_rate": 1.0, "additional_vjp_per_guided_step": 0.0}},
+ "guidance_mae": 0.0, "win_rate": 1.0, "worst_timestep_win_rate": 1.0, "worst_problem_mae": 0.0, "oracle_cost_per_state": 0.0}

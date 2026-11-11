@@ -1,21 +1,17 @@
 #!/bin/bash
-# Run a baseline method from the paper.
-#
-# Baselines are simple reference methods the paper compares against. 
-# Implement this only if applicable, i.e. the paper has baselines.
-# You do not need to implement all baselines to begin — 
-# just enough to validate that the evaluation pipeline works 
-# and provide a reference point. You can decide to expand more baselines later.
-# Each baseline must be actually run and scored through evaluate.sh
-# so the numbers are verified, not self-reported.
-# You can decide what this baseline script should do yourself.
+# Install baseline guidance rules (vanilla CFG at scale 1, and no guidance).
 #
 # Usage:
-#   bash scripts/baseline.sh <name>
+#   bash scripts/baseline.sh            # install all baselines
+#   bash scripts/baseline.sh <name>     # vanilla_cfg | no_guidance
+#
+# Baselines are scored like any other method by scripts/evaluate*.sh.
 
-set -e
+set -euo pipefail
 
 cd /home/user
 
-INPUT="${1:-outputs/toy_1d/results.json}"
-bash scripts/evaluate.sh "$INPUT"
+for name in ${1:-vanilla_cfg no_guidance}; do
+    mkdir -p "outputs/guidance_rules/$name"
+    cp "baseline/$name.py" "outputs/guidance_rules/$name/guidance.py"
+done

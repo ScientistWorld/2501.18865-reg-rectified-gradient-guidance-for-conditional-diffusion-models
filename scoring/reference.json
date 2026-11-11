@@ -1,60 +1,53 @@
 {
   "experiments": {
     "toy_1d_guidance_approximation": {
-      "description": "Synthetic guidance approximation: REG should more often be closer than vanilla CFG to the optimal joint-scaling guidance target. The paper reports this claim qualitatively for 1D and quantitatively as 2D REG-versus-without-REG win-ratio pairs in Table 1; the 1D reproduction uses the same reported synthetic distribution and metric family but is not expected to match the 2D baseline win fraction exactly.",
+      "description": "Paper Section 5.1 / Appendix E.1 (Figures 1 and 5, Table 1): how closely a sampling-time guidance rule matches the optimal foresight guidance g* = -sqrt(1 - alpha_bar_t) d/dx_t log E_t(x_t) of the joint-scaling objective, on the paper's 1D DDPM setting (20 steps, betas 1e-4..2e-2, separate conditional/unconditional epsilon networks, reward q(x|y)/q(x), g* estimated from stochastic denoising completions). The evaluator runs each rule against frozen denoisers through a counted oracle and compares it with vanilla CFG on the same states. The visible slice uses the paper's mixtures (own denoisers and the authors' released checkpoint) plus public paper-like mixtures; the hidden slice uses hidden paper-like mixtures with their own denoisers.",
       "weight": 1.0,
       "primary_metric": "win_rate",
+      "_paper_reported": {
+        "note": "The paper reports the 1D experiment qualitatively (Figures 1, 5, 6). Its only quantitative low-dimensional numbers are the 2D Table 1 win ratios of REG versus vanilla CFG against the optimal target (REG side, %): class 1 t=20,16,12,8,4: 60.2, 56.7, 67.8, 67.7, 65.5; class 2: 65.2, 68.2, 74.4, 73.1, 72.0; mean 67.08%. That mean is kept below as the reg_cfg win_rate reference; it is a 2D number, so the 1D reproduction is not expected to match it.",
+        "table1_reg_win_ratio_mean_2d": 0.6708,
+        "overhead_note": "The paper states REG adds one gradient (VJP) computation per guided step on top of the two denoiser passes of CFG; in oracle units that is 2 for CFG and 3 for REG."
+      },
       "metrics": {
         "guidance_mae": {
           "higher_is_better": false,
           "coefficient": -1.0,
-          "description": "Mean absolute error between a candidate guidance direction and the optimal joint-scaling guidance target."
+          "description": "Mean absolute difference between the rule's guidance and the optimal foresight guidance g* over all evaluation states (all problems, all 20 time steps); per-state error clipped at 4."
         },
         "win_rate": {
           "higher_is_better": true,
           "coefficient": 1.0,
-          "description": "Fraction of evaluated grid/time-step cases where the candidate guidance direction is closer to the optimal target than the reference direction."
+          "description": "Fraction of evaluation states where the rule is strictly closer to g* than vanilla classifier-free guidance at scale 1 (computed by the evaluator); ties count one half. The quantity of the paper's Table 1."
         },
-        "early_step_guidance_mae": {
-          "higher_is_better": false,
-          "coefficient": -0.35,
-          "description": "Guidance-direction absolute error restricted to the lower-noise edge of each evaluation slice, catching methods that only work at high noise."
-        },
-        "late_step_guidance_mae": {
-          "higher_is_better": false,
-          "coefficient": -0.35,
-          "description": "Guidance-direction absolute error restricted to the higher-noise edge of each evaluation slice, catching methods that only work near the denoising endpoint."
-        },
-        "early_step_win_rate": {
+        "worst_timestep_win_rate": {
           "higher_is_better": true,
           "coefficient": 0.25,
-          "description": "Win rate against the reference guidance direction on the lower-noise edge of each evaluation slice."
+          "description": "Minimum over the 20 time steps of the per-step win rate against vanilla CFG (Table 1 reports the win ratio per time step)."
         },
-        "late_step_win_rate": {
-          "higher_is_better": true,
-          "coefficient": 0.25,
-          "description": "Win rate against the reference guidance direction on the higher-noise edge of each evaluation slice."
-        },
-        "relative_mae_reduction": {
-          "higher_is_better": true,
-          "coefficient": 0.5,
-          "description": "Relative reduction in guidance MAE compared with vanilla classifier-free guidance on the same slice."
-        },
-        "additional_vjp_per_guided_step": {
+        "worst_problem_mae": {
           "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Machine-independent derivative-work overhead added per guided denoising step."
+          "coefficient": -0.25,
+          "description": "Largest per-problem guidance MAE across the problems of the slice (robustness across mixtures and denoiser seeds)."
+        },
+        "oracle_cost_per_state": {
+          "higher_is_better": false,
+          "coefficient": -0.3,
+          "description": "Mean denoiser-evaluation units spent per guided state (forward pass = 1, input derivative = +1), measured by the evaluator. Constraint: no foresight; hard cap of 8 units per state."
         }
       },
       "results": {
         "vanilla_cfg": {
           "type": "baseline",
-          "additional_vjp_per_guided_step": 0.0
+          "oracle_cost_per_state": 2.0
+        },
+        "no_guidance": {
+          "type": "baseline"
         },
         "reg_cfg": {
           "type": "proposed",
           "win_rate": 0.6708,
-          "additional_vjp_per_guided_step": 1.0
+          "oracle_cost_per_state": 3.0
         }
       }
     }

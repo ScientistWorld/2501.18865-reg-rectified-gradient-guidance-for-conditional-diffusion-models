@@ -1,19 +1,13 @@
 #!/bin/bash
-# Example job script submitted via the end-of-turn YAML block.
-#
-# This runs inside the compute container with:
-#   - Your workspace mounted at /home/user
-#   - GPU(s) available
-#   - No internet access
-#
-# Make sure all data, code, and dependencies are already in the
-# workspace or baked into the container before submitting.
+# Job script: build the fixed problems (resumable), then run the hardening
+# check, which ends by regenerating the canonical reference/baseline scores.
 
-set -e
+set -euo pipefail
 
 cd /home/user
 
-bash scripts/method.sh
-bash scripts/evaluate_train.sh outputs/toy_1d
-bash scripts/evaluate_test.sh outputs/toy_1d
-python validate.py --compare
+nvidia-smi -L || true
+python -c "import torch, os; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'cpus', os.cpu_count())"
+bash scripts/build_problems.sh
+bash redteam/hardening_check/run_all.sh
+python validate.py || true

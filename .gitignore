@@ -231,3 +231,9 @@ tmp/
 protocol.md
 *.egg-info
 core.[0-9]*
+
+# Fixed problem assets are small and must ship with the repo (see scripts/build_problems.sh)
+!data/toy_1d_train/*.pt
+!eval/test/assets/*.pt
+# Hardening-analysis dumps of hidden per-state values (never commit)
+eval/test/.analysis/

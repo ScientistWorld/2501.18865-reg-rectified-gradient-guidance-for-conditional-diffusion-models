@@ -1,45 +1,32 @@
-"""Rectified Gradient Guidance primitives.
+"""Rectified Gradient Guidance (REG) for classifier-free guidance, as a guidance rule.
 
-This module implements the paper's epsilon-prediction REG update for CFG:
+Paper (Eq. 21, epsilon-prediction DDPM form):
 
-    eps_reg = eps_cond + w * (eps_cond - eps_uncond)
-              * (1 - sqrt(1 - alpha_bar_t) * d(sum eps_cond) / dx_t)
+    eps_REG = eps_c + w * (eps_c - eps_u) * (1 - sqrt(1 - alpha_bar_t) * d(1^T eps_c)/dx_t)
 
-The same correction can be reused by future methods that emit conditional and
-unconditional epsilon predictions in the output format used by this benchmark.
+In 1D the correction is the scalar derivative of the conditional epsilon
+network with respect to x_t.  The guidance scale is w = 1, the default of the
+paper's released 1D code (`visual1.py --guidance-scale 1.0`), which is also the
+scale of the reward R0 = q(x|y)/q(x) that defines the optimal target.
+
+Cost per guided state: eps_cond with its input derivative (2 units) +
+eps_uncond (1 unit) = 3 units, i.e. one derivative evaluation more than
+vanilla CFG.
+
+This file is self-contained (numpy only) because it is copied verbatim to
+outputs/guidance_rules/reg_cfg/guidance.py and executed by the evaluators.
 """
 
 from __future__ import annotations
 
-import torch
+import numpy as np
+
+GUIDANCE_SCALE = 1.0
 
 
-def cfg_adjustment(eps_cond: torch.Tensor, eps_uncond: torch.Tensor, guidance_scale: float) -> torch.Tensor:
-    return guidance_scale * (eps_cond - eps_uncond)
-
-
-def reg_correction(
-    x_t: torch.Tensor,
-    eps_cond: torch.Tensor,
-    sqrt_one_minus_alpha_bar: torch.Tensor | float,
-) -> torch.Tensor:
-    grad = torch.autograd.grad(
-        eps_cond.sum(),
-        x_t,
-        create_graph=False,
-        retain_graph=True,
-        allow_unused=False,
-    )[0]
-    return 1.0 - sqrt_one_minus_alpha_bar * grad
-
-
-def reg_adjustment(
-    x_t: torch.Tensor,
-    eps_cond: torch.Tensor,
-    eps_uncond: torch.Tensor,
-    sqrt_one_minus_alpha_bar: torch.Tensor | float,
-    guidance_scale: float,
-) -> torch.Tensor:
-    return cfg_adjustment(eps_cond, eps_uncond, guidance_scale) * reg_correction(
-        x_t, eps_cond, sqrt_one_minus_alpha_bar
-    )
+def guidance(x, t, query, schedule):
+    eps_c, deps_c = query("cond", x, t, deriv=True)
+    eps_u = query("uncond", x, t)
+    sqrt_one_minus_ab = np.sqrt(1.0 - schedule["alpha_bars"][t - 1])
+    correction = 1.0 - sqrt_one_minus_ab * deps_c
+    return GUIDANCE_SCALE * (eps_c - eps_u) * correction
