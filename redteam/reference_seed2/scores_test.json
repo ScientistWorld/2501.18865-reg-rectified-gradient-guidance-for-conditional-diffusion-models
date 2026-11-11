@@ -1,0 +1,39 @@
+{
+  "_metadata": {
+    "slice": "test",
+    "split": "interleaved_time_steps_odd_indices",
+    "input": "outputs/toy_1d",
+    "train_scores": "scoring/scores_train.json",
+    "artifacts": [
+      "outputs/toy_1d/results.json"
+    ]
+  },
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "test"
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8635522723197937,
+          "win_rate": 0.10963454842567444,
+          "early_step_guidance_mae": 1.0543915033340454,
+          "late_step_guidance_mae": 0.672713041305542,
+          "early_step_win_rate": 0.12624584138393402,
+          "late_step_win_rate": 0.09302325546741486,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.40007685124874115,
+          "win_rate": 0.8903654515743256,
+          "early_step_guidance_mae": 0.5044249296188354,
+          "late_step_guidance_mae": 0.29572877287864685,
+          "early_step_win_rate": 0.8737541437149048,
+          "late_step_win_rate": 0.9069767594337463,
+          "relative_mae_reduction": 0.5367080093785183,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "config": {
+    "seed": 0,
+    "train_samples": 8000,
+    "diffusion_steps": 20,
+    "beta_start": 0.001,
+    "beta_end": 0.2,
+    "embed_dim": 128,
+    "hidden_dim": 128,
+    "hidden_layers": 3,
+    "epochs": 200,
+    "batch_size": 512,
+    "lr": 0.001,
+    "guidance_scale": 1.5,
+    "eval_grid_points": 301,
+    "eval_steps": [
+      4,
+      8,
+      12,
+      16,
+      20
+    ],
+    "optimal_target": "stochastic",
+    "foresight_samples": 100
+  },
+  "guidance": {
+    "records": [
+      {
+        "time_step": 20,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.41412216424942017,
+        "reg_mae": 0.23356929421424866,
+        "reg_win_rate": 0.8305647969245911,
+        "cfg_win_rate": 0.16943521797657013
+      },
+      {
+        "time_step": 20,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.41412216424942017,
+        "reg_mae": 0.23356929421424866,
+        "reg_win_rate": 0.8305647969245911,
+        "cfg_win_rate": 0.16943521797657013
+      }
+    ],
+    "summary": {
+      "additional_vjp_per_guided_step": 1.0
+    }
+  }
+}

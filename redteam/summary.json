@@ -1,0 +1,1250 @@
+{
+  "reference_metrics": {
+    "guidance_mae": 0.37514904141426086,
+    "win_rate": 0.8488372266292572,
+    "early_step_guidance_mae": 0.4910542964935303,
+    "late_step_guidance_mae": 0.25924378633499146,
+    "early_step_win_rate": 0.8272425532341003,
+    "late_step_win_rate": 0.8704319000244141,
+    "relative_mae_reduction": 0.5477411259211228,
+    "additional_vjp_per_guided_step": 1.0
+  },
+  "metric_definitions": {
+    "guidance_mae": {
+      "higher_is_better": false,
+      "coefficient": -1.0,
+      "description": "Mean absolute error between a candidate guidance direction and the optimal joint-scaling guidance target."
+    },
+    "win_rate": {
+      "higher_is_better": true,
+      "coefficient": 1.0,
+      "description": "Fraction of evaluated grid/time-step cases where the candidate guidance direction is closer to the optimal target than the reference direction."
+    },
+    "early_step_guidance_mae": {
+      "higher_is_better": false,
+      "coefficient": -0.35,
+      "description": "Guidance-direction absolute error restricted to the lower-noise edge of each evaluation slice, catching methods that only work at high noise."
+    },
+    "late_step_guidance_mae": {
+      "higher_is_better": false,
+      "coefficient": -0.35,
+      "description": "Guidance-direction absolute error restricted to the higher-noise edge of each evaluation slice, catching methods that only work near the denoising endpoint."
+    },
+    "early_step_win_rate": {
+      "higher_is_better": true,
+      "coefficient": 0.25,
+      "description": "Win rate against the reference guidance direction on the lower-noise edge of each evaluation slice."
+    },
+    "late_step_win_rate": {
+      "higher_is_better": true,
+      "coefficient": 0.25,
+      "description": "Win rate against the reference guidance direction on the higher-noise edge of each evaluation slice."
+    },
+    "relative_mae_reduction": {
+      "higher_is_better": true,
+      "coefficient": 0.5,
+      "description": "Relative reduction in guidance MAE compared with vanilla classifier-free guidance on the same slice."
+    },
+    "additional_vjp_per_guided_step": {
+      "higher_is_better": false,
+      "coefficient": -0.1,
+      "description": "Machine-independent derivative-work overhead added per guided denoising step."
+    }
+  },
+  "normalization": "population std across eleven genuine quality/reference variants only; no shortcuts",
+  "honest_normalization_cohort": [
+    "better_calibrated_seed0",
+    "better_calibrated_seed1",
+    "better_calibrated_seed2",
+    "better_reward_scale_fix",
+    "reference_seed0",
+    "reference_seed1",
+    "reference_seed2",
+    "weaker_remove_reg_seed0",
+    "weaker_remove_reg_seed1",
+    "weaker_remove_reg_seed2",
+    "weaker_zero_guidance"
+  ],
+  "metric_scales": {
+    "guidance_mae": 0.2946665377567741,
+    "win_rate": 0.4005980176240408,
+    "early_step_guidance_mae": 0.3669189166265316,
+    "late_step_guidance_mae": 0.22331384837260823,
+    "early_step_win_rate": 0.38108503994905735,
+    "late_step_win_rate": 0.42095258491582743,
+    "relative_mae_reduction": 0.3527141958748117,
+    "additional_vjp_per_guided_step": 0.48104569292083466
+  },
+  "pooled_normalization": "all successful output method rows including impossible claims; illustrative only",
+  "pooled_metric_scales": {
+    "guidance_mae": 128.13741189045615,
+    "win_rate": 0.48724786528338737,
+    "early_step_guidance_mae": 164.85222580301206,
+    "late_step_guidance_mae": 91.4226543493329,
+    "early_step_win_rate": 0.4718887182546319,
+    "late_step_win_rate": 0.5041321581937915,
+    "relative_mae_reduction": 0.4286953098714117,
+    "additional_vjp_per_guided_step": 15.448124734838506
+  },
+  "reference_rank": 0.0,
+  "seed_ranks": [
+    0.0,
+    0.4720425718457735,
+    -0.014292188517122262
+  ],
+  "seed_rank_range": 0.48633476036289575,
+  "seed_metric_spread": {
+    "guidance_mae": {
+      "min": 0.3414737433195114,
+      "max": 0.40007685124874115,
+      "range": 0.058603107929229736,
+      "std_population": 0.024013296464619107
+    },
+    "win_rate": {
+      "min": 0.8488372266292572,
+      "max": 0.9102990031242371,
+      "range": 0.06146177649497986,
+      "std_population": 0.02560271234415959
+    },
+    "early_step_guidance_mae": {
+      "min": 0.45760247111320496,
+      "max": 0.5044249296188354,
+      "range": 0.04682245850563049,
+      "std_population": 0.01969247197382451
+    },
+    "late_step_guidance_mae": {
+      "min": 0.22534501552581787,
+      "max": 0.29572877287864685,
+      "range": 0.07038375735282898,
+      "std_population": 0.02874051380613456
+    },
+    "early_step_win_rate": {
+      "min": 0.8272425532341003,
+      "max": 0.8870431780815125,
+      "range": 0.05980062484741211,
+      "std_population": 0.02563860200641876
+    },
+    "late_step_win_rate": {
+      "min": 0.8704319000244141,
+      "max": 0.9335548281669617,
+      "range": 0.06312292814254761,
+      "std_population": 0.025876683078110235
+    },
+    "relative_mae_reduction": {
+      "min": 0.5367080093785183,
+      "max": 0.5777763033754474,
+      "range": 0.04106829399692913,
+      "std_population": 0.017353982306899628
+    },
+    "additional_vjp_per_guided_step": {
+      "min": 1.0,
+      "max": 1.0,
+      "range": 0.0,
+      "std_population": 0.0
+    }
+  },
+  "reference_at_best_bound": [],
+  "runs": {
+    "better_calibrated_seed0": {
+      "status": {
+        "multiplier": 0.24,
+        "train_mae": 0.10356527815262477,
+        "train_time_steps": [
+          4,
+          12,
+          20
+        ],
+        "selection": "minimum visible-slice MAE; no test scores read",
+        "name": "better_calibrated_seed0",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 42.875869738010806,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.1112956814467907,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.1827242523431778,
+          "late_step_win_rate": 0.039867110550403595,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.11783378571271896,
+          "win_rate": 0.8887043297290802,
+          "early_step_guidance_mae": 0.1600600779056549,
+          "late_step_guidance_mae": 0.07560749351978302,
+          "early_step_win_rate": 0.8172757625579834,
+          "late_step_win_rate": 0.960132896900177,
+          "relative_mae_reduction": 0.8579461244150198,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 2.062780399518054,
+      "pooled_audit_rank": 0.4862387400439095,
+      "directed_deltas": {
+        "guidance_mae": 0.2573152557015419,
+        "win_rate": 0.039867103099823,
+        "early_step_guidance_mae": 0.33099421858787537,
+        "late_step_guidance_mae": 0.18363629281520844,
+        "early_step_win_rate": -0.009966790676116943,
+        "late_step_win_rate": 0.08970099687576294,
+        "relative_mae_reduction": 0.31020499849389704,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "better_calibrated_seed1": {
+      "status": {
+        "multiplier": 0.255,
+        "train_mae": 0.09844000513354938,
+        "train_time_steps": [
+          4,
+          12,
+          20
+        ],
+        "selection": "minimum visible-slice MAE; no test scores read",
+        "name": "better_calibrated_seed1",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 20.671666002992424,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8087507784366608,
+          "win_rate": 0.07641196250915527,
+          "early_step_guidance_mae": 1.0173664093017578,
+          "late_step_guidance_mae": 0.6001351475715637,
+          "early_step_win_rate": 0.11627907305955887,
+          "late_step_win_rate": 0.03654485195875168,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.11202462390065193,
+          "win_rate": 0.9235880374908447,
+          "early_step_guidance_mae": 0.1496364325284958,
+          "late_step_guidance_mae": 0.07441281527280807,
+          "early_step_win_rate": 0.8837209343910217,
+          "late_step_win_rate": 0.9634551405906677,
+          "relative_mae_reduction": 0.8614843696135924,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 2.23196751940387,
+      "pooled_audit_rank": 0.5988801142260496,
+      "directed_deltas": {
+        "guidance_mae": 0.26312441751360893,
+        "win_rate": 0.07475081086158752,
+        "early_step_guidance_mae": 0.3414178639650345,
+        "late_step_guidance_mae": 0.18483097106218338,
+        "early_step_win_rate": 0.05647838115692139,
+        "late_step_win_rate": 0.09302324056625366,
+        "relative_mae_reduction": 0.31374324369246964,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "better_calibrated_seed2": {
+      "status": {
+        "multiplier": 0.19,
+        "train_mae": 0.10263460626204808,
+        "train_time_steps": [
+          4,
+          12,
+          20
+        ],
+        "selection": "minimum visible-slice MAE; no test scores read",
+        "name": "better_calibrated_seed2",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 54.34571187700203,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8635522723197937,
+          "win_rate": 0.056478403974324465,
+          "early_step_guidance_mae": 1.0543915033340454,
+          "late_step_guidance_mae": 0.672713041305542,
+          "early_step_win_rate": 0.10631228983402252,
+          "late_step_win_rate": 0.006644518114626408,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.10196289792656898,
+          "win_rate": 0.9435215890407562,
+          "early_step_guidance_mae": 0.13309067487716675,
+          "late_step_guidance_mae": 0.07083512097597122,
+          "early_step_win_rate": 0.8936877250671387,
+          "late_step_win_rate": 0.9933554530143738,
+          "relative_mae_reduction": 0.8819262004225151,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 2.3905371486478972,
+      "pooled_audit_rank": 0.6838677502805988,
+      "directed_deltas": {
+        "guidance_mae": 0.2731861434876919,
+        "win_rate": 0.09468436241149902,
+        "early_step_guidance_mae": 0.3579636216163635,
+        "late_step_guidance_mae": 0.18840866535902023,
+        "early_step_win_rate": 0.06644517183303833,
+        "late_step_win_rate": 0.12292355298995972,
+        "relative_mae_reduction": 0.33418507450139234,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "better_reward_scale_fix": {
+      "status": {
+        "genuine_change": "guidance scale one matches the unpowered endpoint reward used by the target",
+        "name": "better_reward_scale_fix",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 26.64444097499654,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.10465116426348686,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.1627907007932663,
+          "late_step_win_rate": 0.04651162773370743,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.2593810483813286,
+          "win_rate": 0.8953488171100616,
+          "early_step_guidance_mae": 0.34250396490097046,
+          "late_step_guidance_mae": 0.1762581318616867,
+          "early_step_win_rate": 0.8372092843055725,
+          "late_step_win_rate": 0.9534883499145508,
+          "relative_mae_reduction": 0.6873045964449074,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 1.0344544518817864,
+      "pooled_audit_rank": 0.3062393848944779,
+      "directed_deltas": {
+        "guidance_mae": 0.11576799303293228,
+        "win_rate": 0.04651159048080444,
+        "early_step_guidance_mae": 0.14855033159255981,
+        "late_step_guidance_mae": 0.08298565447330475,
+        "early_step_win_rate": 0.009966731071472168,
+        "late_step_win_rate": 0.08305644989013672,
+        "relative_mae_reduction": 0.1395634705237846,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "reference_seed0": {
+      "status": {
+        "name": "reference_seed0",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 145.76722639800573,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.151162788271904,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.17275747656822205,
+          "late_step_win_rate": 0.12956809997558594,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37514904141426086,
+          "win_rate": 0.8488372266292572,
+          "early_step_guidance_mae": 0.4910542964935303,
+          "late_step_guidance_mae": 0.25924378633499146,
+          "early_step_win_rate": 0.8272425532341003,
+          "late_step_win_rate": 0.8704319000244141,
+          "relative_mae_reduction": 0.5477411259211228,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 0.0,
+      "pooled_audit_rank": 0.0,
+      "directed_deltas": {
+        "guidance_mae": -0.0,
+        "win_rate": 0.0,
+        "early_step_guidance_mae": -0.0,
+        "late_step_guidance_mae": -0.0,
+        "early_step_win_rate": 0.0,
+        "late_step_win_rate": 0.0,
+        "relative_mae_reduction": 0.0,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tie within numerical precision"
+    },
+    "reference_seed1": {
+      "status": {
+        "name": "reference_seed1",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 155.29346313299902,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8087507784366608,
+          "win_rate": 0.08970099315047264,
+          "early_step_guidance_mae": 1.0173664093017578,
+          "late_step_guidance_mae": 0.6001351475715637,
+          "early_step_win_rate": 0.11295680701732635,
+          "late_step_win_rate": 0.06644517928361893,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.3414737433195114,
+          "win_rate": 0.9102990031242371,
+          "early_step_guidance_mae": 0.45760247111320496,
+          "late_step_guidance_mae": 0.22534501552581787,
+          "early_step_win_rate": 0.8870431780815125,
+          "late_step_win_rate": 0.9335548281669617,
+          "relative_mae_reduction": 0.5777763033754474,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 0.4720425718457735,
+      "pooled_audit_rank": 0.22461949589938923,
+      "directed_deltas": {
+        "guidance_mae": 0.03367529809474945,
+        "win_rate": 0.06146177649497986,
+        "early_step_guidance_mae": 0.03345182538032532,
+        "late_step_guidance_mae": 0.033898770809173584,
+        "early_step_win_rate": 0.05980062484741211,
+        "late_step_win_rate": 0.06312292814254761,
+        "relative_mae_reduction": 0.030035177454324602,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "reference_seed2": {
+      "status": {
+        "name": "reference_seed2",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 220.33215298601135,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8635522723197937,
+          "win_rate": 0.10963454842567444,
+          "early_step_guidance_mae": 1.0543915033340454,
+          "late_step_guidance_mae": 0.672713041305542,
+          "early_step_win_rate": 0.12624584138393402,
+          "late_step_win_rate": 0.09302325546741486,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.40007685124874115,
+          "win_rate": 0.8903654515743256,
+          "early_step_guidance_mae": 0.5044249296188354,
+          "late_step_guidance_mae": 0.29572877287864685,
+          "early_step_win_rate": 0.8737541437149048,
+          "late_step_win_rate": 0.9069767594337463,
+          "relative_mae_reduction": 0.5367080093785183,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": -0.014292188517122262,
+      "pooled_audit_rank": 0.11476317283124655,
+      "directed_deltas": {
+        "guidance_mae": -0.024927809834480286,
+        "win_rate": 0.04152822494506836,
+        "early_step_guidance_mae": -0.013370633125305176,
+        "late_step_guidance_mae": -0.036484986543655396,
+        "early_step_win_rate": 0.04651159048080444,
+        "late_step_win_rate": 0.036544859409332275,
+        "relative_mae_reduction": -0.011033116542604526,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "shortcut_bruteforce_target": {
+      "status": {
+        "shortcut": "full stochastic future foresight instead of a local guidance rule",
+        "elapsed_seconds": 41.68299383299018,
+        "completions_per_state": 100,
+        "states": 1505,
+        "mean_denoiser_evaluations_per_state": 1200.0,
+        "mean_chain_local_derivatives_per_state": 12.0,
+        "cost_convention": "12 chain-node VJPs on average; batching 100 paths hides their width",
+        "name": "shortcut_bruteforce_target",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 64.73449626700312,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.0,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 0.0,
+          "late_step_guidance_mae": 0.0,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 1.0,
+          "additional_vjp_per_guided_step": 12.0
+        }
+      },
+      "audit_rank": 1.0699072718838956,
+      "pooled_audit_rank": 0.9272550264387115,
+      "directed_deltas": {
+        "guidance_mae": 0.37514904141426086,
+        "win_rate": 0.1511627733707428,
+        "early_step_guidance_mae": 0.4910542964935303,
+        "late_step_guidance_mae": 0.25924378633499146,
+        "early_step_win_rate": 0.17275744676589966,
+        "late_step_win_rate": 0.12956809997558594,
+        "relative_mae_reduction": 0.4522588740788772,
+        "additional_vjp_per_guided_step": -11.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "shortcut_compute_claim": {
+      "status": {
+        "shortcut": "same REG computation, falsely report zero VJPs",
+        "name": "shortcut_compute_claim",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 20.9830402660009,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.151162788271904,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.17275747656822205,
+          "late_step_win_rate": 0.12956809997558594,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37514904141426086,
+          "win_rate": 0.8488372266292572,
+          "early_step_guidance_mae": 0.4910542964935303,
+          "late_step_guidance_mae": 0.25924378633499146,
+          "early_step_win_rate": 0.8272425532341003,
+          "late_step_win_rate": 0.8704319000244141,
+          "relative_mae_reduction": 0.5477411259211228,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": 0.207880460155075,
+      "pooled_audit_rank": 0.00647327761242636,
+      "directed_deltas": {
+        "guidance_mae": -0.0,
+        "win_rate": 0.0,
+        "early_step_guidance_mae": -0.0,
+        "late_step_guidance_mae": -0.0,
+        "early_step_win_rate": 0.0,
+        "late_step_win_rate": 0.0,
+        "relative_mae_reduction": 0.0,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_empty_failure": {
+      "status": {
+        "shortcut": "empty artifact; check whether failure writes worst values",
+        "name": "shortcut_empty_failure",
+        "train_returncode": 1,
+        "test_returncode": 1,
+        "test_scores_written": false,
+        "elapsed_seconds_total": 37.173960771004204,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true,
+        "train_error_tail": [
+          "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+          "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/train/evaluate.py\", line 100, in score_artifact",
+          "    records = selected_records(result)",
+          "              ^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/train/evaluate.py\", line 46, in selected_records",
+          "    raise ValueError(\"Expected non-empty guidance.records in method artifact\")",
+          "ValueError: Expected non-empty guidance.records in method artifact"
+        ],
+        "test_error_tail": [
+          "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+          "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/test/evaluate.py\", line 99, in score_artifact",
+          "    records = selected_records(result)",
+          "              ^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/test/evaluate.py\", line 45, in selected_records",
+          "    raise ValueError(\"Expected non-empty guidance.records in method artifact\")",
+          "ValueError: Expected non-empty guidance.records in method artifact"
+        ]
+      },
+      "results": null,
+      "audit_rank": null,
+      "interpretation": "failed subprocess; evaluator wrote no worst-value score"
+    },
+    "shortcut_empty_training_selection": {
+      "status": {
+        "shortcut": "shortcut_empty_training_selection",
+        "actual_method": "constant zero guidance; then remove all training-manifest method entries",
+        "name": "shortcut_empty_training_selection",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 43.69459160300903,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {},
+      "audit_rank": 0.0,
+      "pooled_audit_rank": 0.0,
+      "directed_deltas": {},
+      "interpretation": "no candidate metrics: rank skips all values, tying reference at zero"
+    },
+    "shortcut_filter_disk_methods": {
+      "status": {
+        "shortcut": "shortcut_filter_disk_methods",
+        "on_disk_unlisted_prefix": "shortcut_unlisted_bad",
+        "outside_default_artifact": "outputs/redteam_shortcut_outside_default/results.json",
+        "name": "shortcut_filter_disk_methods",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 57.76755520999723,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.151162788271904,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.17275747656822205,
+          "late_step_win_rate": 0.12956809997558594,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37514904141426086,
+          "win_rate": 0.8488372266292572,
+          "early_step_guidance_mae": 0.4910542964935303,
+          "late_step_guidance_mae": 0.25924378633499146,
+          "early_step_win_rate": 0.8272425532341003,
+          "late_step_win_rate": 0.8704319000244141,
+          "relative_mae_reduction": 0.5477411259211228,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 0.0,
+      "pooled_audit_rank": 0.0,
+      "directed_deltas": {
+        "guidance_mae": -0.0,
+        "win_rate": 0.0,
+        "early_step_guidance_mae": -0.0,
+        "late_step_guidance_mae": -0.0,
+        "early_step_win_rate": 0.0,
+        "late_step_win_rate": 0.0,
+        "relative_mae_reduction": 0.0,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tie within numerical precision"
+    },
+    "shortcut_grid_subset": {
+      "status": {
+        "shortcut": "report only easiest state selected on visible training slice",
+        "selected_grid_index": 121,
+        "selected_x": 0.20999997854232788,
+        "name": "shortcut_grid_subset",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 35.85186332000012,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.7379418313503265,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 0.8660038113594055,
+          "late_step_guidance_mae": 0.6098798513412476,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.22867968678474426,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 0.27907702326774597,
+          "late_step_guidance_mae": 0.17828235030174255,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 0.6901115005686917,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 1.5956078314547832,
+      "pooled_audit_rank": 0.633969284060847,
+      "directed_deltas": {
+        "guidance_mae": 0.1464693546295166,
+        "win_rate": 0.1511627733707428,
+        "early_step_guidance_mae": 0.2119772732257843,
+        "late_step_guidance_mae": 0.0809614360332489,
+        "early_step_win_rate": 0.17275744676589966,
+        "late_step_win_rate": 0.12956809997558594,
+        "relative_mae_reduction": 0.14237037464756896,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_impossible_fields": {
+      "status": {
+        "shortcut": "negative MAE and compute; win rate above one",
+        "name": "shortcut_impossible_fields",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 1.6481456050096313,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 1.0,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0,
+          "late_step_guidance_mae": 1.0,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": -1.0,
+          "win_rate": 2.0,
+          "early_step_guidance_mae": -1.0,
+          "late_step_guidance_mae": -1.0,
+          "early_step_win_rate": 2.0,
+          "late_step_win_rate": 2.0,
+          "relative_mae_reduction": 2.0,
+          "additional_vjp_per_guided_step": -100.0
+        }
+      },
+      "audit_rank": 35.431134560401794,
+      "pooled_audit_rank": 5.910378415300196,
+      "directed_deltas": {
+        "guidance_mae": 1.3751490414142609,
+        "win_rate": 1.1511627733707428,
+        "early_step_guidance_mae": 1.4910542964935303,
+        "late_step_guidance_mae": 1.2592437863349915,
+        "early_step_win_rate": 1.1727574467658997,
+        "late_step_win_rate": 1.129568099975586,
+        "relative_mae_reduction": 1.4522588740788773,
+        "additional_vjp_per_guided_step": 101.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_move_baseline": {
+      "status": {
+        "shortcut": "same candidate guidance; multiply comparison CFG by 1000",
+        "name": "shortcut_move_baseline",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 54.23616971701267,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 841.0426635742188,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1082.005615234375,
+          "late_step_guidance_mae": 600.0797119140625,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37514904141426086,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 0.4910542964935303,
+          "late_step_guidance_mae": 0.25924378633499146,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 0.9995539476679816,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 1.2081048056861943,
+      "pooled_audit_rank": 0.9929780813677727,
+      "directed_deltas": {
+        "guidance_mae": -0.0,
+        "win_rate": 0.1511627733707428,
+        "early_step_guidance_mae": -0.0,
+        "late_step_guidance_mae": -0.0,
+        "early_step_win_rate": 0.17275744676589966,
+        "late_step_win_rate": 0.12956809997558594,
+        "relative_mae_reduction": 0.4518128217468588,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_null_failure": {
+      "status": {
+        "shortcut": "null win rates; check whether failure writes worst values",
+        "name": "shortcut_null_failure",
+        "train_returncode": 1,
+        "test_returncode": 1,
+        "test_scores_written": false,
+        "elapsed_seconds_total": 17.703952501004096,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true,
+        "train_error_tail": [
+          "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+          "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/train/evaluate.py\", line 117, in score_artifact",
+          "    win_rate = mean(",
+          "               ^^^^^",
+          "  File \"/home/user/eval/train/evaluate.py\", line 56, in mean",
+          "    raise ValueError(\"Cannot average an empty metric list\")",
+          "ValueError: Cannot average an empty metric list"
+        ],
+        "test_error_tail": [
+          "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+          "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+          "  File \"/home/user/eval/test/evaluate.py\", line 116, in score_artifact",
+          "    win_rate = mean(",
+          "               ^^^^^",
+          "  File \"/home/user/eval/test/evaluate.py\", line 55, in mean",
+          "    raise ValueError(\"Cannot average an empty metric list\")",
+          "ValueError: Cannot average an empty metric list"
+        ]
+      },
+      "results": null,
+      "audit_rank": null,
+      "interpretation": "failed subprocess; evaluator wrote no worst-value score"
+    },
+    "shortcut_replace_fixed_denoisers": {
+      "status": {
+        "shortcut": "replace fixed denoisers; conditional endpoint loses all dependence on initial state",
+        "explanation": "epsilon_c=x/sqrt(1-alpha_bar), epsilon_u=0; REG and rebuilt target both collapse to zero",
+        "name": "shortcut_replace_fixed_denoisers",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 43.217082754010335,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 1.9428098797798157,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 2.428999662399292,
+          "late_step_guidance_mae": 1.4566200971603394,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 1.2231224033598664e-07,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 1.6625645571366476e-07,
+          "late_step_guidance_mae": 7.836802495830852e-08,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 0.9999999370436389,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 3.356591547840658,
+      "pooled_audit_rank": 0.9984610051399954,
+      "directed_deltas": {
+        "guidance_mae": 0.37514891910202053,
+        "win_rate": 0.1511627733707428,
+        "early_step_guidance_mae": 0.49105413023707456,
+        "late_step_guidance_mae": 0.2592437079669665,
+        "early_step_win_rate": 0.17275744676589966,
+        "late_step_win_rate": 0.12956809997558594,
+        "relative_mae_reduction": 0.4522588111225161,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_score_claims": {
+      "status": {
+        "shortcut": "write perfect aggregate metrics without inference",
+        "name": "shortcut_score_claims",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 2.207061638997402,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 1.0,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0,
+          "late_step_guidance_mae": 1.0,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.0,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 0.0,
+          "late_step_guidance_mae": 0.0,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 1.0,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": 3.5644727937447955,
+      "pooled_audit_rank": 1.0049343577878278,
+      "directed_deltas": {
+        "guidance_mae": 0.37514904141426086,
+        "win_rate": 0.1511627733707428,
+        "early_step_guidance_mae": 0.4910542964935303,
+        "late_step_guidance_mae": 0.25924378633499146,
+        "early_step_win_rate": 0.17275744676589966,
+        "late_step_win_rate": 0.12956809997558594,
+        "relative_mae_reduction": 0.4522588740788772,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "Pareto improvement: outranks reference for any positive finite metric scales"
+    },
+    "shortcut_score_file_prewrite": {
+      "status": {
+        "shortcut": "prewrite a perfect scores_test.json; valid test should overwrite",
+        "name": "shortcut_score_file_prewrite",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 19.532908641995164,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.151162788271904,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.17275747656822205,
+          "late_step_win_rate": 0.12956809997558594,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.37514904141426086,
+          "win_rate": 0.8488372266292572,
+          "early_step_guidance_mae": 0.4910542964935303,
+          "late_step_guidance_mae": 0.25924378633499146,
+          "early_step_win_rate": 0.8272425532341003,
+          "late_step_win_rate": 0.8704319000244141,
+          "relative_mae_reduction": 0.5477411259211228,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 0.0,
+      "pooled_audit_rank": 0.0,
+      "directed_deltas": {
+        "guidance_mae": -0.0,
+        "win_rate": 0.0,
+        "early_step_guidance_mae": -0.0,
+        "late_step_guidance_mae": -0.0,
+        "early_step_win_rate": 0.0,
+        "late_step_win_rate": 0.0,
+        "relative_mae_reduction": 0.0,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tie within numerical precision"
+    },
+    "shortcut_time_subset": {
+      "status": {
+        "shortcut": "replace full evaluation schedule with duplicated easiest training time",
+        "selected_time_step": 20,
+        "name": "shortcut_time_subset",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 36.974383544991724,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.41412216424942017,
+          "win_rate": 0.16943521797657013,
+          "early_step_guidance_mae": 0.41412216424942017,
+          "late_step_guidance_mae": 0.41412216424942017,
+          "early_step_win_rate": 0.16943521797657013,
+          "late_step_win_rate": 0.16943521797657013,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.23356929421424866,
+          "win_rate": 0.8305647969245911,
+          "early_step_guidance_mae": 0.23356929421424866,
+          "late_step_guidance_mae": 0.23356929421424866,
+          "early_step_win_rate": 0.8305647969245911,
+          "late_step_win_rate": 0.8305647969245911,
+          "relative_mae_reduction": 0.43598939062442205,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      },
+      "audit_rank": 0.540799315185153,
+      "pooled_audit_rank": -0.1841008714901707,
+      "directed_deltas": {
+        "guidance_mae": 0.1415797472000122,
+        "win_rate": -0.018272429704666138,
+        "early_step_guidance_mae": 0.2574850022792816,
+        "late_step_guidance_mae": 0.025674492120742798,
+        "early_step_win_rate": 0.0033222436904907227,
+        "late_step_win_rate": -0.039867103099823,
+        "relative_mae_reduction": -0.11175173529670074,
+        "additional_vjp_per_guided_step": -0.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "shortcut_underscore_omission": {
+      "status": {
+        "shortcut": "underscore-named method is visible in train scores but disappears from test",
+        "name": "shortcut_underscore_omission",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 30.704379165006685,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {},
+      "audit_rank": 0.0,
+      "pooled_audit_rank": 0.0,
+      "directed_deltas": {},
+      "interpretation": "no candidate metrics: rank skips all values, tying reference at zero"
+    },
+    "weaker_remove_reg_seed0": {
+      "status": {
+        "genuine_change": "remove REG correction; same denoisers, states and target",
+        "name": "weaker_remove_reg_seed0",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 29.06112783199933,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "relative_mae_reduction": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": -6.354369103395564,
+      "pooled_audit_rank": -3.250416023340474,
+      "directed_deltas": {
+        "guidance_mae": -0.45435163378715515,
+        "win_rate": -0.8488372266292572,
+        "early_step_guidance_mae": -0.5850911140441895,
+        "late_step_guidance_mae": -0.32361215353012085,
+        "early_step_win_rate": -0.8272425532341003,
+        "late_step_win_rate": -0.8704319000244141,
+        "relative_mae_reduction": -0.5477411259211228,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "weaker_remove_reg_seed1": {
+      "status": {
+        "genuine_change": "remove REG correction; same denoisers, states and target",
+        "name": "weaker_remove_reg_seed1",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 21.901383940989035,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8087507784366608,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 1.0173664093017578,
+          "late_step_guidance_mae": 0.6001351475715637,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.8087507784366608,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0173664093017578,
+          "late_step_guidance_mae": 0.6001351475715637,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "relative_mae_reduction": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": -6.254963933261761,
+      "pooled_audit_rank": -3.2501954453660375,
+      "directed_deltas": {
+        "guidance_mae": -0.4336017370223999,
+        "win_rate": -0.8488372266292572,
+        "early_step_guidance_mae": -0.5263121128082275,
+        "late_step_guidance_mae": -0.34089136123657227,
+        "early_step_win_rate": -0.8272425532341003,
+        "late_step_win_rate": -0.8704319000244141,
+        "relative_mae_reduction": -0.5477411259211228,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "weaker_remove_reg_seed2": {
+      "status": {
+        "genuine_change": "remove REG correction; same denoisers, states and target",
+        "name": "weaker_remove_reg_seed2",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 42.792378393001854,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.8635522723197937,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 1.0543915033340454,
+          "late_step_guidance_mae": 0.672713041305542,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.8635522723197937,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 1.0543915033340454,
+          "late_step_guidance_mae": 0.672713041305542,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "relative_mae_reduction": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": -6.590011172809856,
+      "pooled_audit_rank": -3.250979586623954,
+      "directed_deltas": {
+        "guidance_mae": -0.48840323090553284,
+        "win_rate": -0.8488372266292572,
+        "early_step_guidance_mae": -0.5633372068405151,
+        "late_step_guidance_mae": -0.41346925497055054,
+        "early_step_win_rate": -0.8272425532341003,
+        "late_step_win_rate": -0.8704319000244141,
+        "relative_mae_reduction": -0.5477411259211228,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    },
+    "weaker_zero_guidance": {
+      "status": {
+        "genuine_change": "return constant zero guidance with correctly measured errors",
+        "name": "weaker_zero_guidance",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 13.898410298003,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.11627906933426857,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.19269102811813354,
+          "late_step_win_rate": 0.039867110550403595,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.060859840363264084,
+          "win_rate": 0.8837209343910217,
+          "early_step_guidance_mae": 0.08237109333276749,
+          "late_step_guidance_mae": 0.03934858739376068,
+          "early_step_win_rate": 0.8073089718818665,
+          "late_step_win_rate": 0.960132896900177,
+          "relative_mae_reduction": 0.9266307524722793,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": 2.673334260050452,
+      "pooled_audit_rank": 0.5580614099674641,
+      "directed_deltas": {
+        "guidance_mae": 0.3142892010509968,
+        "win_rate": 0.034883707761764526,
+        "early_step_guidance_mae": 0.4086832031607628,
+        "late_step_guidance_mae": 0.21989519894123077,
+        "early_step_win_rate": -0.019933581352233887,
+        "late_step_win_rate": 0.08970099687576294,
+        "relative_mae_reduction": 0.37888962655115654,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
+    }
+  }
+}

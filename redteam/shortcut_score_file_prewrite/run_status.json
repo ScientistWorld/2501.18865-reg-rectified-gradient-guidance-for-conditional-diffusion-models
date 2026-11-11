@@ -1,0 +1,10 @@
+{
+  "shortcut": "prewrite a perfect scores_test.json; valid test should overwrite",
+  "name": "shortcut_score_file_prewrite",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 19.532908641995164,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

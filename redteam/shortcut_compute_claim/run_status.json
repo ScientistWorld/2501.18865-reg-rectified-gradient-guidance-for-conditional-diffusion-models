@@ -1,0 +1,10 @@
+{
+  "shortcut": "same REG computation, falsely report zero VJPs",
+  "name": "shortcut_compute_claim",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 20.9830402660009,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

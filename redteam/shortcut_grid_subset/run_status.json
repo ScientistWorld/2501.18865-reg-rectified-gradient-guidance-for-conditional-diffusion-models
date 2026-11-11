@@ -1,0 +1,12 @@
+{
+  "shortcut": "report only easiest state selected on visible training slice",
+  "selected_grid_index": 121,
+  "selected_x": 0.20999997854232788,
+  "name": "shortcut_grid_subset",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 35.85186332000012,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

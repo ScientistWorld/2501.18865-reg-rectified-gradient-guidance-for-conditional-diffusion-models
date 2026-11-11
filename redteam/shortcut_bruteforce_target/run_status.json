@@ -1,0 +1,16 @@
+{
+  "shortcut": "full stochastic future foresight instead of a local guidance rule",
+  "elapsed_seconds": 41.68299383299018,
+  "completions_per_state": 100,
+  "states": 1505,
+  "mean_denoiser_evaluations_per_state": 1200.0,
+  "mean_chain_local_derivatives_per_state": 12.0,
+  "cost_convention": "12 chain-node VJPs on average; batching 100 paths hides their width",
+  "name": "shortcut_bruteforce_target",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 64.73449626700312,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

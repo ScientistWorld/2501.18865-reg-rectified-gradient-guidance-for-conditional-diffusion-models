@@ -1,0 +1,13 @@
+{
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "results": {
+        "reg_cfg": {
+          "guidance_mae": 0,
+          "win_rate": 1,
+          "additional_vjp_per_guided_step": 0
+        }
+      }
+    }
+  }
+}

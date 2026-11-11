@@ -1,0 +1,38 @@
+{
+  "_metadata": {
+    "slice": "train",
+    "split": "interleaved_time_steps_even_indices",
+    "input": "outputs/toy_1d",
+    "artifacts": [
+      "outputs/toy_1d/results.json"
+    ]
+  },
+  "experiments": {
+    "toy_1d_guidance_approximation": {
+      "_metadata": {
+        "slice": "train"
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 2.6565176248550415,
+          "win_rate": 0.0,
+          "early_step_guidance_mae": 4.898991107940674,
+          "late_step_guidance_mae": 1.3322001695632935,
+          "early_step_win_rate": 0.0,
+          "late_step_win_rate": 0.0,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 1.7020123976863033e-07,
+          "win_rate": 1.0,
+          "early_step_guidance_mae": 3.779691155614273e-07,
+          "late_step_guidance_mae": 3.606844245496177e-08,
+          "early_step_win_rate": 1.0,
+          "late_step_win_rate": 1.0,
+          "relative_mae_reduction": 0.9999999359306944,
+          "additional_vjp_per_guided_step": 1.0
+        }
+      }
+    }
+  }
+}

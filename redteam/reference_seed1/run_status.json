@@ -1,0 +1,9 @@
+{
+  "name": "reference_seed1",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 155.29346313299902,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

@@ -1,0 +1,10 @@
+{
+  "shortcut": "negative MAE and compute; win rate above one",
+  "name": "shortcut_impossible_fields",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 1.6481456050096313,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

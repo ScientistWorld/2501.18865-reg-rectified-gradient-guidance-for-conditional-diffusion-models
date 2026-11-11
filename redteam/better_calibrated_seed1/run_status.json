@@ -1,0 +1,17 @@
+{
+  "multiplier": 0.255,
+  "train_mae": 0.09844000513354938,
+  "train_time_steps": [
+    4,
+    12,
+    20
+  ],
+  "selection": "minimum visible-slice MAE; no test scores read",
+  "name": "better_calibrated_seed1",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 20.671666002992424,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

@@ -1,0 +1,11 @@
+{
+  "shortcut": "replace fixed denoisers; conditional endpoint loses all dependence on initial state",
+  "explanation": "epsilon_c=x/sqrt(1-alpha_bar), epsilon_u=0; REG and rebuilt target both collapse to zero",
+  "name": "shortcut_replace_fixed_denoisers",
+  "train_returncode": 0,
+  "test_returncode": 0,
+  "test_scores_written": true,
+  "elapsed_seconds_total": 43.217082754010335,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true
+}

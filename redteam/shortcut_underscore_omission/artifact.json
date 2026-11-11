@@ -1,0 +1,68 @@
+{
+  "config": {
+    "seed": 0,
+    "train_samples": 8000,
+    "diffusion_steps": 20,
+    "beta_start": 0.001,
+    "beta_end": 0.2,
+    "embed_dim": 128,
+    "hidden_dim": 128,
+    "hidden_layers": 3,
+    "epochs": 200,
+    "batch_size": 512,
+    "lr": 0.001,
+    "guidance_scale": 1.5,
+    "eval_grid_points": 301,
+    "eval_steps": [
+      4,
+      8,
+      12,
+      16,
+      20
+    ],
+    "optimal_target": "stochastic",
+    "foresight_samples": 100
+  },
+  "guidance": {
+    "records": [
+      {
+        "time_step": 4,
+        "optimal_target": "stochastic",
+        "cfg_mae": 1.0246747732162476,
+        "_shortcut_failed_mae": 0.3390148878097534,
+        "_shortcut_failed_win_rate": 0.7873753905296326
+      },
+      {
+        "time_step": 8,
+        "optimal_target": "stochastic",
+        "cfg_mae": 1.0761454105377197,
+        "_shortcut_failed_mae": 0.08237109333276749,
+        "_shortcut_failed_win_rate": 0.8073089718818665
+      },
+      {
+        "time_step": 12,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.7483558654785156,
+        "_shortcut_failed_mae": 0.05021435022354126,
+        "_shortcut_failed_win_rate": 0.8837209343910217
+      },
+      {
+        "time_step": 16,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.5828559398651123,
+        "_shortcut_failed_mae": 0.03934858739376068,
+        "_shortcut_failed_win_rate": 0.960132896900177
+      },
+      {
+        "time_step": 20,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.41412216424942017,
+        "_shortcut_failed_mae": 0.02845299430191517,
+        "_shortcut_failed_win_rate": 1.0
+      }
+    ],
+    "summary": {
+      "additional_vjp_per_guided_step": 0.0
+    }
+  }
+}

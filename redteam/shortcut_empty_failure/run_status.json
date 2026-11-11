@@ -1,0 +1,30 @@
+{
+  "shortcut": "empty artifact; check whether failure writes worst values",
+  "name": "shortcut_empty_failure",
+  "train_returncode": 1,
+  "test_returncode": 1,
+  "test_scores_written": false,
+  "elapsed_seconds_total": 37.173960771004204,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true,
+  "train_error_tail": [
+    "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+    "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/train/evaluate.py\", line 100, in score_artifact",
+    "    records = selected_records(result)",
+    "              ^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/train/evaluate.py\", line 46, in selected_records",
+    "    raise ValueError(\"Expected non-empty guidance.records in method artifact\")",
+    "ValueError: Expected non-empty guidance.records in method artifact"
+  ],
+  "test_error_tail": [
+    "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+    "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/test/evaluate.py\", line 99, in score_artifact",
+    "    records = selected_records(result)",
+    "              ^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/test/evaluate.py\", line 45, in selected_records",
+    "    raise ValueError(\"Expected non-empty guidance.records in method artifact\")",
+    "ValueError: Expected non-empty guidance.records in method artifact"
+  ]
+}

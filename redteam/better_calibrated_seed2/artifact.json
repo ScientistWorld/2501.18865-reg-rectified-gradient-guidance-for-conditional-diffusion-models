@@ -1,0 +1,73 @@
+{
+  "config": {
+    "seed": 2,
+    "train_samples": 8000,
+    "diffusion_steps": 20,
+    "beta_start": 0.001,
+    "beta_end": 0.2,
+    "embed_dim": 128,
+    "hidden_dim": 128,
+    "hidden_layers": 3,
+    "epochs": 200,
+    "batch_size": 512,
+    "lr": 0.001,
+    "guidance_scale": 1.5,
+    "eval_grid_points": 301,
+    "eval_steps": [
+      4,
+      8,
+      12,
+      16,
+      20
+    ],
+    "optimal_target": "stochastic",
+    "foresight_samples": 100
+  },
+  "guidance": {
+    "records": [
+      {
+        "time_step": 4,
+        "optimal_target": "stochastic",
+        "cfg_mae": 1.1063584089279175,
+        "reg_mae": 0.15929213166236877,
+        "reg_win_rate": 0.9003322124481201,
+        "cfg_win_rate": 0.09966777265071869
+      },
+      {
+        "time_step": 8,
+        "optimal_target": "stochastic",
+        "cfg_mae": 1.0543915033340454,
+        "reg_mae": 0.13309067487716675,
+        "reg_win_rate": 0.8936877250671387,
+        "cfg_win_rate": 0.10631228983402252
+      },
+      {
+        "time_step": 12,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.8162747025489807,
+        "reg_mae": 0.09692588448524475,
+        "reg_win_rate": 0.8604651093482971,
+        "cfg_win_rate": 0.13953489065170288
+      },
+      {
+        "time_step": 16,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.672713041305542,
+        "reg_mae": 0.07083512097597122,
+        "reg_win_rate": 0.9933554530143738,
+        "cfg_win_rate": 0.006644518114626408
+      },
+      {
+        "time_step": 20,
+        "optimal_target": "stochastic",
+        "cfg_mae": 0.47792553901672363,
+        "reg_mae": 0.05168580263853073,
+        "reg_win_rate": 1.0,
+        "cfg_win_rate": 0.0
+      }
+    ],
+    "summary": {
+      "additional_vjp_per_guided_step": 1.0
+    }
+  }
+}

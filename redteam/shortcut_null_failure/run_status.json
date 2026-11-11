@@ -1,0 +1,30 @@
+{
+  "shortcut": "null win rates; check whether failure writes worst values",
+  "name": "shortcut_null_failure",
+  "train_returncode": 1,
+  "test_returncode": 1,
+  "test_scores_written": false,
+  "elapsed_seconds_total": 17.703952501004096,
+  "hidden_test_command": "bash scripts/evaluate_test.sh",
+  "evaluation_is_separate_process": true,
+  "train_error_tail": [
+    "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+    "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/train/evaluate.py\", line 117, in score_artifact",
+    "    win_rate = mean(",
+    "               ^^^^^",
+    "  File \"/home/user/eval/train/evaluate.py\", line 56, in mean",
+    "    raise ValueError(\"Cannot average an empty metric list\")",
+    "ValueError: Cannot average an empty metric list"
+  ],
+  "test_error_tail": [
+    "    for method, metrics in score_artifact(artifact, multi_artifact).items():",
+    "                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/home/user/eval/test/evaluate.py\", line 116, in score_artifact",
+    "    win_rate = mean(",
+    "               ^^^^^",
+    "  File \"/home/user/eval/test/evaluate.py\", line 55, in mean",
+    "    raise ValueError(\"Cannot average an empty metric list\")",
+    "ValueError: Cannot average an empty metric list"
+  ]
+}

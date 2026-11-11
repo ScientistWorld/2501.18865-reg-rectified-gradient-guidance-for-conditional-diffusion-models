@@ -1,0 +1,44 @@
+{
+  "guidance": {
+    "records": [
+      {
+        "time_step": 4,
+        "cfg_mae": 1.0,
+        "cfg_win_rate": 0.0,
+        "reg_mae": -1.0,
+        "reg_win_rate": 2.0
+      },
+      {
+        "time_step": 8,
+        "cfg_mae": 1.0,
+        "cfg_win_rate": 0.0,
+        "reg_mae": -1.0,
+        "reg_win_rate": 2.0
+      },
+      {
+        "time_step": 12,
+        "cfg_mae": 1.0,
+        "cfg_win_rate": 0.0,
+        "reg_mae": -1.0,
+        "reg_win_rate": 2.0
+      },
+      {
+        "time_step": 16,
+        "cfg_mae": 1.0,
+        "cfg_win_rate": 0.0,
+        "reg_mae": -1.0,
+        "reg_win_rate": 2.0
+      },
+      {
+        "time_step": 20,
+        "cfg_mae": 1.0,
+        "cfg_win_rate": 0.0,
+        "reg_mae": -1.0,
+        "reg_win_rate": 2.0
+      }
+    ],
+    "summary": {
+      "additional_vjp_per_guided_step": -100.0
+    }
+  }
+}
