@@ -1,6 +1,6 @@
 {
-  "genuine_change": "return constant zero guidance with correctly measured errors",
-  "name": "weaker_zero_guidance",
+  "shortcut": "return constant zero guidance with correctly measured errors",
+  "name": "shortcut_zero_guidance",
   "train_returncode": 0,
   "test_returncode": 0,
   "test_scores_written": true,

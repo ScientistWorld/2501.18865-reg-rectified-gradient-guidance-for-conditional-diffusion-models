@@ -1,0 +1,17 @@
+{
+  "run_id": "1e10023e-388",
+  "project_id": "swarm-2501.18865",
+  "command": "bash /home/user/scripts/run.sh",
+  "status": "completed",
+  "returncode": 0,
+  "duration": 1320.5886147022247,
+  "submitted_at": 1794373480.5606039,
+  "started_at": 1794373503.573302,
+  "completed_at": 1794374824.1619167,
+  "stdout_sha256": "4e7475688727d9d4cf0e66ffc4223a2e73ddb927342a2b0fc01bd7b797168927",
+  "stderr_sha256": "cb65e441df207685062b307be033e26c11bc33ccdd9495e6e7d7a295844ae2d5",
+  "cases": 25,
+  "successful_hidden_evaluations": 23,
+  "intentional_failure_probes": 2,
+  "historical_label_note": "The constant-zero control was relabeled shortcut_zero_guidance after its observed payoff; saved scores are unchanged."
+}

@@ -19,7 +19,7 @@ for name in \
     better_calibrated_seed0 better_calibrated_seed1 better_calibrated_seed2 \
     better_reward_scale_fix \
     weaker_remove_reg_seed0 weaker_remove_reg_seed1 weaker_remove_reg_seed2 \
-    weaker_zero_guidance \
+    shortcut_zero_guidance \
     shortcut_score_claims shortcut_impossible_fields \
     shortcut_move_baseline shortcut_compute_claim shortcut_bruteforce_target \
     shortcut_replace_fixed_denoisers shortcut_grid_subset shortcut_time_subset \

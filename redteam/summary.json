@@ -51,7 +51,7 @@
       "description": "Machine-independent derivative-work overhead added per guided denoising step."
     }
   },
-  "normalization": "population std across eleven genuine quality/reference variants only; no shortcuts",
+  "normalization": "population std across ten genuine quality/reference variants only; no shortcuts",
   "honest_normalization_cohort": [
     "better_calibrated_seed0",
     "better_calibrated_seed1",
@@ -62,18 +62,17 @@
     "reference_seed2",
     "weaker_remove_reg_seed0",
     "weaker_remove_reg_seed1",
-    "weaker_remove_reg_seed2",
-    "weaker_zero_guidance"
+    "weaker_remove_reg_seed2"
   ],
   "metric_scales": {
-    "guidance_mae": 0.2946665377567741,
-    "win_rate": 0.4005980176240408,
-    "early_step_guidance_mae": 0.3669189166265316,
-    "late_step_guidance_mae": 0.22331384837260823,
-    "early_step_win_rate": 0.38108503994905735,
-    "late_step_win_rate": 0.42095258491582743,
-    "relative_mae_reduction": 0.3527141958748117,
-    "additional_vjp_per_guided_step": 0.48104569292083466
+    "guidance_mae": 0.2893477806195721,
+    "win_rate": 0.4131313392432692,
+    "early_step_guidance_mae": 0.3593993512203626,
+    "late_step_guidance_mae": 0.2202763382052066,
+    "early_step_win_rate": 0.39486220514766374,
+    "late_step_win_rate": 0.4320072664461164,
+    "relative_mae_reduction": 0.34629202228285816,
+    "additional_vjp_per_guided_step": 0.458257569495584
   },
   "pooled_normalization": "all successful output method rows including impossible claims; illustrative only",
   "pooled_metric_scales": {
@@ -89,10 +88,10 @@
   "reference_rank": 0.0,
   "seed_ranks": [
     0.0,
-    0.4720425718457735,
-    -0.014292188517122262
+    0.4693505833212227,
+    -0.021957605282376905
   ],
-  "seed_rank_range": 0.48633476036289575,
+  "seed_rank_range": 0.4913081886035996,
   "seed_metric_spread": {
     "guidance_mae": {
       "min": 0.3414737433195114,
@@ -184,7 +183,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 2.062780399518054,
+      "audit_rank": 2.093407981651324,
       "pooled_audit_rank": 0.4862387400439095,
       "directed_deltas": {
         "guidance_mae": 0.2573152557015419,
@@ -237,7 +236,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 2.23196751940387,
+      "audit_rank": 2.2590712386247183,
       "pooled_audit_rank": 0.5988801142260496,
       "directed_deltas": {
         "guidance_mae": 0.26312441751360893,
@@ -290,7 +289,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 2.3905371486478972,
+      "audit_rank": 2.417021384489263,
       "pooled_audit_rank": 0.6838677502805988,
       "directed_deltas": {
         "guidance_mae": 0.2731861434876919,
@@ -336,7 +335,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 1.0344544518817864,
+      "audit_rank": 1.0450909525110617,
       "pooled_audit_rank": 0.3062393848944779,
       "directed_deltas": {
         "guidance_mae": 0.11576799303293228,
@@ -426,8 +425,8 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 0.4720425718457735,
-      "pooled_audit_rank": 0.22461949589938923,
+      "audit_rank": 0.4693505833212227,
+      "pooled_audit_rank": 0.2246194958993892,
       "directed_deltas": {
         "guidance_mae": 0.03367529809474945,
         "win_rate": 0.06146177649497986,
@@ -471,8 +470,8 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": -0.014292188517122262,
-      "pooled_audit_rank": 0.11476317283124655,
+      "audit_rank": -0.021957605282376905,
+      "pooled_audit_rank": 0.11476317283124654,
       "directed_deltas": {
         "guidance_mae": -0.024927809834480286,
         "win_rate": 0.04152822494506836,
@@ -523,8 +522,8 @@
           "additional_vjp_per_guided_step": 12.0
         }
       },
-      "audit_rank": 1.0699072718838956,
-      "pooled_audit_rank": 0.9272550264387115,
+      "audit_rank": 0.9895201586309309,
+      "pooled_audit_rank": 0.9272550264387116,
       "directed_deltas": {
         "guidance_mae": 0.37514904141426086,
         "win_rate": 0.1511627733707428,
@@ -569,7 +568,7 @@
           "additional_vjp_per_guided_step": 0.0
         }
       },
-      "audit_rank": 0.207880460155075,
+      "audit_rank": 0.2182178902359924,
       "pooled_audit_rank": 0.00647327761242636,
       "directed_deltas": {
         "guidance_mae": -0.0,
@@ -718,8 +717,8 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 1.5956078314547832,
-      "pooled_audit_rank": 0.633969284060847,
+      "audit_rank": 1.59709718639057,
+      "pooled_audit_rank": 0.6339692840608471,
       "directed_deltas": {
         "guidance_mae": 0.1464693546295166,
         "win_rate": 0.1511627733707428,
@@ -764,7 +763,7 @@
           "additional_vjp_per_guided_step": -100.0
         }
       },
-      "audit_rank": 35.431134560401794,
+      "audit_rank": 36.52496489327835,
       "pooled_audit_rank": 5.910378415300196,
       "directed_deltas": {
         "guidance_mae": 1.3751490414142609,
@@ -810,7 +809,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 1.2081048056861943,
+      "audit_rank": 1.2026119041053007,
       "pooled_audit_rank": 0.9929780813677727,
       "directed_deltas": {
         "guidance_mae": -0.0,
@@ -892,8 +891,8 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 3.356591547840658,
-      "pooled_audit_rank": 0.9984610051399954,
+      "audit_rank": 3.3899161511807603,
+      "pooled_audit_rank": 0.9984610051399955,
       "directed_deltas": {
         "guidance_mae": 0.37514891910202053,
         "win_rate": 0.1511627733707428,
@@ -938,8 +937,8 @@
           "additional_vjp_per_guided_step": 0.0
         }
       },
-      "audit_rank": 3.5644727937447955,
-      "pooled_audit_rank": 1.0049343577878278,
+      "audit_rank": 3.6081348414628396,
+      "pooled_audit_rank": 1.004934357787828,
       "directed_deltas": {
         "guidance_mae": 0.37514904141426086,
         "win_rate": 0.1511627733707428,
@@ -1031,7 +1030,7 @@
           "additional_vjp_per_guided_step": 1.0
         }
       },
-      "audit_rank": 0.540799315185153,
+      "audit_rank": 0.5543007412796856,
       "pooled_audit_rank": -0.1841008714901707,
       "directed_deltas": {
         "guidance_mae": 0.1415797472000122,
@@ -1061,6 +1060,52 @@
       "pooled_audit_rank": 0.0,
       "directed_deltas": {},
       "interpretation": "no candidate metrics: rank skips all values, tying reference at zero"
+    },
+    "shortcut_zero_guidance": {
+      "status": {
+        "shortcut": "return constant zero guidance with correctly measured errors",
+        "name": "shortcut_zero_guidance",
+        "train_returncode": 0,
+        "test_returncode": 0,
+        "test_scores_written": true,
+        "elapsed_seconds_total": 13.898410298003,
+        "hidden_test_command": "bash scripts/evaluate_test.sh",
+        "evaluation_is_separate_process": true
+      },
+      "results": {
+        "vanilla_cfg": {
+          "guidance_mae": 0.829500675201416,
+          "win_rate": 0.11627906933426857,
+          "early_step_guidance_mae": 1.0761454105377197,
+          "late_step_guidance_mae": 0.5828559398651123,
+          "early_step_win_rate": 0.19269102811813354,
+          "late_step_win_rate": 0.039867110550403595,
+          "additional_vjp_per_guided_step": 0.0
+        },
+        "reg_cfg": {
+          "guidance_mae": 0.060859840363264084,
+          "win_rate": 0.8837209343910217,
+          "early_step_guidance_mae": 0.08237109333276749,
+          "late_step_guidance_mae": 0.03934858739376068,
+          "early_step_win_rate": 0.8073089718818665,
+          "late_step_win_rate": 0.960132896900177,
+          "relative_mae_reduction": 0.9266307524722793,
+          "additional_vjp_per_guided_step": 0.0
+        }
+      },
+      "audit_rank": 2.7225987933638494,
+      "pooled_audit_rank": 0.5580614099674641,
+      "directed_deltas": {
+        "guidance_mae": 0.3142892010509968,
+        "win_rate": 0.034883707761764526,
+        "early_step_guidance_mae": 0.4086832031607628,
+        "late_step_guidance_mae": 0.21989519894123077,
+        "early_step_win_rate": -0.019933581352233887,
+        "late_step_win_rate": 0.08970099687576294,
+        "relative_mae_reduction": 0.37888962655115654,
+        "additional_vjp_per_guided_step": 1.0
+      },
+      "interpretation": "tradeoff: aggregate depends on cohort normalization"
     },
     "weaker_remove_reg_seed0": {
       "status": {
@@ -1094,7 +1139,7 @@
           "additional_vjp_per_guided_step": 0.0
         }
       },
-      "audit_rank": -6.354369103395564,
+      "audit_rank": -6.309000474565065,
       "pooled_audit_rank": -3.250416023340474,
       "directed_deltas": {
         "guidance_mae": -0.45435163378715515,
@@ -1140,7 +1185,7 @@
           "additional_vjp_per_guided_step": 0.0
         }
       },
-      "audit_rank": -6.254963933261761,
+      "audit_rank": -6.2075012277143085,
       "pooled_audit_rank": -3.2501954453660375,
       "directed_deltas": {
         "guidance_mae": -0.4336017370223999,
@@ -1186,7 +1231,7 @@
           "additional_vjp_per_guided_step": 0.0
         }
       },
-      "audit_rank": -6.590011172809856,
+      "audit_rank": -6.548274613731847,
       "pooled_audit_rank": -3.250979586623954,
       "directed_deltas": {
         "guidance_mae": -0.48840323090553284,
@@ -1196,52 +1241,6 @@
         "early_step_win_rate": -0.8272425532341003,
         "late_step_win_rate": -0.8704319000244141,
         "relative_mae_reduction": -0.5477411259211228,
-        "additional_vjp_per_guided_step": 1.0
-      },
-      "interpretation": "tradeoff: aggregate depends on cohort normalization"
-    },
-    "weaker_zero_guidance": {
-      "status": {
-        "genuine_change": "return constant zero guidance with correctly measured errors",
-        "name": "weaker_zero_guidance",
-        "train_returncode": 0,
-        "test_returncode": 0,
-        "test_scores_written": true,
-        "elapsed_seconds_total": 13.898410298003,
-        "hidden_test_command": "bash scripts/evaluate_test.sh",
-        "evaluation_is_separate_process": true
-      },
-      "results": {
-        "vanilla_cfg": {
-          "guidance_mae": 0.829500675201416,
-          "win_rate": 0.11627906933426857,
-          "early_step_guidance_mae": 1.0761454105377197,
-          "late_step_guidance_mae": 0.5828559398651123,
-          "early_step_win_rate": 0.19269102811813354,
-          "late_step_win_rate": 0.039867110550403595,
-          "additional_vjp_per_guided_step": 0.0
-        },
-        "reg_cfg": {
-          "guidance_mae": 0.060859840363264084,
-          "win_rate": 0.8837209343910217,
-          "early_step_guidance_mae": 0.08237109333276749,
-          "late_step_guidance_mae": 0.03934858739376068,
-          "early_step_win_rate": 0.8073089718818665,
-          "late_step_win_rate": 0.960132896900177,
-          "relative_mae_reduction": 0.9266307524722793,
-          "additional_vjp_per_guided_step": 0.0
-        }
-      },
-      "audit_rank": 2.673334260050452,
-      "pooled_audit_rank": 0.5580614099674641,
-      "directed_deltas": {
-        "guidance_mae": 0.3142892010509968,
-        "win_rate": 0.034883707761764526,
-        "early_step_guidance_mae": 0.4086832031607628,
-        "late_step_guidance_mae": 0.21989519894123077,
-        "early_step_win_rate": -0.019933581352233887,
-        "late_step_win_rate": 0.08970099687576294,
-        "relative_mae_reduction": 0.37888962655115654,
         "additional_vjp_per_guided_step": 1.0
       },
       "interpretation": "tradeoff: aggregate depends on cohort normalization"

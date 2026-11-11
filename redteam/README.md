@@ -19,6 +19,12 @@ Generated checkpoints and arrays are ignored. Small per-case metrics,
 parameters, subprocess exit statuses, and both score files are retained.
 `run_all.sh` restores original scoring and default-output files on exit.
 
+The correctly measured constant-zero control was relabeled
+`shortcut_zero_guidance` after it beat the reference. Its saved scores are the
+actual outputs of the completed job. It is excluded from the honest comparison
+cohort used for rank normalization. This is a degenerate shortcut with honest
+metric reporting, rather than a fabricated-score shortcut.
+
 Ranks are reported with a fixed, declared audit cohort because the actual
 future cohort's per-metric normalization is unknowable. Dominance/ties are
 also reported; these do not depend on the cohort normalization.

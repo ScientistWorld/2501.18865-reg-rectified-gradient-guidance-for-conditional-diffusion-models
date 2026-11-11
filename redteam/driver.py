@@ -190,9 +190,9 @@ def prepare_case(name, folder):
     if name.startswith("weaker_remove_reg_seed"):
         return artifact_from_arrays(arrays, cfg, candidate="cfg", cost=0), {
             "genuine_change": "remove REG correction; same denoisers, states and target"}
-    if name == "weaker_zero_guidance":
+    if name == "shortcut_zero_guidance":
         return artifact_from_arrays(arrays, cfg, candidate="zero", cost=0), {
-            "genuine_change": "return constant zero guidance with correctly measured errors"}
+            "shortcut": "return constant zero guidance with correctly measured errors"}
     if name == "shortcut_move_baseline":
         return artifact_from_arrays(arrays, cfg, baseline_multiplier=1000), {
             "shortcut": "same candidate guidance; multiply comparison CFG by 1000"}

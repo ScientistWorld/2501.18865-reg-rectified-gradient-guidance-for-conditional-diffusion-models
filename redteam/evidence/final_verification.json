@@ -1,0 +1,40 @@
+{
+  "scoring/scores_train.json": {
+    "matches_iteration_start": true,
+    "sha256": "383f0eeb3d595f10c178a3960e3b62b0cc6d05af8aae9e44b207b84a901da6c1"
+  },
+  "scoring/scores_test.json": {
+    "matches_iteration_start": true,
+    "sha256": "436e0962fa172b8a7ee046ada479eb503d0d5ee772dce68460eff94df1655a44"
+  },
+  "scripts/run.sh": {
+    "matches_iteration_start": true,
+    "sha256": "b2613f65319ee158be5e3c27fc458677e8a5d7bb1dcddfbf06799459a65daaaa"
+  },
+  "outputs/toy_1d/results.json": {
+    "matches_pre_audit_backup": true,
+    "sha256": "a8aa5850c82c4829f0b97a82015cc7d3e33f5afadef8534b3801d4ca80e5dcb9"
+  },
+  "gym_source_directories_unchanged": [
+    "scripts",
+    "method",
+    "eval",
+    "data",
+    "baseline",
+    "briefing",
+    "environment",
+    "scoring"
+  ],
+  "case_count": 25,
+  "successful_case_count": 23,
+  "global_diff_check": "No differences from iteration start outside redteam/, REDTEAM.md, scheduler action.yaml, and the recorded preexisting dirty paths.",
+  "preexisting_dirty_paths_preserved": [
+    "README.md",
+    "manifest.json",
+    "trajectory/turn_0001_raw.jsonl",
+    "trajectory/turn_0002_raw.jsonl",
+    "trajectory/turn_0003_raw.jsonl"
+  ],
+  "job_records_restored_to_iteration_start": true,
+  "scheduler_trajectory_session_absent_at_iteration_start_and_now": true
+}

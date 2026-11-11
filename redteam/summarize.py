@@ -79,7 +79,7 @@ def main():
               for metric, spec in metric_defs.items()}
     saturated = [metric for metric, value in reference.items() if metric in bounds and value == bounds[metric]]
     summary = {"reference_metrics": reference, "metric_definitions": metric_defs,
-               "normalization": "population std across eleven genuine quality/reference variants only; no shortcuts",
+               "normalization": "population std across ten genuine quality/reference variants only; no shortcuts",
                "honest_normalization_cohort": honest_names, "metric_scales": scales,
                "pooled_normalization": "all successful output method rows including impossible claims; illustrative only",
                "pooled_metric_scales": pooled_scales,
