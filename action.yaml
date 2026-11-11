@@ -1,8 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
-gpus: 1
-test: false
+action: done
 milestone: core_claim
-notes: "Hardening job 2: rebuild public + 12 hidden problems with the paper's released uncond mixture (-2,0), then reference/baselines/variants/shortcuts through evaluate_train.sh and evaluate_test.sh, then canonical scores."
+notes: "Hardened: evaluator runs guidance rules via counted oracle on 12 hidden problems and recomputes all metrics; paper's released 1D setting restored (uncond (-2,0)); better variant (+0.64) above reference beyond paired noise, weaker variants and all shortcuts below. See HARDENING.md."
