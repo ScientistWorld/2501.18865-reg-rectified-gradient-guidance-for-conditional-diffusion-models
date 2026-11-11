@@ -21,7 +21,8 @@ EXP = "toy_1d_guidance_approximation"
 REF = "reg_cfg"
 HONEST = [
     "reg_cfg", "vanilla_cfg", "no_guidance", "reg_calibrated", "reg_exact_jacobian",
-    "reg_lookahead1", "reg_lookahead2", "reg_flipped_correction",
+    "reg_lookahead1", "reg_lookahead2", "reg_flipped_correction", "reg_calibrated_per_t",
+    "reg_tweedie_point", "reg_taylor_shift",
 ]
 
 

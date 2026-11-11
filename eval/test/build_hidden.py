@@ -37,7 +37,7 @@ from eval.test.toy_problem import (  # noqa: E402
 
 ASSETS = Path(__file__).resolve().parent / "assets"
 HIDDEN_SEED = 860_517_293
-NUM_PROBLEMS = 8
+NUM_PROBLEMS = 12
 
 
 def main() -> None:

@@ -67,9 +67,13 @@ class GaussianMixture1D:
         return GaussianMixture1D(tuple(d["means"]), tuple(d["stds"]), tuple(d["weights"]))
 
 
-# The paper's 1D example (Section 5.1 / Appendix E.1).
+# The paper's 1D example (Section 5.1 / Appendix E.1).  The conditional mixture is
+# as stated in the text.  The unconditional mixture follows the authors' released
+# configuration (1d-toy/models/*.pkl: uncond_mean = [-2, 0], uncond_std = [0.5, 0.5]),
+# which is what produced the paper's Figures 1 and 5 with the released denoisers;
+# the text's "N(-1, 0.5^2) + N(1, 0.5^2)" is inconsistent with those figures.
 PAPER_COND = GaussianMixture1D(means=(0.5, 1.5), stds=(0.25, 0.25), weights=(0.5, 0.5))
-PAPER_UNCOND = GaussianMixture1D(means=(-1.0, 1.0), stds=(0.5, 0.5), weights=(0.5, 0.5))
+PAPER_UNCOND = GaussianMixture1D(means=(-2.0, 0.0), stds=(0.5, 0.5), weights=(0.5, 0.5))
 
 # Backwards-compatible aliases.
 CONDITIONAL_DIST = PAPER_COND
@@ -103,8 +107,8 @@ def sample_family_problem(rng: random.Random) -> tuple[GaussianMixture1D, Gaussi
     """Public family of paper-like problems used for the visible training slice.
 
     Conditional: 2-3 narrow components inside [0.15, 1.85].
-    Unconditional: one wide component on the left plus 1-2 wide components on
-    the right.  The paper's own mixtures are a member of this family.
+    Unconditional: one wide component near -2 plus 1-2 wide components near 0.
+    The paper's own mixtures are a member of this family.
     """
     kc = rng.choice([2, 3])
     cond = GaussianMixture1D(
@@ -113,9 +117,9 @@ def sample_family_problem(rng: random.Random) -> tuple[GaussianMixture1D, Gaussi
         weights=tuple(_dirichlet(rng, kc, 5.0)),
     )
     ku = rng.choice([2, 3])
-    right = _spaced_means(rng, ku - 1, 0.4, 1.4, 0.45)
+    right = _spaced_means(rng, ku - 1, -0.4, 0.6, 0.45)
     uncond = GaussianMixture1D(
-        means=tuple([rng.uniform(-1.3, -0.7)] + right),
+        means=tuple([rng.uniform(-2.3, -1.7)] + right),
         stds=tuple(rng.uniform(0.35, 0.60) for _ in range(ku)),
         weights=tuple(_dirichlet(rng, ku, 5.0)),
     )

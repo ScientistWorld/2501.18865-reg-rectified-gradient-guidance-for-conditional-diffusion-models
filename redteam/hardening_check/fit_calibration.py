@@ -1,6 +1,6 @@
 """Fit the single REG multiplier of the `reg_calibrated` variant on the PUBLIC training problems only.
 
-Writes rules/reg_calibrated/constants.json.  Uses public data (data/toy_1d_train) and public code.
+Writes rules/reg_calibrated/constants.json and rules/reg_calibrated_per_t/constants.json.  Uses public data (data/toy_1d_train) and public code.
 """
 
 from __future__ import annotations
@@ -39,12 +39,23 @@ def main() -> None:
         targets.append(np.asarray(rec["target"]))
     reg = np.concatenate(regs)
     tgt = np.concatenate(targets)
-    grid = np.round(np.arange(0.5, 1.5001, 0.005), 3)
-    maes = [float(np.mean(np.minimum(np.abs(c * reg - tgt), 4.0))) for c in grid]
+    tt = np.concatenate([np.asarray(json.loads((PDIR / f"{n}.json").read_text())["states"]["t"]) for n in index["problems"]])
+    grid = np.round(np.arange(0.2, 2.0001, 0.005), 3)
+
+    def mae(c, m):
+        return float(np.mean(np.minimum(np.abs(c * reg[m] - tgt[m]), 4.0)))
+
+    allm = np.ones_like(tgt, dtype=bool)
+    maes = [mae(c, allm) for c in grid]
     best = float(grid[int(np.argmin(maes))])
-    out = Path(__file__).resolve().parent / "rules" / "reg_calibrated" / "constants.json"
-    out.write_text(json.dumps({"scale": best, "train_mae_at_scale": min(maes), "train_mae_at_1": maes[int(np.argmin(np.abs(grid - 1.0)))]}, indent=2))
-    print(f"[calibration] best scale {best} (train MAE {min(maes):.5f}; at 1.0: {maes[int(np.argmin(np.abs(grid - 1.0)))]:.5f})")
+    rules = Path(__file__).resolve().parent / "rules"
+    (rules / "reg_calibrated" / "constants.json").write_text(json.dumps({"scale": best, "train_mae_at_scale": min(maes), "train_mae_at_1": mae(1.0, allm)}, indent=2))
+    per_t = []
+    for step in range(1, int(index["schedule"]["T"]) + 1):
+        m = tt == step
+        per_t.append(float(grid[int(np.argmin([mae(c, m) for c in grid]))]))
+    (rules / "reg_calibrated_per_t" / "constants.json").write_text(json.dumps({"scales": per_t}, indent=2))
+    print(f"[calibration] scalar {best} (train MAE {min(maes):.5f}; at 1.0: {mae(1.0, allm):.5f}); per-t {per_t}")
 
 
 if __name__ == "__main__":

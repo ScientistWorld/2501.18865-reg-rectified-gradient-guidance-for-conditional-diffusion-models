@@ -88,9 +88,9 @@ def sample_hidden_problem(rng: random.Random) -> tuple[GaussianMixture1D, Gaussi
         weights=tuple(_dirichlet(rng, kc, 4.0)),
     )
     ku = rng.choice([2, 3])
-    right = _spaced_means(rng, ku - 1, 0.3, 1.5, 0.45)
+    right = _spaced_means(rng, ku - 1, -0.5, 0.7, 0.45)
     uncond = GaussianMixture1D(
-        means=tuple([rng.uniform(-1.4, -0.6)] + right),
+        means=tuple([rng.uniform(-2.4, -1.6)] + right),
         stds=tuple(rng.uniform(0.33, 0.62) for _ in range(ku)),
         weights=tuple(_dirichlet(rng, ku, 4.0)),
     )

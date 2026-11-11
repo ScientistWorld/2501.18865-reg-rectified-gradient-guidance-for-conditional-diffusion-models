@@ -3,7 +3,7 @@ gradient at the Tweedie estimate x0_hat with the REG Jacobian (2 units). Ignores
 import numpy as np
 
 COND = ((0.5, 1.5), (0.25, 0.25), (0.5, 0.5))
-UNCOND = ((-1.0, 1.0), (0.5, 0.5), (0.5, 0.5))
+UNCOND = ((-2.0, 0.0), (0.5, 0.5), (0.5, 0.5))
 
 
 def _dlogp(x, mix):
